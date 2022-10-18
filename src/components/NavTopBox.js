@@ -8,45 +8,37 @@ const NavTopBox = () => {
 
   const [isHover, setIsHover] = useState(false);
 
-  return (
-    <div className="navTopBox">
-      <p
-        className="navSignupText"
-        onClick={() => {
-          navigate(`/signup`);
-        }}
-      >
-        회원가입
-      </p>
-      <p
-        className="navLoginText"
-        onClick={() => {
-          navigate(`/login`);
-        }}
-      >
-        로그인
-      </p>
-      <p
-        // onMouseEnter={() => {
-        //   setIsHover(true);
-        // }}
-        // onMouseOut={() => {
-        //   setIsHover(false);
-        // }}
-        className="navCscenterText"
-      >
-        고객센터
-      </p>
-      {/* {isHover && (
-        <ul className="navCscenterBox" style={isHover}>
-          <li>공지사항</li>
-          <li>자주하는 질문</li>
-          <li>1:1 문의</li>
-          <li>대량주문 문의</li>
-        </ul>
-      )} */}
-    </div>
-  );
+  if (token) {
+    return (
+      <div className="navTopBox">
+        <p className="navWelcomeText">웰컴</p>
+        <p className="navUserText">이진혁 님</p>
+        <p className="navCscenterText">고객센터</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="navTopBox">
+        <p
+          className="navSignupText"
+          onClick={() => {
+            navigate(`/signup`);
+          }}
+        >
+          회원가입
+        </p>
+        <p
+          className="navLoginText"
+          onClick={() => {
+            navigate(`/login`);
+          }}
+        >
+          로그인
+        </p>
+        <p className="navCscenterText">고객센터</p>
+      </div>
+    );
+  }
 };
 
 export default NavTopBox;

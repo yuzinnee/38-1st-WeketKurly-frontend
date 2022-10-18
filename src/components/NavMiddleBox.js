@@ -1,7 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCaretSquareRight } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import {
+  faCartShopping,
+  faLocationDot,
+  faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons';
 
 const NavMiddleBox = () => {
   const navigate = useNavigate();
@@ -26,12 +32,13 @@ const NavMiddleBox = () => {
           type="text"
           placeholder="검색어를 입력해주세요"
         />
-        <FontAwesomeIcon className="navSearchIcon" icon={faHeart} />
+        <FontAwesomeIcon className="navSearchIcon" icon={faMagnifyingGlass} />
       </div>
       <div className="navIconBox">
+        <FontAwesomeIcon className="navIcon" icon={faLocationDot} />
+        <FontAwesomeIcon icon="fa-thin fa-location-dot" />
         <FontAwesomeIcon className="navIcon" icon={faHeart} />
-        <FontAwesomeIcon className="navIcon" icon={faHeart} />
-        <FontAwesomeIcon className="navIcon" icon={faHeart} />
+        <FontAwesomeIcon className="navIcon" icon={faCartShopping} />
       </div>
     </div>
   );
