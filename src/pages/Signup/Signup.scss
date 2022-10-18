@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@mixin flex($justify: center, $align: center, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,8 +18,7 @@
 }
 
 .topSignupLetter {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 50px 0;
   font-size: 28px;
   line-height: 35px;
   font-weight: 500;
@@ -120,24 +126,18 @@
 }
 
 .male {
+  @include flex(space-between, center);
   width: 62px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .female {
+  @include flex(space-between, center);
   width: 62px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .genderNone {
+  @include flex(space-between, center);
   width: 88px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .genderChoiceButton {
@@ -149,10 +149,8 @@
 }
 
 .birthContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 15px;
+  @include flex(center, center);
+  padding: 0 15px;
   height: 44px;
   width: 333px;
   border: 1px solid rgb(204, 204, 204);
@@ -184,9 +182,7 @@
 }
 
 .recommendContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(space-between, center);
   width: 118px;
   padding: 12px 0px 9px;
 }
