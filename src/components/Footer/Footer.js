@@ -5,10 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-container">
-        <div className="footer-contents">
-          <Left />
-          <Right />
-        </div>
+        <FooterContents />
         <Marks />
         <Bottom />
       </div>
@@ -16,21 +13,28 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+const FooterContents = () => {
+  return (
+    <div className="footer-contents">
+      <FooterLeft />
+      <FooterRight />
+    </div>
+  );
+};
 
-const Left = () => {
+const FooterLeft = () => {
   return (
     <div className="left">
       <h2>
         고객행복센터 <span>365일 오전 7시 - 오후 7시</span>
       </h2>
       <strong>1644-1107</strong>
-      <div>
+      <div className="button-wrapper">
         <button>카카오톡 문의</button>
         <button>1:1 문의</button>
         <button>대량주문 문의</button>
       </div>
-      <div>
+      <div className="mailto">
         비회원 문의: <a href="mailto:help@kurlycorp.com">help@kurlycorp.com</a>
         <br></br>
         비회원 대량주문 문의:{' '}
@@ -40,7 +44,7 @@ const Left = () => {
   );
 };
 
-const Right = () => {
+const FooterRight = () => {
   return (
     <div className="right">
       <ul className="corp-menu">
@@ -62,11 +66,13 @@ const Right = () => {
         채용문의 : recruit@kurlycorp.com <br></br> 팩스 : 070 - 7500 - 6098
       </div>
       <ul className="corp-links">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        {LINKS.map(link => {
+          return (
+            <li key={link.id}>
+              <img src={link.img} alt={link.alt}></img>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -75,15 +81,18 @@ const Right = () => {
 const Marks = () => {
   return (
     <div className="footer-marks">
-      <button className="mark date">
-        <div>1</div>
-      </button>
-      <button className="mark privacy">2</button>
-      <button className="mark toss">3</button>
-      <button className="mark uri">4</button>
+      {GUARANTEE.map(item => {
+        return (
+          <button key={item.id}>
+            <img src={item.img} alt={item.alt}></img>
+            <p>{item.text}</p>
+          </button>
+        );
+      })}
     </div>
   );
 };
+
 const Bottom = () => {
   return (
     <div className="footer-bottom">
@@ -97,6 +106,8 @@ const Bottom = () => {
     </div>
   );
 };
+
+export default Footer;
 
 const FOOTER_DATA = [
   {
@@ -122,5 +133,65 @@ const FOOTER_DATA = [
   {
     id: 1,
     content: '이용안내',
+  },
+];
+
+const LINKS = [
+  {
+    id: 1,
+    alt: 'Kurly Account Instagram',
+    link: 'https://www.instagram.com/marketkurly/',
+    img: 'https://res.kurly.com/pc/ico/1810/ico_instagram.png',
+  },
+  {
+    id: 2,
+    alt: 'Kurly Account Facebook',
+    link: 'https://www.facebook.com/marketkurly',
+    img: 'https://res.kurly.com/pc/ico/1810/ico_fb.png',
+  },
+  {
+    id: 3,
+    alt: 'Kurly Naver Blog',
+    link: 'https://blog.naver.com/marketkurly',
+    img: 'https://res.kurly.com/pc/ico/1810/ico_blog.png',
+  },
+  {
+    id: 4,
+    alt: 'Kurly Naver Post',
+    link: 'https://m.post.naver.com/marketkurly',
+    img: 'https://res.kurly.com/pc/ico/1810/ico_naverpost.png',
+  },
+  {
+    id: 5,
+    alt: 'Kurly Youtube Video',
+    link: 'https://www.youtube.com/channel/UCfpdjL5pl-1qKT7Xp4UQzQg',
+    img: 'https://res.kurly.com/pc/ico/1810/ico_youtube.png',
+  },
+];
+
+const GUARANTEE = [
+  {
+    id: 1,
+    alt: '인증범위',
+    text: '[인증범위] 마켓컬리 쇼핑몰 서비스 개발 운영  (심사받지 않은 물리적 인프라 제외) [유효기간] 2022.01.19 ~ 2025.01.18',
+    img: 'https://res.kurly.com/pc/ico/2208/logo_isms.svg',
+  },
+  {
+    id: 2,
+    alt: '개인정보보호',
+    text: '개인정보보호 우수 웹사이트 개인정보처리시스템 인증 (ePRIVACY PLUS)',
+    img: 'https://res.kurly.com/pc/ico/2208/logo_privacy.svg',
+  },
+  {
+    id: 3,
+    alt: '토스페이먼츠',
+    text: '토스페이먼츠 구매안전(에스크로) 서비스를 이용하실 수 있습니다.',
+    img: 'https://res.kurly.com/pc/ico/2208/logo_tosspayments.svg',
+  },
+  {
+    id: 4,
+    alt: '우리은행',
+    text: '고객님이 현금으로 결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다.',
+    img: 'https://res.kurly.com/pc/ico/2208/logo_wooriBank.svg',
   },
 ];
