@@ -6,7 +6,7 @@ import NavTopBox from './NavTopBox';
 
 const Nav = () => {
   return (
-    <div>
+    <div className="navContainer">
       <NavTopBox />
       <NavMiddleBox />
       <NavBottomBox />
