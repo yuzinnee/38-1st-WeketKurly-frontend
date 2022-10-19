@@ -1,0 +1,41 @@
+@import '../../styles/variables';
+
+.listPageContainer {
+  width: 100%;
+  margin-top: 50px;
+  @include flex(center, null, row);
+
+  .listWrapper {
+    width: 1050px;
+    height: 300vh;
+    @include flex(flex-start, center, column);
+
+    .listTitle {
+      display: block;
+      margin-top: 50px;
+      color: rgb(51, 51, 51);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+
+    .contentContainer {
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 75px;
+
+      .listGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 249px);
+        gap: 24px 18px;
+        width: 100%;
+
+        div {
+          height: 538px;
+          border: 1px solid tomato;
+        }
+      }
+    }
+  }
+}
