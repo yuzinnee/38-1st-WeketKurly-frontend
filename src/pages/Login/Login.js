@@ -61,16 +61,16 @@ function Login() {
 
   return (
     <div className="login">
-      <div className="title-container">
+      <div className="titleContainer">
         <div className="title">로그인</div>
       </div>
-      <div className="form-container">
+      <div className="formContainer">
         <form onSubmit={onSubmit}>
           <div className="input-container">
             <Input
               value={values.userid}
               type="id"
-              className="login-input"
+              className="loginInput"
               name="id"
               placeholder="아이디를 입력해주세요"
               onChange={onInputChange}
@@ -78,7 +78,7 @@ function Login() {
             <Input
               value={values.password}
               type="password"
-              className="login-input"
+              className="loginInput"
               name="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={onInputChange}
@@ -89,12 +89,12 @@ function Login() {
             <span></span>
             <Link to="/">비밀번호 찾기</Link>
           </div>
-          <div className="button-container">
-            <button className="login-button" onSubmit={onSubmit}>
+          <div className="buttonContainer">
+            <button className="loginButton" onSubmit={onSubmit}>
               로그인
             </button>
             <Link to="/Signin">
-              <button className="signin-button">회원가입</button>
+              <button className="signinButton">회원가입</button>
             </Link>
           </div>
         </form>
