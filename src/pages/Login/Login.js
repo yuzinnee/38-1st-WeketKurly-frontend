@@ -5,27 +5,24 @@ import './Login.scss';
 function Login() {
   const navigate = useNavigate();
 
-  const [values, setValues] = useState({ userId: '', password: '' });
+  const [userInfo, setUserInfo] = useState({ userId: '', password: '' });
 
-  //값을 받아서 인풋창에 세팅하는 함수입니다
-  const onInputChange = e => {
+  const getUserInfo = e => {
     const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+    setUserInfo({ ...userInfo, [name]: value });
   };
 
-  //제출 시 새로고침을 막고 첫 번째로 값의 유무에 대한 validation을 진행하는 부분입니다
-  const isValid = values.userId && values.password;
+  const isValid = userInfo.userId && userInfo.password;
 
-  const onSubmit = e => {
+  const submitUserInfo = e => {
     e.preventDefault();
     if (!isValid) {
       alert('아이디 또는 비밀번호를 입력해주세요, 모달창이 띄워질 영역입니다');
     } else {
       fetch('http://10.58.52.89:3000/users/signin', {
-        //로그인 API기입, 동일한 와이파이 접속 확인
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        body: JSON.stringify(values),
+        body: JSON.stringify(userInfo),
       })
         .then(response => {
           if (response.ok === true) {
@@ -36,8 +33,7 @@ function Login() {
         .catch(error => alert(error))
         .then(data => {
           if (data.message === 'LOGIN_SUCCESS') {
-            localStorage.setItem('token', data.token); //'token'변수명에 대한 key값 통일 확인
-            console.log(localStorage.getItem('token'));
+            localStorage.setItem('token', data.token);
             navigate('/Main');
           } else alert('로그인 실패, 모달창이 띄워질 예정입니다.');
         });
@@ -50,32 +46,32 @@ function Login() {
         <div className="title">로그인</div>
       </div>
       <div className="formContainer">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={submitUserInfo}>
           <div className="input-container">
             <Input
-              value={values.userId}
+              value={userInfo.userId}
               className="loginInput"
               type="id"
               name="userId"
               placeholder="아이디를 입력해주세요"
-              onChange={onInputChange}
+              onChange={getUserInfo}
             />
             <Input
-              value={values.password}
+              value={userInfo.password}
               className="loginInput"
               type="password"
               name="password"
               placeholder="비밀번호를 입력해주세요"
-              onChange={onInputChange}
+              onChange={getUserInfo}
             />
           </div>
           <div className="find">
             <Link to="/">아이디 찾기</Link>
-            <span></span>
+            <span />
             <Link to="/">비밀번호 찾기</Link>
           </div>
           <div className="buttonContainer">
-            <button className="loginButton" onClick={onSubmit}>
+            <button className="loginButton" onClick={submitUserInfo}>
               로그인
             </button>
             <Link to="/Signin">
