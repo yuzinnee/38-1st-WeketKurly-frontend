@@ -69,16 +69,16 @@ function Login() {
           <div className="input-container">
             <Input
               value={values.userid}
-              type="id"
               className="loginInput"
+              type="id"
               name="id"
               placeholder="아이디를 입력해주세요"
               onChange={onInputChange}
             />
             <Input
               value={values.password}
-              type="password"
               className="loginInput"
+              type="password"
               name="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={onInputChange}
