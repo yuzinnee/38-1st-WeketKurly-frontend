@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 
-.footer-container {
+.footerContainer {
   @include flex(center, center, column);
   position: fixed;
   bottom: 0;
@@ -11,27 +11,27 @@
   border-top: 1px solid rgb(246, 246, 246);
   background-color: white;
 
-  .footer-contents {
+  .footerContents {
     @include flex(space-between, flex-start, row);
     width: 1050px;
     height: 290px;
     padding-bottom: 67px;
 
-    .left {
-      h2 {
+    .footerLeft {
+      .footerLeftTitle {
         padding-bottom: 17px;
         font-size: 20px;
         font-weight: 500;
         line-height: 29px;
 
-        span {
+        .runTime {
           margin-left: 8px;
           font-size: 16px;
           font-weight: normal;
         }
       }
 
-      strong {
+      .strong {
         display: block;
         padding-bottom: 20px;
         color: rgb(44, 44, 44);
@@ -43,7 +43,7 @@
       .button-wrapper {
         margin-bottom: 38px;
 
-        button {
+        .footerButton {
           width: 140px;
           height: 40px;
           margin-right: 10px;
@@ -63,7 +63,7 @@
         font-size: 12px;
         line-height: 18px;
 
-        a {
+        .helpEmail {
           color: rgb(142, 142, 142);
         }
       }
@@ -74,38 +74,38 @@
       font-size: 12px;
       line-height: 18px;
 
-      .corp-menu {
+      .corpMenu {
         padding-bottom: 29px;
 
-        li {
+        .footerDataMap {
           display: inline;
           padding-right: 14px;
           font-size: 14px;
         }
       }
 
-      .corp-info {
+      .corpInfo {
         color: rgb(140, 140, 140);
         font-size: 10px;
         font-weight: 400;
 
-        span {
+        .divide {
           width: 1px;
           height: 10px;
           margin: 0 4px 0 4px;
         }
       }
 
-      .corp-links {
+      .corpLinks {
         height: 58px;
         @include flex(flex-start, flex-end, row);
 
-        li {
+        .corpLinksMap {
           width: 30px;
           height: 30px;
           margin-right: 10px;
 
-          img {
+          .corpLinksImage {
             width: 100%;
             height: 100%;
           }
@@ -114,25 +114,25 @@
     }
   }
 
-  .footer-marks {
+  .footerMarks {
     width: 1050px;
     height: 102px;
     padding: 26px 0 33px 0;
     @include flex(space-between, center, row);
     border-top: 1px solid rgb(246, 246, 246);
 
-    button {
+    .markButton {
       width: 255px;
       @include flex(center, center, row);
       border: transparent;
       outline: none;
       background-color: white;
 
-      IMG {
+      .markImage {
         margin-right: 10px;
       }
 
-      p {
+      .itemText {
         color: rgb(153, 153, 153);
         font-size: 10px;
         line-height: 14.5px;
@@ -142,7 +142,7 @@
     }
   }
 
-  .footer-bottom {
+  .footerBottom {
     width: 100%;
     height: 100px;
     padding: 20px 0 30px 0;
@@ -152,7 +152,7 @@
     line-height: 15px;
     text-align: center;
 
-    em {
+    .corpRights {
       display: block;
       padding-top: 7px;
     }
