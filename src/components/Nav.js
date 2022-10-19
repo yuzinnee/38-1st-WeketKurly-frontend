@@ -1,8 +1,8 @@
 import React from 'react';
-import './Nav.scss';
 import NavBottomBox from './NavBottomBox';
 import NavMiddleBox from './NavMiddleBox';
 import NavTopBox from './NavTopBox';
+import './Nav.scss';
 
 const Nav = () => {
   return (
