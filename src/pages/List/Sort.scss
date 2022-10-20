@@ -15,6 +15,7 @@
   .sortTypes {
     @include flex(null, center, row);
     list-style-type: none;
+    cursor: pointer;
 
     .sortType {
       display: inline;
