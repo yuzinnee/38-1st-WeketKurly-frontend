@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainContentsBox.scss';
 const MainContentsBox = () => {
-  return <div></div>;
+  return <div className="mainContentsBox"></div>;
 };
 
 export default MainContentsBox;
