@@ -35,15 +35,9 @@ const FooterLeft = () => {
         <button className="footerButton">대량주문 문의</button>
       </div>
       <div className="mailto">
-        비회원 문의:{' '}
-        <a href="mailto:help@kurlycorp.com" className="helpEmail">
-          help@kurlycorp.com
-        </a>
+        비회원 문의: help@kurlycorp.com
         <br></br>
-        비회원 대량주문 문의:{' '}
-        <a href="mailto:kurlygift@kurlycorp.com" className="helpEmail">
-          kurlygift@kurlycorp.com
-        </a>
+        비회원 대량주문 문의: kurlygift@kurlycorp.com
       </div>
     </div>
   );
