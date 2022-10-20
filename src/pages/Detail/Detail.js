@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Detail.scss';
+import DetailNavigator from './Detailnavigator/DetailNavigator';
 
 const Detail = () => {
   const {
@@ -38,7 +39,9 @@ const Detail = () => {
     <div className="detailPage">
       <div className="detailPageContainer">
         <article className="detailArticle">
-          <div className="itemImage"></div>
+          <div className="itemImage">
+            <img src={backgroundImage} alt={name} className="itemImageTag" />
+          </div>
           <div className="itemDescription">
             <div className="nameOfItem">
               <div className="ship">샛별배송</div>
@@ -81,17 +84,7 @@ const Detail = () => {
             <div className="select"></div>
           </div>
         </article>
-        <nav className="navigator">
-          <nav className="navigatorContainer">
-            <div className="navigatorButton">
-              <span>상품설명</span>
-            </div>
-            <div className="navigatorButton">
-              <span>후기</span>
-            </div>
-            <div></div>
-          </nav>
-        </nav>
+        <DetailNavigator />
       </div>
     </div>
   );

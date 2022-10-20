@@ -22,6 +22,10 @@
         width: 430px;
         height: 552px;
         background-color: rgba(40, 27, 116, 0.342);
+
+        .itemImageTag {
+          width: 100%;
+        }
       }
 
       .itemDescription {
@@ -115,29 +119,6 @@
       width: 432px;
       font-size: 14px;
       line-height: 16px;
-    }
-  }
-}
-
-.navigator {
-  position: sticky;
-  z-index: 20;
-  top: 56px;
-  width: 1010px;
-  margin-top: 50px;
-
-  .navigatorContainer {
-    display: flex;
-
-    .navigatorButton {
-      @include flex(center, center, row);
-      display: flex;
-      width: 50%;
-      height: 60px;
-      background-color: rgb(241, 241, 241);
-      color: rgb(102, 102, 102);
-      font-size: 16px;
-      font-weight: 500;
     }
   }
 }

@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+
+.detailNavigator {
+  position: sticky;
+  z-index: 20;
+  top: 56px;
+  width: 1010px;
+  margin-top: 50px;
+
+  .navigatorContainer {
+    display: flex;
+
+    .navigatorButton {
+      @include flex(center, center, row);
+      display: flex;
+      width: 50%;
+      height: 60px;
+      background-color: rgb(241, 241, 241);
+      color: rgb(102, 102, 102);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .clicked {
+      background-color: tomato;
+    }
+  }
+}
