@@ -6,10 +6,6 @@
   flex-direction: $direction;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .signupContainer {
   align-items: center;
   min-width: 1050px;
@@ -128,11 +124,13 @@
 .male {
   @include flex(space-between, center);
   width: 62px;
+  margin-right: 50px;
 }
 
 .female {
   @include flex(space-between, center);
   width: 62px;
+  margin-right: 50px;
 }
 
 .genderNone {
