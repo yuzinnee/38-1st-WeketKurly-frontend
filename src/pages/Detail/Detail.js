@@ -13,8 +13,17 @@ const Detail = () => {
     price,
     weight,
   } = DETAIL_DATA;
-  const keys = Object.keys(DETAIL_DATA); // 목데이터용 코드입니다 삭제 필수!
+  const DETAIL_KEY_KOREAN = {
+    packing_type_text: '배송',
+    origin: '원산지',
+    allerge: '알레르기정보',
+    contactant: '판매자',
+    weight: '중량/용량',
+  };
+  const keys = Object.keys(DETAIL_KEY_KOREAN);
 
+  // console.log(keys); // 목데이터용 코드입니다 삭제 필수!
+  // console.log(window.pageYOffset);
   // const [itemInfo, setItemInfo] = useState({});
 
   // useEffect(() => {
@@ -22,6 +31,9 @@ const Detail = () => {
   //     .then(res => res.json())
   //     .then(result => console.log(result));
   // });
+
+  // const showShareWindow = ()=>();
+
   return (
     <div className="detailPage">
       <div className="detailPageContainer">
@@ -32,9 +44,7 @@ const Detail = () => {
               <div className="ship">샛별배송</div>
               <div>
                 <div className="titleContainer">
-                  <h2 className="itemName">
-                    [{contactant}] {name}
-                  </h2>
+                  <h2 className="itemName">[퀴네] {name}</h2>
                   <button className="share"></button>
                 </div>
                 <p className="brief">치즈와 마늘 품은 드레싱의 여왕</p>
@@ -46,23 +56,42 @@ const Detail = () => {
               <span className="won">원</span>
             </div>
             <div className="table">
-              <dl>
-                <dt>배송</dt>
-                <dd>
+              <dl className="dList">
+                <dt className="dTitle">배송</dt>
+                <dd className="dDescription">
                   <p>샛별배송</p>
-                  <p>{`23시 전 주문 시 내일 아침 7시 전 도착
-(대구·부산·울산 샛별배송 운영시간 별도 확인)`}</p>
+                  <p>
+                    23시 전 주문 시 내일 아침 7시 전 도착
+                    <br /> (대구·부산·울산 샛별배송 운영시간 별도 확인)
+                  </p>
                 </dd>
               </dl>
-              <TableInner />
-              <TableInner />
-              <TableInner />
-              <TableInner />
-              <TableInner />
+
+              {keys.map((key, index) => {
+                return (
+                  <TableInner
+                    key={index}
+                    name={key}
+                    data={DETAIL_DATA}
+                    korean={DETAIL_KEY_KOREAN}
+                  />
+                );
+              })}
             </div>
             <div className="select"></div>
           </div>
         </article>
+        <nav className="navigator">
+          <nav className="navigatorContainer">
+            <div className="navigatorButton">
+              <span>상품설명</span>
+            </div>
+            <div className="navigatorButton">
+              <span>후기</span>
+            </div>
+            <div></div>
+          </nav>
+        </nav>
       </div>
     </div>
   );
@@ -70,28 +99,12 @@ const Detail = () => {
 
 export default Detail;
 
-const Description = () => {
-  return (
-    <p>
-      <strong></strong>
-      <b>중량</b>
-      : 1개(6.7g)
-      <br />
-      <b>특징</b>: 데일리한 베이지, 브라운에 톤 다운된 핑크, 로즈컬러를
-      담았어요.
-      <br />
-      <b>특징</b>: 데일리한 베이지, 브라운에 톤 다운된 핑크, 로즈컬러를
-      담았어요.
-    </p>
-  );
-};
-
 const TableInner = props => {
-  const { key, value } = props;
+  const { name, data, korean } = props;
   return (
-    <dl>
-      <dt>{key}</dt>
-      <dd>{value}</dd>
+    <dl className="dList">
+      <dt className="dTitle">{korean[name]}</dt>
+      <dd className="dDescription">{data[name]}</dd>
     </dl>
   );
 };
@@ -100,7 +113,7 @@ const DETAIL_DATA = {
   id: 1,
   backgroundImage:
     'https://img-cf.kurly.com/shop/data/goods/1569990684227l0.jpg',
-  contactant: '퀴네',
+  contactant: '컬리',
   name: '아메리칸 시저 드레싱',
   weight: '1병(250mL)',
   packing_type_text: '상온(종이포장)',

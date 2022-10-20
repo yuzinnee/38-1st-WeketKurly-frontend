@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
 * {
   font-family: 'Noto Sans KR', sans-serif;
@@ -6,6 +7,9 @@
 
 .detailPage {
   width: 100%;
+  height: 300vh;
+
+  @include flex(center, null, row);
 
   .detailPageContainer {
     width: 1050px;
@@ -13,7 +17,6 @@
 
     .detailArticle {
       @include flex(space-between, null, row);
-      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
       .itemImage {
         width: 430px;
@@ -26,14 +29,10 @@
 
         .table {
           width: 100%;
-          height: 50px;
-          border: 1px solid blue;
         }
 
         .select {
           width: 100%;
-          height: 50px;
-          border: 1px solid blue;
         }
       }
     }
@@ -42,7 +41,6 @@
 
 .nameOfItem {
   width: 100%;
-  border: 1px solid blue;
 
   .ship {
     width: 500px;
@@ -68,6 +66,7 @@
       border: 1px solid rgb(153, 153, 153);
       border-radius: 50%;
       background-color: transparent;
+      cursor: pointer;
     }
   }
 
@@ -84,7 +83,6 @@
   @include flex(null, flex-end, row);
   width: 100%;
   height: 50px;
-  border: 1px solid blue;
   color: rgb(51, 51, 51);
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -98,5 +96,48 @@
   .won {
     font-size: 18px;
     letter-spacing: -0.5px;
+  }
+}
+
+.table {
+  .dList {
+    padding: 17px 0 18px 0;
+    border-top: 1px solid rgb(244, 244, 244);
+    @include flex(space-between, flex-start, row);
+
+    .dTitle {
+      width: 128px;
+      color: rgb(102, 102, 102);
+      font-size: 14px;
+    }
+
+    .dDescription {
+      width: 432px;
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
+
+.navigator {
+  position: sticky;
+  z-index: 20;
+  top: 56px;
+  width: 1010px;
+  margin-top: 50px;
+
+  .navigatorContainer {
+    display: flex;
+
+    .navigatorButton {
+      @include flex(center, center, row);
+      display: flex;
+      width: 50%;
+      height: 60px;
+      background-color: rgb(241, 241, 241);
+      color: rgb(102, 102, 102);
+      font-size: 16px;
+      font-weight: 500;
+    }
   }
 }
