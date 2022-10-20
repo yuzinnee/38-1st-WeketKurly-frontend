@@ -28,23 +28,6 @@
       .inputContainer {
         margin-top: 30px;
       }
-
-      .loginInput {
-        width: 100%;
-        height: 54px;
-        margin-bottom: 10px;
-        padding: 0 11px 1px 15px;
-        border: 1px solid rgb(215, 215, 215);
-        border-radius: 5px;
-        color: gray;
-        font-size: 14px;
-        font-weight: 400;
-
-        &:focus {
-          border: 1px solid black;
-          outline: transparent;
-        }
-      }
     }
 
     .find {
@@ -53,6 +36,10 @@
       margin-top: 10px;
 
       font-size: 13px;
+
+      .findButton {
+        cursor: pointer;
+      }
 
       span {
         width: 1px;
@@ -63,32 +50,29 @@
       }
     }
 
-    .buttonContainer {
+    button {
+      width: 100%;
+      height: 54px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      box-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .loginButton {
       margin-top: 28px;
+      background-color: $primary-color;
+      color: white;
+    }
 
-      button {
-        width: 100%;
-        height: 54px;
-        margin-bottom: 10px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        box-shadow: none;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .loginButton {
-        background-color: $primary-color;
-        color: white;
-      }
-
-      .signinButton {
-        border: 1px solid $primary-color;
-        background-color: white;
-        color: $primary-color;
-      }
+    .signinButton {
+      border: 1px solid $primary-color;
+      background-color: white;
+      color: $primary-color;
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
+import Input from '../../components/Input/Input';
 
 function Login() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function Login() {
           <div className="input-container">
             <Input
               value={userInfo.userId}
-              className="loginInput"
+              className="input"
               type="id"
               name="userId"
               placeholder="아이디를 입력해주세요"
@@ -58,7 +59,7 @@ function Login() {
             />
             <Input
               value={userInfo.password}
-              className="loginInput"
+              className="input"
               type="password"
               name="password"
               placeholder="비밀번호를 입력해주세요"
@@ -66,16 +67,16 @@ function Login() {
             />
           </div>
           <div className="find">
-            <Link to="/">아이디 찾기</Link>
+            <div className="findButton">아이디 찾기</div>
             <span />
-            <Link to="/">비밀번호 찾기</Link>
+            <div className="findButton">비밀번호 찾기</div>
           </div>
           <div className="buttonContainer">
             <button className="loginButton" onClick={submitUserInfo}>
               로그인
             </button>
-            <Link to="/Signin">
-              <button className="signinButton">회원가입</button>
+            <Link to="/signin">
+              <button className="signinButton">회원가입 </button>
             </Link>
           </div>
         </form>
@@ -85,16 +86,3 @@ function Login() {
 }
 
 export default Login;
-
-const Input = ({ className, onChange, name, value, type, placeholder }) => {
-  return (
-    <input
-      className={className}
-      onChange={onChange}
-      name={name}
-      value={value}
-      type={type}
-      placeholder={placeholder}
-    ></input>
-  );
-};
