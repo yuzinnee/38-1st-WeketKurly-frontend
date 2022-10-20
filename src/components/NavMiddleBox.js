@@ -32,7 +32,12 @@ const NavMiddleBox = () => {
       <div className="navIconBox">
         <IoLocationOutline className="navIcon" />
         <VscHeart className="navIcon" />
-        <BsCart2 className="navIcon" />
+        <BsCart2
+          className="navIcon"
+          onClick={() => {
+            navigate(`/cart`);
+          }}
+        />
       </div>
     </div>
   );
