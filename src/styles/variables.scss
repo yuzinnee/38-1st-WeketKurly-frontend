@@ -5,4 +5,24 @@
   justify-content: $justify;
 }
 
-$primary-color: #5e0080;
+@mixin font($size: 16px, $align: 1, $spacing: normal, $weight: 500) {
+  font-size: $size;
+  line-height: $height;
+  letter-spacing: $spacing;
+  font-weight: $weight;
+}
+
+$primary-color: rgb(95, 0, 128);
+$specialPrice-color: rgb(189, 118, 255);
+$subPrimary-color: rgb(109, 86, 115);
+$point-color: rgb(255, 191, 0);
+$white-color: rgb(255, 255, 255);
+$hover-color: rgb(245, 240, 246);
+$line-color: rgb(221, 221, 221);
+$lightLine-color: rgb(246, 246, 246);
+$gray-color: rgb(146, 146, 150);
+$lightGray-color: rgb(208, 208, 208);
+$devide-color: rgb(181, 181, 181);
+$modalBg-color: rgb(108, 108, 108);
+$disabled-color: rgb(102, 102, 102);
+$text-color: rgb(44, 44, 44);
