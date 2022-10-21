@@ -45,27 +45,5 @@
 
   .cartItemList {
     width: 100%;
-
-    .cartItem {
-      @include flex(space-between, center, null);
-      width: 100%;
-      border: 1px solid black;
-
-      .cartItemImg {
-        width: 60px;
-        height: 78px;
-      }
-
-      .cartItemName {
-        width: 345px;
-        padding-top: 2px;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 22px;
-        overflow: hidden;
-        word-break: break-all;
-        border: 1px solid black;
-      }
-    }
   }
 }
