@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './Detail.scss';
 import DetailNavigator from './Detailnavigator/DetailNavigator';
+// 35, 43, 87, 116-135
 
 const Detail = () => {
+  const [itemInfo, setItemInfo] = useState({});
+
   const {
     allerge,
-    backgroundImage,
+    detail_image_url,
     contactant,
     expiration_date,
     name,
@@ -13,49 +16,68 @@ const Detail = () => {
     packing_type_text,
     price,
     weight,
+    short_description,
+    packing_type_id,
+    packing_types,
   } = DETAIL_DATA;
+
   const DETAIL_KEY_KOREAN = {
-    packing_type_text: '배송',
+    contactant: '판매자',
+    packing_types: '포장타입',
+    packing_type_id: '판매단위',
+    weight: '중량/용량',
     origin: '원산지',
     allerge: '알레르기정보',
-    contactant: '판매자',
-    weight: '중량/용량',
+    expiration_date: '유통기한(또는 소비기한)정보',
   };
   const keys = Object.keys(DETAIL_KEY_KOREAN);
 
-  // console.log(keys); // 목데이터용 코드입니다 삭제 필수!
-  // console.log(window.pageYOffset);
-  // const [itemInfo, setItemInfo] = useState({});
-
-  // useEffect(() => {
-  //   fetch('./../../../public/data/DETAIL_DATA.json')
-  //     .then(res => res.json())
-  //     .then(result => console.log(result));
-  // });
+  useEffect(() => {
+    fetch('http://url:3000/products/${productId}', {
+      //api 주소 맞추기
+      method: 'GET',
+      headers: { key: 'value' },
+    })
+      .then(res => res.json())
+      .then(result => setItemInfo(result));
+  });
+  console.log(itemInfo); //서버와 통신 시 확인 위함
 
   // const showShareWindow = ()=>();
+
+  function priceComma(price) {
+    const reversedPrice = (price + '').split('').reverse();
+    let arr = [];
+    for (let i = 0; i < reversedPrice.length; i++) {
+      arr.push(Number(reversedPrice[i]));
+      if (i === 2 || i === 5 || i === 8) {
+        arr.push(`,`);
+      }
+    }
+    return arr.reverse().join('');
+  }
 
   return (
     <div className="detailPage">
       <div className="detailPageContainer">
         <article className="detailArticle">
           <div className="itemImage">
-            <img src={backgroundImage} alt={name} className="itemImageTag" />
+            <img src={detail_image_url} alt={name} className="itemImageTag" />
           </div>
           <div className="itemDescription">
             <div className="nameOfItem">
               <div className="ship">샛별배송</div>
               <div>
                 <div className="titleContainer">
-                  <h2 className="itemName">[퀴네] {name}</h2>
+                  <h2 className="itemName">{name}</h2>
                   <button className="share"></button>
                 </div>
-                <p className="brief">치즈와 마늘 품은 드레싱의 여왕</p>
+                <p className="brief">{short_description}</p>
               </div>
             </div>
 
             <div className="priceContainer">
-              <span className="price">{price}</span>
+              <span className="price">{priceComma(price)}</span>
               <span className="won">원</span>
             </div>
             <div className="table">
@@ -75,7 +97,7 @@ const Detail = () => {
                   <TableInner
                     key={index}
                     name={key}
-                    data={DETAIL_DATA}
+                    data={DETAIL_DATA} //itemInfo로 변수명 변경!
                     korean={DETAIL_KEY_KOREAN}
                   />
                 );
@@ -102,16 +124,26 @@ const TableInner = props => {
   );
 };
 
+//서버와 통신 전 사용하는 Mockdata 입니다.
+
 const DETAIL_DATA = {
   id: 1,
-  backgroundImage:
-    'https://img-cf.kurly.com/shop/data/goods/1569990684227l0.jpg',
+  sub_category_id: 2,
+  name: '[KF365] 밤고구마 800g',
+  thumnail_image_url:
+    'https://pixabay.com/get/g00e4af9aa464d5be8b52b11a34cfd3705596eb00ae6fcc74618239c7b4dfa2e4f5c568ade6c3dc5eec4871edf803545089561841af9fe44d6d9e9367126a0fe8066e329cfa3f2361ca945faa8fe13f60_640.jpg',
+  short_description: '포근하고 고소한 고구마(1봉/800g)',
   contactant: '컬리',
-  name: '아메리칸 시저 드레싱',
-  weight: '1병(250mL)',
-  packing_type_text: '상온(종이포장)',
-  origin: '상세페이지 별도표기',
-  expiration_date: '뚜껑 별도 표기일까지(읽는법: EXP)',
-  price: 10900,
-  allerge: '-계란, 우유, 대두, 밀, 돼지고기, 쇠고기 함유',
+  packing_type_id: 1,
+  weight: '800g',
+  origin: '국내산',
+  allerge: '-없음',
+  expiration_date:
+    '농산물로 별도의 유통기한은 없으나 가급적 빨리 드시기 바랍니다.',
+  price: '1113900',
+  detail_image_url:
+    'https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80',
+  created_at: '2022-10-20T00:23:09.000Z',
+  updated_at: '2022-10-20T00:23:09.000Z',
+  packing_types: '냉장',
 };

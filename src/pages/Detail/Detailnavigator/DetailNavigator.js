@@ -3,7 +3,7 @@ import { useState } from 'react';
 import './DetailNavigator.scss';
 
 const DetailNavigator = () => {
-  const [isButtonClicked, setIsButtonClicked] = useState('');
+  const [isButtonClicked, setIsButtonClicked] = useState('상품설명');
   const buttons = ['상품설명', '후기'];
 
   return (
