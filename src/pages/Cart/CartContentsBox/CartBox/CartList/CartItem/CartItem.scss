@@ -20,4 +20,19 @@
     word-break: break-all;
     border: 1px solid black;
   }
+
+  .cartItemCount {
+    @include flex(space-between, center, null);
+    width: 90px;
+    height: 30px;
+    border: 1px solid rgb(221, 223, 225);
+    border-radius: 3px;
+    padding: 0 10px;
+
+    .cartCounts {
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 3px;
+    }
+  }
 }

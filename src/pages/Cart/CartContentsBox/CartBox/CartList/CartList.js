@@ -7,6 +7,10 @@ import CartItem from './CartItem/CartItem';
 const CartList = ({ list }) => {
   const [openlist, setOpenlist] = useState(true);
 
+  const handleClickOpenList = () => {
+    setOpenlist(openList => !openList);
+  };
+
   return (
     <div className="cartList">
       <div className="cartListDropTab">
@@ -15,19 +19,9 @@ const CartList = ({ list }) => {
           <p className="cartListText">{list.type}</p>
         </div>
         {openlist === true ? (
-          <IoIosArrowUp
-            className="arrowIcon"
-            onClick={() => {
-              setOpenlist(!openlist);
-            }}
-          />
+          <IoIosArrowUp className="arrowIcon" onClick={handleClickOpenList} />
         ) : (
-          <IoIosArrowDown
-            className="arrowIcon"
-            onClick={() => {
-              setOpenlist(!openlist);
-            }}
-          />
+          <IoIosArrowDown className="arrowIcon" onClick={handleClickOpenList} />
         )}
       </div>
       {openlist && (
