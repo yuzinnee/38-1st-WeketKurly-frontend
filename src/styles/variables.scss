@@ -12,6 +12,20 @@
   font-weight: $weight;
 }
 
+@mixin position(
+  $position: relative,
+  $top: 0px,
+  $right: 0px,
+  $bottom: 0px,
+  $left: 0px
+) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
 $primary-color: rgb(95, 0, 128);
 $specialPrice-color: rgb(189, 118, 255);
 $subPrimary-color: rgb(109, 86, 115);
