@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
-import { AiOutlineMinus } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+
 import './CartModal.scss';
 
 const CartModal = props => {
