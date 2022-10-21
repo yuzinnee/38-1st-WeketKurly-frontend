@@ -1,8 +1,7 @@
 import React from 'react';
 import CartList from './CartList/CartList';
 import { MdOutlineWaterDrop } from 'react-icons/md';
-import { BsSun } from 'react-icons/bs';
-import { BsSnow } from 'react-icons/bs';
+import { BsSun, BsSnow } from 'react-icons/bs';
 import './CartBox.scss';
 
 const CartBox = () => {

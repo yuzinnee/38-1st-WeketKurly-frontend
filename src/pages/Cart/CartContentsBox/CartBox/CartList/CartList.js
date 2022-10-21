@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './CartList.scss';
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
 import CartItem from './CartItem/CartItem';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import './CartList.scss';
 
 const CartList = ({ list }) => {
   const [openlist, setOpenlist] = useState(true);

@@ -2,7 +2,7 @@
 
 .cartList {
   width: 742px;
-  border-top: 1px solid $text-color;
+  border-top: 2px solid $primary-color;
 
   .cartListDropTab {
     @include flex(space-between, center, null);
