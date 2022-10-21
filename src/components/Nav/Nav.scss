@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .navContainer {
   position: fixed;
@@ -6,6 +6,7 @@
   width: 100%;
   height: 156px;
   background: $white-color;
+  z-index: 1000;
 
   .navTopBox {
     @include flex(end, center, null);
