@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Detail.scss';
-import DetailNavigator from './Detailnavigator/DetailNavigator';
+import DetailNavigator from './DetailNavigator/DetailNavigator';
 import TableInner from './TableInner/TableInner';
-import ShareModal from './ShareModal/ShareModal';
+import DetailCart from './DetailCart/DetailCart';
+import ShareToolTip from './ShareToolTip/ShareToolTip';
 
 const Detail = () => {
   const [itemInfo, setItemInfo] = useState({});
@@ -93,12 +94,19 @@ const Detail = () => {
                   />
                 );
               })}
+              <dl className="dList">
+                <dt className="dTitle">상품선택</dt>
+                <dd className="dDescription">
+                  <DetailCart />
+                </dd>
+              </dl>
             </div>
             <div className="select"></div>
           </div>
         </article>
         <DetailNavigator />
         <div>추후 이미지와 상품설명이 들어가는 자리입니다.</div>
+        <div>추후 후기 컴포넌트가 import되는 자리입니다.</div>
       </div>
     </div>
   );
