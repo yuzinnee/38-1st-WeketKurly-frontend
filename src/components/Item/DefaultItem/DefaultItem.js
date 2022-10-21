@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import './DefaultItem.scss';
 
