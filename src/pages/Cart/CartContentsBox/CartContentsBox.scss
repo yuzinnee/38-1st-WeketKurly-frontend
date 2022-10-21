@@ -3,7 +3,6 @@
 .cartContentsBox {
   @include flex(space-between, null, null);
   width: 1050px;
-  height: 942px;
   border: 1px solid black;
   margin-top: 100px;
 }
