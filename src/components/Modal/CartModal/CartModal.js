@@ -11,10 +11,10 @@ const CartModal = props => {
   const [count, setCount] = useState(1);
 
   const increaseCount = () => {
-    setCount(count + 1);
+    setCount(count => count + 1);
   };
   const decreaseCount = () => {
-    setCount(count - 1);
+    setCount(count => count - 1);
   };
 
   const closeHandler = e => {
