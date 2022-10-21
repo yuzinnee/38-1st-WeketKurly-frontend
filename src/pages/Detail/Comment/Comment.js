@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Comment.scss';
 
 const Comment = () => {
+  const [reviewClicked, setReviewClicked] = useState('');
+  const [isReviewClicked, setIsReviewClicked] = useState(false);
+
+  const reviewContentOpen = index => {
+    setReviewClicked(index);
+    if (!isReviewClicked) {
+      setIsReviewClicked(true);
+    } else {
+      setIsReviewClicked(false);
+    }
+  };
   return (
     <div className="review">
       <div className="reviewBottom">
@@ -30,8 +41,17 @@ const Comment = () => {
 
               <div className="reviewPadding">도움</div>
             </div>
-            {REVIEW_MOCK_DATA.map(review => {
-              return <ReviewRow key={review.id} reviewData={review} />;
+            {REVIEW_MOCK_DATA.map((review, index) => {
+              return (
+                <ReviewRow
+                  key={index}
+                  id={index}
+                  reviewData={review}
+                  reviewContentOpen={reviewContentOpen}
+                  reviewClicked={reviewClicked}
+                  isReviewClicked={isReviewClicked}
+                />
+              );
             })}
           </div>
         </div>
@@ -42,12 +62,31 @@ const Comment = () => {
 
 export default Comment;
 
-const ReviewRow = ({ reviewData }) => {
+const ReviewRow = ({
+  reviewData,
+  reviewContentOpen,
+  reviewClicked,
+  isReviewClicked,
+}) => {
   const { id, title, contant, user_id, help_count } = reviewData;
   return (
-    <div className="reviewRow list">
+    <div
+      className="reviewRow list"
+      onClick={() => reviewContentOpen(id)}
+      isReviewClicked={isReviewClicked}
+    >
       <div className="reviewPadding">{id}</div>
-      <div>{title}</div>
+      <button className="reviewButton">
+        {' '}
+        <div>
+          {title}{' '}
+          {reviewClicked === id && !isReviewClicked ? (
+            <div className="reviewContent">
+              <div className="reviewContentWrapper">{contant}</div>
+            </div>
+          ) : null}
+        </div>
+      </button>
       <div className="reviewPadding">{user_id}</div>
       <div className="reviewPadding">{help_count}</div>
     </div>

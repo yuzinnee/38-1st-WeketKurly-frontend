@@ -59,8 +59,29 @@
       text-align: center;
     }
 
+    .reviewButton {
+      padding: 0;
+      overflow: visible;
+      border: none;
+      border-radius: 0;
+      outline: none;
+      background: inherit;
+      background-color: transparent;
+      box-shadow: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
     .tableTitle {
       text-align: center;
+    }
+
+    .reviewContent {
+      width: 100%;
+
+      .reviewContentWrapper {
+        height: 150px;
+      }
     }
   }
 }
