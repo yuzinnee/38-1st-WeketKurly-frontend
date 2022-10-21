@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-
+import { TiDeleteOutline } from 'react-icons/ti';
 import './CartItem.scss';
+
 const CartItem = props => {
   const [count, setCount] = useState(0);
 
@@ -24,19 +25,16 @@ const CartItem = props => {
       <div className="cartItemCountBox">
         <div className="cartItemCount">
           {count <= 1 ? (
-            <AiOutlineMinus
-              className="cartMinusIcon"
-              style={{ color: 'lightGray' }}
-            />
+            <AiOutlineMinus style={{ color: 'lightGray' }} />
           ) : (
-            <AiOutlineMinus className="cartMinusIcon" onClick={decreaseCount} />
+            <AiOutlineMinus className="cartCountIcon" onClick={decreaseCount} />
           )}
           <p className="cartCounts">{count}</p>
-          <AiOutlinePlus className="cartPlusIcon" onClick={increaseCount} />
+          <AiOutlinePlus className="cartCountIcon" onClick={increaseCount} />
         </div>
       </div>
-      <div className="cartItemPrice">price</div>
-      <div className="cartItemIcon">icon</div>
+      <div className="cartItemPrice">8800원</div>
+      <TiDeleteOutline className="deleteIcon" />
     </div>
   );
 };

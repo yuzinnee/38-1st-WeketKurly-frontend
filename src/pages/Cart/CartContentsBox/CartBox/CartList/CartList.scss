@@ -2,7 +2,7 @@
 
 .cartList {
   width: 742px;
-  border-top: 1px solid black;
+  border-top: 1px solid $text-color;
 
   .cartListDropTab {
     @include flex(space-between, center, null);
@@ -17,17 +17,17 @@
       .frozenIcon {
         width: 28px;
         height: 28px;
-        color: rgb(94, 157, 239);
+        color: $frozen-color;
       }
       .chilledIcon {
         width: 28px;
         height: 28px;
-        color: rgb(80, 187, 140);
+        color: $chilled-color;
       }
       .sunIcon {
         width: 28px;
         height: 28px;
-        color: rgb(252, 136, 74);
+        color: $sun-color;
       }
       .cartListText {
         font-size: 20px;

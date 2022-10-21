@@ -3,7 +3,8 @@
 .cartItem {
   @include flex(space-between, center, null);
   width: 100%;
-  border: 1px solid black;
+  padding: 20px 0;
+  border-bottom: 1px solid $lightGray-color;
 
   .cartItemImg {
     width: 60px;
@@ -18,14 +19,13 @@
     line-height: 22px;
     overflow: hidden;
     word-break: break-all;
-    border: 1px solid black;
   }
 
   .cartItemCount {
     @include flex(space-between, center, null);
     width: 90px;
     height: 30px;
-    border: 1px solid rgb(221, 223, 225);
+    border: 1px solid $line-color;
     border-radius: 3px;
     padding: 0 10px;
 
@@ -34,5 +34,27 @@
       font-weight: 500;
       margin-top: 3px;
     }
+
+    .cartCountIcon {
+      cursor: pointer;
+    }
+  }
+
+  .cartItemPrice {
+    padding-top: 3px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: $text-color;
+    width: 100px;
+    text-align: end;
+  }
+
+  .deleteIcon {
+    width: 25px;
+    height: 25px;
+    color: $gray-color;
+    cursor: pointer;
+    margin-right: 5px;
   }
 }

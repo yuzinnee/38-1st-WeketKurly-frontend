@@ -11,5 +11,4 @@ const CartContentsBox = () => {
     </div>
   );
 };
-
 export default CartContentsBox;

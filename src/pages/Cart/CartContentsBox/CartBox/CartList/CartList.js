@@ -27,6 +27,8 @@ const CartList = ({ list }) => {
       {openlist && (
         <div className="cartItemList">
           <CartItem />
+          <CartItem />
+          <CartItem />
         </div>
       )}
     </div>
