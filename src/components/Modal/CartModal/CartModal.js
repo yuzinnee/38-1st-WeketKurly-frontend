@@ -44,11 +44,11 @@ const CartModal = props => {
               ) : (
                 <AiOutlineMinus
                   className="cartMinusIcon"
-                  onClick={increaseCount}
+                  onClick={decreaseCount}
                 />
               )}
               <p className="cartCounts">{count}</p>
-              <AiOutlinePlus className="cartPlusIcon" onClick={decreaseCount} />
+              <AiOutlinePlus className="cartPlusIcon" onClick={increaseCount} />
             </div>
           </div>
         </div>
