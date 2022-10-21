@@ -15,12 +15,7 @@ const DefaultModal = props => {
         <div className="modalContentsBox">
           <p className="modalContentsText">{contents?.title}</p>
         </div>
-        <div
-          className="modalConfirmBox"
-          onClick={e => {
-            closeHandler(e);
-          }}
-        >
+        <div className="modalConfirmBox" onClick={closeHandler}>
           <button className="modalConfirmBtn">확인</button>
         </div>
       </div>
