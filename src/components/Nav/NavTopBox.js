@@ -5,9 +5,6 @@ const NavTopBox = () => {
   const token = localStorage.getItem('token');
 
   const navigate = useNavigate();
-
-  const [isHover, setIsHover] = useState(false);
-
   if (token) {
     return (
       <div className="navTopBox">
