@@ -8,26 +8,40 @@ const Signup = () => {
   const [values, setValues] = useState({
     userId: '',
     password: '',
+    passwordCheck: '',
     name: '',
     email: '',
-    genderId: 1,
-    birthday: '19970104',
+    genderId: '',
+    year: '',
+    month: '',
+    day: '',
   });
+
   const valueHandler = e => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-  console.log(values);
-  const { userId, password, name, email, genderId } = values;
-  const [passwordCheck, setPasswordCheck] = useState('');
+  console.log('values:', values);
+  const {
+    userId,
+    password,
+    name,
+    email,
+    genderId,
+    passwordCheck,
+    year,
+    month,
+    day,
+  } = values;
   const userIdRegEx = /^[a-z]+[a-z0-9]{5,16}$/g;
-  const isUserIdVaild = userId.length;
+  const isUserIdVaild = userId.length > 5 && userId.length < 17;
   const isPasswordValid = password.length > 9;
-  const isPasswordCheckValid = password === passwordCheck;
+  const isPasswordCheck = password === passwordCheck;
   const isNameValid = name.length > 0;
-  const emailRegEx = /[a-z0-9]+@[a-z]+.[a-z]{2,3}/;
+  const emailRegEx = /[a-zA-Z0-9+_]+@[a-z]+\.+[a-z]/;
   const isEmailValid = emailRegEx.test(email);
-
-  console.log(isNameValid);
+  const birthday = year + month.length === 2 ? month : 0 + month + day;
+  console.log(passwordCheck);
+  console.log(birthday);
 
   const submitUseInfo = () => {
     fetch('http://10.58.52.89:3000/users/signup', {
@@ -35,7 +49,15 @@ const Signup = () => {
       headers: {
         'content-type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        userId: '',
+        password: '',
+        passwordCheck: '',
+        name: '',
+        email: '',
+        genderId: genderId,
+        birthday: year + month + day,
+      }),
     })
       .then(res => {
         if (!res.ok) {
@@ -77,7 +99,7 @@ const Signup = () => {
                 onChange={valueHandler}
               />
               {userId.length !== 0 &&
-                (isEmailValid || (
+                (isUserIdVaild || (
                   <span className="warning">
                     6자 이상 16자 이하의 영문 혹은 숫자를 조합
                   </span>
@@ -111,11 +133,19 @@ const Signup = () => {
             <span className="leftLetter">
               비밀번호확인<span className="star">*</span>
             </span>
-            <input
-              type="password"
-              className="input"
-              placeholder="비밀번호를 한번 더 입력해주세요"
-            />
+            <div className="inputContainer">
+              <input
+                type="password"
+                name="passwordCheck"
+                className="input"
+                placeholder="비밀번호를 한번 더 입력해주세요"
+                onChange={valueHandler}
+              />
+              {passwordCheck.length !== 0 &&
+                (isPasswordCheck || (
+                  <span className="warning">동일한 비밀번호를 입력</span>
+                ))}
+            </div>
           </div>
           {/* ----------------------이름이름이름이름이름---------------------------- */}
           <div className="eachContainer">
@@ -140,13 +170,21 @@ const Signup = () => {
             <span className="leftLetter">
               이메일<span className="star">*</span>
             </span>
-            <input
-              className="input"
-              name="email"
-              value={values.email}
-              placeholder="예: weketkurly@kurly.com"
-              onChange={valueHandler}
-            />
+            <div className="inputContainer">
+              <input
+                className="input"
+                name="email"
+                value={email}
+                placeholder="예: weketkurly@kurly.com"
+                onChange={valueHandler}
+              />
+              {email.length !== 0 &&
+                (isEmailValid || (
+                  <span className="warning">
+                    이메일 형식으로 입력해 주세요.
+                  </span>
+                ))}
+            </div>
             <button className="rightButton">
               <span className="buttonLetter">중복확인</span>
             </button>
@@ -157,19 +195,23 @@ const Signup = () => {
             <div className="choiceContainer">
               <div className="male">
                 <input
-                  name="genderInput"
+                  name="genderId"
                   type="radio"
                   className="genderChoiceButton"
+                  value="1"
+                  checked={genderId === '1'}
+                  onChange={valueHandler}
                 ></input>
-                <div name className="maleLetter">
-                  남자
-                </div>
+                <div className="maleLetter">남자</div>
               </div>
               <div className="female">
                 <input
                   type="radio"
-                  name="genderInput"
+                  name="genderId"
                   className="genderChoiceButton"
+                  checked={genderId === '2'}
+                  value="2"
+                  onChange={valueHandler}
                 ></input>
                 <div className="femaleLetter">여자</div>
               </div>
@@ -179,11 +221,30 @@ const Signup = () => {
           <div className="eachContainer">
             <span className="leftLetter">생년월일</span>
             <div className="birthContainer">
-              <input className="birthInput" placeholder="YYYY"></input>
+              <input
+                name="year"
+                type="text"
+                className="birthInput"
+                // min="1900"
+                // max="2022"
+                maxLength="4"
+                placeholder="YYYY"
+              ></input>
               <span className="birthSlash">/</span>
-              <input className="birthInput" placeholder="MM"></input>
+              <input
+                name="month"
+                className="birthInput"
+                maxLength="2"
+                placeholder="MM"
+                type="text"
+              ></input>
               <span className="birthSlash">/</span>
-              <input className="birthInput" placeholder="DD"></input>
+              <input
+                name="day"
+                className="birthInput"
+                maxLength="2"
+                placeholder="DD"
+              ></input>
             </div>
           </div>
           {/* ----------------------추가입력추가입력추가입력---------------------------- */}
@@ -191,11 +252,19 @@ const Signup = () => {
             <span className="leftLetter">추가입력 사항</span>
             <div className="choiceContainer">
               <div className="recommendContainer">
-                <input type="radio" className="genderChoiceButton"></input>
+                <input
+                  name="additionalIfo"
+                  type="radio"
+                  className="genderChoiceButton"
+                ></input>
                 <span>추천인 아이디</span>
               </div>
               <div className="recommendContainer">
-                <input type="radio" className="genderChoiceButton"></input>
+                <input
+                  type="radio"
+                  name="additionalIfo"
+                  className="genderChoiceButton"
+                ></input>
                 <span>참여 이벤트명</span>
               </div>
             </div>
@@ -217,4 +286,15 @@ const Signup = () => {
   );
 };
 
+function Input({ onChange, value, placeholder, className, type }) {
+  return (
+    <input
+      onChange={onChange}
+      value={value}
+      placeholder={placeholder}
+      className={className}
+      type={type}
+    />
+  );
+}
 export default Signup;
