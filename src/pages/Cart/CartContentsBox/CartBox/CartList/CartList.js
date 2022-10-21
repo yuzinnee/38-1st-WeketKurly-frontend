@@ -30,18 +30,28 @@ const CartList = ({ list }) => {
         )}
       </div>
       {openlist && (
-        <div className="cartListBox">
-          <div>
+        <div className="cartItemList">
+          <div className="cartItem">
             <img
-              className="cartListItemImg"
+              className="cartItemImg"
               src="https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1634631825670l0.jpg"
               alt="상품이미지"
             />
-
-            <div className="cartListItem">item</div>
-            <div className="cartListCountBox">count</div>
-            <div className="cartListItemPrice">price</div>
-            <div className="cartListItemIcon">icon</div>
+            <div className="cartItemName">item</div>
+            <div className="cartItemCountBox">count</div>
+            <div className="cartItemPrice">price</div>
+            <div className="cartItemIcon">icon</div>
+          </div>
+          <div className="cartItem">
+            <img
+              className="cartItemImg"
+              src="https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1634631825670l0.jpg"
+              alt="상품이미지"
+            />
+            <div className="cartItemName">item</div>
+            <div className="cartItemCountBox">count</div>
+            <div className="cartItemPrice">price</div>
+            <div className="cartItemIcon">icon</div>
           </div>
         </div>
       )}
