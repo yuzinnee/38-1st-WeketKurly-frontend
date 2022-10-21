@@ -1,9 +1,13 @@
 import React from 'react';
-
+import Nav from '../../components/Nav';
 import './Main.scss';
 
 const Main = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Nav />
+    </div>
+  );
 };
 
 export default Main;
