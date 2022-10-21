@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../../components/Nav';
+import Nav from '../../components/Nav/Nav';
 import CartContentsBox from './CartContentsBox/CartContentsBox';
 import './Cart.scss';
 
