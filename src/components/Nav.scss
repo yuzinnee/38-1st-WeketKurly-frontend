@@ -1,0 +1,209 @@
+@import '../styles/variables.scss';
+
+.navContainer {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 156px;
+  background: $white-color;
+
+  .navTopBox {
+    @include flex(end, center, null);
+    width: 1050px;
+    height: 35px;
+    margin: 0 auto;
+
+    .navSignupText {
+      width: 60px;
+      color: $primary-color;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .navLoginText {
+      width: 60px;
+      text-align: center;
+      font-size: 12px;
+      border-right: 1px solid $lightGray-color;
+      border-left: 1px solid $lightGray-color;
+      cursor: pointer;
+    }
+
+    .navCscenterText {
+      width: 60px;
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .navWelcomeText {
+      @include flex(center, center, null);
+      width: 38px;
+      height: 18px;
+      margin-bottom: 2px;
+      padding-left: 2px;
+      border-radius: 30px;
+      font-size: 10px;
+      line-height: 14px;
+      text-align: center;
+      border: 1px solid $gray-color;
+      background-color: $white-color;
+      color: $gray-color;
+      cursor: pointer;
+    }
+
+    .navUserText {
+      width: 60px;
+      text-align: center;
+      font-size: 12px;
+      border-right: 1px solid $lightGray-color;
+      cursor: pointer;
+    }
+  }
+
+  .navMiddleBox {
+    @include flex(space-between, center, null);
+    width: 1050px;
+    height: 65px;
+    margin: 0 auto;
+
+    .navLogoBox {
+      @include flex(space-between, center, null);
+      width: 260px;
+
+      .navLogoImg {
+        width: 80px;
+        font-family: 'courgette', cursive;
+        font-size: 30px;
+        color: $primary-color;
+        padding-bottom: 5px;
+        cursor: pointer;
+      }
+
+      .navMarketText {
+        width: 70px;
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        color: $primary-color;
+        cursor: pointer;
+      }
+
+      .navBeautyText {
+        width: 70px;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: center;
+        color: $devide-color;
+        cursor: pointer;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    .navSearchBox {
+      @include flex(space-between, center, null);
+      width: 400px;
+      height: 48px;
+      border: 1px solid $primary-color;
+      border-radius: 5px;
+      padding: 0 15px;
+      margin-right: 120px;
+
+      .navSearchInput {
+        width: 300px;
+        height: 20px;
+        font-size: 16px;
+        border: none;
+        margin-top: 3px;
+      }
+      .navSearchIcon {
+        width: 25px;
+        height: 25px;
+        color: $primary-color;
+      }
+    }
+
+    .navIconBox {
+      @include flex(space-between, center, null);
+      width: 148px;
+      height: 36px;
+
+      .navIcon {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .navBottomBox {
+    @include flex(space-between, center, null);
+    width: 1050px;
+    height: 56px;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: -0.3px;
+    color: $text-color;
+
+    .navCategoryBox {
+      @include flex(space-between, center, null);
+      width: 88px;
+      height: 56px;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+
+      .navIcon {
+        width: 25px;
+        height: 25px;
+        padding-bottom: 5px;
+      }
+    }
+
+    .navSelectBox {
+      @include flex(space-between, center, null);
+      width: 500px;
+      height: 56px;
+      margin-left: 30px;
+
+      .navSelectText {
+        cursor: pointer;
+
+        &:hover {
+          color: $primary-color;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .navDeliveryGuide {
+      @include flex(space-between, center, null);
+      width: 132px;
+      height: 32px;
+      padding: 6px 20px;
+      border-radius: 18px;
+      border: 1px solid $lightLine-color;
+      color: $disabled-color;
+      font-size: 13px;
+      line-height: 16px;
+      letter-spacing: -0.32px;
+      cursor: pointer;
+
+      > span {
+        color: $primary-color;
+      }
+    }
+  }
+}
