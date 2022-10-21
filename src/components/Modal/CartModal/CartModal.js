@@ -10,6 +10,13 @@ const CartModal = props => {
 
   const [count, setCount] = useState(1);
 
+  const increaseCount = () => {
+    setCount(count + 1);
+  };
+  const decreaseCount = () => {
+    setCount(count - 1);
+  };
+
   const closeHandler = e => {
     e.stopPropagation();
     close();
@@ -37,18 +44,11 @@ const CartModal = props => {
               ) : (
                 <AiOutlineMinus
                   className="cartMinusIcon"
-                  onClick={() => {
-                    setCount(count - 1);
-                  }}
+                  onClick={increaseCount}
                 />
               )}
               <p className="cartCounts">{count}</p>
-              <AiOutlinePlus
-                className="cartPlusIcon"
-                onClick={() => {
-                  setCount(count + 1);
-                }}
-              />
+              <AiOutlinePlus className="cartPlusIcon" onClick={decreaseCount} />
             </div>
           </div>
         </div>
@@ -67,12 +67,7 @@ const CartModal = props => {
           </p>
         )}
         <div className="cartModalBottomBox">
-          <button
-            className="cartModalLeftBtn"
-            onClick={e => {
-              closeHandler(e);
-            }}
-          >
+          <button className="cartModalLeftBtn" onClick={closeHandler}>
             취소
           </button>
           <button
