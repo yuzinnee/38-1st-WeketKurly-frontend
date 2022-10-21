@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Signup.scss';
 
 const Signup = () => {
+  const [asd, setAsd] = useState(false);
+  console.log(asd);
+
   const [values, setValues] = useState({
     userId: '',
     password: '',
@@ -11,11 +14,20 @@ const Signup = () => {
     birthday: '19970104',
   });
   const valueHandler = e => {
-    // const { name, value } = e.target;
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   console.log(values);
-  const [pwCheckInput, setpwCheckInput] = useState('');
+  const { userId, password, name, email, genderId } = values;
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const userIdRegEx = /^[a-z]+[a-z0-9]{5,16}$/g;
+  const isUserIdVaild = userId.length;
+  const isPasswordValid = password.length > 9;
+  const isPasswordCheckValid = password === passwordCheck;
+  const isNameValid = name.length > 0;
+  const emailRegEx = /[a-z0-9]+@[a-z]+.[a-z]{2,3}/;
+  const isEmailValid = emailRegEx.test(email);
+
+  console.log(isNameValid);
 
   const submitUseInfo = () => {
     fetch('http://10.58.52.89:3000/users/signup', {
@@ -42,153 +54,162 @@ const Signup = () => {
       });
   };
 
-  function pwCheckInputOnchangeFunction(e) {
-    setpwCheckInput(e.target.value);
-  }
-  console.log(pwCheckInput);
   return (
     <>
       <div className="signupContainer">
-        <div className="topSignupLetter">회원가입</div>
         <div className="mainContainer">
+          <div className="topSignupLetter">회원가입</div>
           <div className="topRequired">
             <span className="star">*</span>필수입력사항
           </div>
-          <div className="mainContainer">
-            {/* ----------------------아이디아이디아이디아이디아이디---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">
-                아이디<span className="star">*</span>
-              </span>
+
+          {/* ----------------------아이디아이디아이디아이디아이디---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">
+              아이디<span className="star">*</span>
+            </span>
+            <div className="inputContainer">
               <input
                 className="input"
                 name="userId"
                 type="text"
-                // value={values.userId}
                 placeholder="아이디를 입력해주세요"
                 onChange={valueHandler}
               />
-              <button className="rightButton">
-                <span className="buttonLetter">중복확인</span>
-              </button>
+              {userId.length !== 0 &&
+                (isEmailValid || (
+                  <span className="warning">
+                    6자 이상 16자 이하의 영문 혹은 숫자를 조합
+                  </span>
+                ))}
             </div>
-            {/* ----------------------비번비번비번비번비번비번비번---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">
-                비밀번호<span className="star">*</span>
-              </span>
+            <button className="rightButton">
+              <span className="buttonLetter">중복확인</span>
+            </button>
+          </div>
+          {/* ----------------------비번비번비번비번비번비번비번---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">
+              비밀번호<span className="star">*</span>
+            </span>
+            <div className="inputContainer">
               <input
                 className="input"
                 type="password"
                 name="password"
-                value={values.password}
                 placeholder="비밀번호를 입력해주세요"
                 onChange={valueHandler}
               />
+              {password.length !== 0 &&
+                (isPasswordValid || (
+                  <span className="warning">최소 10자 이상 입력</span>
+                ))}
             </div>
-            {/* ----------------------비번확인비번확인비번확인---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">
-                비밀번호확인<span className="star">*</span>
-              </span>
-              <input
-                type="password"
-                onChange={e => {
-                  pwCheckInputOnchangeFunction(e);
-                }}
-                className="input"
-                placeholder="비밀번호를 한번 더 입력해주세요"
-              />
-            </div>
-            {/* ----------------------이름이름이름이름이름---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">
-                이름<span className="star">*</span>
-              </span>
+          </div>
+          {/* ----------------------비번확인비번확인비번확인---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">
+              비밀번호확인<span className="star">*</span>
+            </span>
+            <input
+              type="password"
+              className="input"
+              placeholder="비밀번호를 한번 더 입력해주세요"
+            />
+          </div>
+          {/* ----------------------이름이름이름이름이름---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">
+              이름<span className="star">*</span>
+            </span>
+            <div className="inputContainer">
               <input
                 className="input"
                 name="name"
-                value={values.name}
                 placeholder="이름을 입력해주세요"
                 onChange={valueHandler}
               />
+              {name.length !== 0 &&
+                (isNameValid || (
+                  <span className="Warning">이름을 입력해주세요.</span>
+                ))}
             </div>
-            {/* ----------------------이멜이멜이멜이멜이멜이멜---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">
-                이메일<span className="star">*</span>
-              </span>
-              <input
-                className="input"
-                name="email"
-                value={values.email}
-                placeholder="예: weketkurly@kurly.com"
-                onChange={valueHandler}
-              />
-              <button className="rightButton">
-                <span className="buttonLetter">중복확인</span>
-              </button>
-            </div>
-            {/* ----------------------성별성별성별성별---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">성별</span>
-              <div className="choiceContainer">
-                <div className="male">
-                  <input
-                    name="genderInput"
-                    type="radio"
-                    className="genderChoiceButton"
-                  ></input>
-                  <div name className="maleLetter">
-                    남자
-                  </div>
-                </div>
-                <div className="female">
-                  <input
-                    type="radio"
-                    name="genderInput"
-                    className="genderChoiceButton"
-                  ></input>
-                  <div className="femaleLetter">여자</div>
+          </div>
+          {/* ----------------------이멜이멜이멜이멜이멜이멜---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">
+              이메일<span className="star">*</span>
+            </span>
+            <input
+              className="input"
+              name="email"
+              value={values.email}
+              placeholder="예: weketkurly@kurly.com"
+              onChange={valueHandler}
+            />
+            <button className="rightButton">
+              <span className="buttonLetter">중복확인</span>
+            </button>
+          </div>
+          {/* ----------------------성별성별성별성별---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">성별</span>
+            <div className="choiceContainer">
+              <div className="male">
+                <input
+                  name="genderInput"
+                  type="radio"
+                  className="genderChoiceButton"
+                ></input>
+                <div name className="maleLetter">
+                  남자
                 </div>
               </div>
-            </div>
-            {/* ----------------------생년월일생년월일생년월일---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">생년월일</span>
-              <div className="birthContainer">
-                <input className="birthInput" placeholder="YYYY"></input>
-                <span className="birthSlash">/</span>
-                <input className="birthInput" placeholder="MM"></input>
-                <span className="birthSlash">/</span>
-                <input className="birthInput" placeholder="DD"></input>
+              <div className="female">
+                <input
+                  type="radio"
+                  name="genderInput"
+                  className="genderChoiceButton"
+                ></input>
+                <div className="femaleLetter">여자</div>
               </div>
             </div>
-            {/* ----------------------추가입력추가입력추가입력---------------------------- */}
-            <div className="eachContainer">
-              <span className="leftLetter">추가입력 사항</span>
-              <div className="choiceContainer">
-                <div className="recommendContainer">
-                  <input type="radio" className="genderChoiceButton"></input>
-                  <span>추천인 아이디</span>
-                </div>
-                <div className="recommendContainer">
-                  <input type="radio" className="genderChoiceButton"></input>
-                  <span>참여 이벤트명</span>
-                </div>
+          </div>
+          {/* ----------------------생년월일생년월일생년월일---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">생년월일</span>
+            <div className="birthContainer">
+              <input className="birthInput" placeholder="YYYY"></input>
+              <span className="birthSlash">/</span>
+              <input className="birthInput" placeholder="MM"></input>
+              <span className="birthSlash">/</span>
+              <input className="birthInput" placeholder="DD"></input>
+            </div>
+          </div>
+          {/* ----------------------추가입력추가입력추가입력---------------------------- */}
+          <div className="eachContainer">
+            <span className="leftLetter">추가입력 사항</span>
+            <div className="choiceContainer">
+              <div className="recommendContainer">
+                <input type="radio" className="genderChoiceButton"></input>
+                <span>추천인 아이디</span>
+              </div>
+              <div className="recommendContainer">
+                <input type="radio" className="genderChoiceButton"></input>
+                <span>참여 이벤트명</span>
               </div>
             </div>
-            <div className="underline"></div>
-            <div className="signupButtonContainer">
-              <button
-                className="signupButton"
-                onClick={() => {
-                  submitUseInfo();
-                }}
-              >
-                <span className="signupButtonLetter">가입하기</span>
-              </button>
-            </div>
+          </div>
+          <div className="underline"></div>
+          <div className="signupButtonContainer">
+            <button
+              className="signupButton"
+              onClick={() => {
+                submitUseInfo();
+              }}
+            >
+              <span className="signupButtonLetter">가입하기</span>
+            </button>
           </div>
         </div>
       </div>
@@ -196,15 +217,4 @@ const Signup = () => {
   );
 };
 
-function Input({ onChange, value, placeholder, className, type }) {
-  return (
-    <input
-      onChange={onChange}
-      value={value}
-      placeholder={placeholder}
-      className={className}
-      type={type}
-    />
-  );
-}
 export default Signup;
