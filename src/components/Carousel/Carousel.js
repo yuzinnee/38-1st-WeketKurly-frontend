@@ -8,7 +8,7 @@ const Carousel = ({ type, contents }) => {
     banner: <BannerCarousel contents={contents} />,
     item: <ItemCarousel contents={contents} />,
   };
-  return <>{type[carousel]}</>;
+  return <>{carousel[type]}</>;
 };
 
 export default Carousel;
