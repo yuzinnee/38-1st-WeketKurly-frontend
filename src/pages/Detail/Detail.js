@@ -3,10 +3,19 @@ import './Detail.scss';
 import DetailNavigator from './DetailNavigator/DetailNavigator';
 import TableInner from './TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
-import ShareToolTip from './ShareToolTip/ShareToolTip';
+// import ShareToolTip from './ShareToolTip/ShareToolTip';
 
 const Detail = () => {
-  const [itemInfo, setItemInfo] = useState({});
+  const [itemInfo, setItemInfo] = useState({
+    contactant: '',
+    packing_types: '',
+    packing_type_id: '',
+    weight: '',
+    origin: '',
+    allerge: '',
+    expiration_date: '',
+    price: '',
+  });
 
   const { allerge, contactant, expiration_date, name, origin, ...others } =
     itemInfo;

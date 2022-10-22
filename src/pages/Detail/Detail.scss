@@ -17,6 +17,7 @@
 
     .detailArticle {
       @include flex(space-between, null, row);
+      width: 1050px;
 
       .itemImage {
         width: 430px;
