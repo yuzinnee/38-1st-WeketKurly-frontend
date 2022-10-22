@@ -13,13 +13,13 @@
 // export default Main;
 
 import React from 'react';
-import Comment from '../Detail/Comment/Comment';
+import Review from '../Detail/Review/Review';
 import './Main.scss';
 
 const Main = () => {
   return (
     <div>
-      <Comment />
+      <Review />
     </div>
   );
 };
