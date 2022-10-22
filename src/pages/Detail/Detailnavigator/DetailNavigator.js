@@ -9,13 +9,14 @@ const DetailNavigator = () => {
   return (
     <nav className="detailNavigator">
       <nav className="navigatorContainer">
-        {buttons.map(button =>
+        {buttons.map((button, index) =>
           isButtonClicked === button ? (
             <div
               onClick={() => {
                 setIsButtonClicked(button);
               }}
               className="navigatorButton clicked"
+              key={index}
             >
               <span>{button}</span>
             </div>
@@ -25,6 +26,7 @@ const DetailNavigator = () => {
                 setIsButtonClicked(button);
               }}
               className="navigatorButton"
+              key={index}
             >
               <span>{button}</span>
             </div>

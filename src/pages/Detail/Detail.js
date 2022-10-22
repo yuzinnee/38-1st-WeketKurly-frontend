@@ -33,15 +33,6 @@ const Detail = () => {
   const keys = Object.keys(DETAIL_KEY_KOREAN);
 
   const clickShareToolTip = event => {
-    const mousePosition = { x: event.clientX, y: event.clientY };
-    // if (mousePosition.x < 1122 && mousePosition.x > 865) {
-    //   setisShareTooTipClicked(true);
-    // } else {
-    //   setisShareTooTipClicked(false);
-    // }
-    // // setisShareTooTipClicked(true);
-
-    // console.log(mousePosition);
     setisShareTooTipClicked(isShareTooTipClicked ? false : true);
   };
 
