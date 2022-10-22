@@ -1,6 +1,7 @@
 @import '../../../styles/variables';
 
 .review {
+  position: relative;
   width: 1050px;
 
   .reviewBottom {
@@ -27,15 +28,27 @@
   }
 
   .reviewPostButton {
-    padding: 15px;
-    border: none;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    margin: 20px 0 0 0px;
+    padding: 10px 0 10px 0;
+    transition: 0.1s ease-in-out;
+    border: 1px solid $primary-color;
     border-radius: 0;
     outline: none;
-    background: inherit;
     background-color: $primary-color;
     box-shadow: none;
-    text-align: left;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    text-align: center;
     cursor: pointer;
+
+    &:hover {
+      border: 1px solid $primary-color;
+      background-color: rgb(255, 255, 255);
+      color: $primary-color;
+    }
   }
 }
 
@@ -62,6 +75,7 @@
     display: grid;
     grid-template-columns: 1fr 5fr 1fr 1fr;
     padding: 20px 0 17px 0;
+    transition: 0.1s ease-in-out;
     border-bottom: 1px solid $lightGray-color;
     color: rgb(76, 76, 76);
     font-size: 12px;
@@ -80,13 +94,14 @@
       background: inherit;
       background-color: transparent;
       box-shadow: none;
+      font-size: 12px;
       text-align: left;
       cursor: pointer;
     }
+  }
 
-    .tableTitle {
-      text-align: center;
-    }
+  .tableTitle {
+    text-align: center;
   }
 }
 
