@@ -117,7 +117,9 @@ const Detail = () => {
           </div>
         </article>
         <DetailNavigator />
-        <div>추후 이미지와 상품설명이 들어가는 자리입니다.</div>
+        <div className="productDetailsContainer">
+          추후 이미지와 상품설명이 들어가는 자리입니다.
+        </div>
         <div>추후 후기 컴포넌트가 import되는 자리입니다.</div>
       </div>
     </div>
