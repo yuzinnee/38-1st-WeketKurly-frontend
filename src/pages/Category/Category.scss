@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+
+.mainCategories {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 300px;
+  height: 500px;
+  font-size: 18px;
+  border: 1px solid $line-color;
+  cursor: pointer;
+}
+.mainCategories:hover {
+  background-color: #f7f7f7;
+}
+
+.mainCategories li:hover {
+  background-color: #f7f7f7;
+  color: $primary-color;
+}
+
+.subCategories {
+  display: grid;
+  grid-template-rows: repeat(11, 1fr);
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 300px;
+  height: 500px;
+  background-color: #f7f7f7;
+  font-size: 18px;
+  border: 1px solid $line-color;
+  cursor: pointer;
+}
+.subcategories:hover {
+  color: $primary-color;
+}

@@ -8,7 +8,6 @@ import Main from './pages/Main/Main';
 import Detail from './pages/Detail/Detail';
 import Mypage from './pages/Mypage/Mypage';
 import Cart from './pages/Cart/Cart';
-
 const Router = () => {
   return (
     <BrowserRouter>

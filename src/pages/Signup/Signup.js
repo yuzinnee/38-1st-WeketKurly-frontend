@@ -46,7 +46,7 @@ const Signup = () => {
   const emailRegEx = /[a-zA-Z0-9+_]+@[a-z]+\.+[a-z]/;
   const isEmailValid = emailRegEx.test(email);
   const birthday = year + month.length === 2 ? month : 0 + month + day;
-
+  console.log(birthday);
   const submitUseInfo = () => {
     fetch('http://10.58.52.89:3000/users/signup', {
       method: 'POST',
