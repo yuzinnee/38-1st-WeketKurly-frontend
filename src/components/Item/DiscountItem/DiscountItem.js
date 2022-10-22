@@ -5,7 +5,11 @@ import './DiscountItem.scss';
 const DiscountItem = ({ contents }) => {
   return (
     <div className="disItemContainer">
-      <img className="disItemImg" src={contents?.imgUrl} alt="상품 이미지" />
+      <img
+        className="disItemImg"
+        src={contents?.item?.thumbnailImageUrl}
+        alt="상품 이미지"
+      />
       <div className="disItemIconBox">
         <BsCart2 className="reactIcon" />
       </div>
@@ -14,8 +18,8 @@ const DiscountItem = ({ contents }) => {
         <p className="disItemSpecialText">일일특가</p>
       </div>
 
-      <p className="disItemDescription">{contents?.item}</p>
-      <p className="disItemPrice">{contents?.price}</p>
+      <p className="disItemDescription">{contents?.item?.productName}</p>
+      <p className="disItemPrice">{contents?.item?.price}</p>
     </div>
   );
 };
