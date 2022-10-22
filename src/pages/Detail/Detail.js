@@ -39,8 +39,7 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    // fetch('http://10.58.52.148:3000/products/${id}', {
-    fetch('', {
+    fetch('http://10.58.52.148:3000/products/${id}', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -59,7 +58,7 @@ const Detail = () => {
         <article className="detailArticle">
           <div className="itemImage">
             <img
-              src={others.detail_image_url}
+              src={others.thumnail_image_url}
               alt={name}
               className="itemImageTag"
             />
@@ -75,7 +74,6 @@ const Detail = () => {
                     <HiOutlineShare className="shareicon" />
                     {isShareTooTipClicked && <ShareToolTip url="http://url" />}
                   </button>
-                  {/* 버튼 이벤트 추가하기 */}
                 </div>
                 <p className="brief">{others.short_description}</p>
               </div>
@@ -119,7 +117,7 @@ const Detail = () => {
         </article>
         <DetailNavigator />
         <div className="productDetailsContainer">
-          추후 이미지와 상품설명이 들어가는 자리입니다.
+          <img src={itemInfo.detail_image_url} alt={itemInfo.name} />
         </div>
         <div>
           <Review />
