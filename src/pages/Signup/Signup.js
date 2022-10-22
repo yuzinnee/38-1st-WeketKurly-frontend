@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Signup.scss';
+import Input from '../../components/Input/Input';
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -39,7 +40,6 @@ const Signup = () => {
   const passwordRegEx =
     /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-  // / ^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const isPasswordValid = passwordRegEx.test(password);
   const isPasswordCheck = password === passwordCheck;
   const isNameValid = name.length > 0;
@@ -80,8 +80,6 @@ const Signup = () => {
       });
   };
 
-  // function IdInput() {}
-
   return (
     <>
       <div className="signupContainer">
@@ -96,8 +94,8 @@ const Signup = () => {
               아이디<span className="star">*</span>
             </span>
             <div className="inputContainer">
-              <input
-                className="input"
+              <Input
+                className="signupInput"
                 name="userId"
                 type="text"
                 placeholder="아이디를 입력해주세요"
@@ -120,8 +118,8 @@ const Signup = () => {
               비밀번호<span className="star">*</span>
             </span>
             <div className="inputContainer">
-              <input
-                className="input"
+              <Input
+                className="signupInput"
                 type="password"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
@@ -150,7 +148,7 @@ const Signup = () => {
               <input
                 type="password"
                 name="passwordCheck"
-                className="input"
+                className="signupInput"
                 placeholder="비밀번호를 한번 더 입력해주세요"
                 onChange={valueHandler}
               />
@@ -167,7 +165,7 @@ const Signup = () => {
             </span>
             <div className="inputContainer">
               <input
-                className="input"
+                className="signupInput"
                 name="name"
                 placeholder="이름을 입력해주세요"
                 onChange={valueHandler}
@@ -185,7 +183,7 @@ const Signup = () => {
             </span>
             <div className="inputContainer">
               <input
-                className="input"
+                className="signupInput"
                 name="email"
                 value={email}
                 placeholder="예: weketkurly@kurly.com"
@@ -297,15 +295,4 @@ const Signup = () => {
   );
 };
 
-function Input({ onChange, value, placeholder, className, type }) {
-  return (
-    <input
-      onChange={onChange}
-      value={value}
-      placeholder={placeholder}
-      className={className}
-      type={type}
-    />
-  );
-}
 export default Signup;

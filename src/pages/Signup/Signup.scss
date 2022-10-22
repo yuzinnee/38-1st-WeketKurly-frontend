@@ -1,43 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@mixin flex($justify: center, $align: center, $direction: row) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $align;
-  flex-direction: $direction;
-}
+@import '../../styles/variables.scss';
 
 .signupContainer {
   align-items: center;
   min-width: 1050px;
   padding: 50px 0px;
-  background-color: #ffffff;
+  background-color: $white-color;
 
   .topSignupLetter {
+    text-align: center;
     margin: 50px 0;
     font-size: 28px;
     line-height: 35px;
     font-weight: 500;
-    text-align: center;
     letter-spacing: -1px;
-    color: #333333;
+    color: $text-color;
   }
 
   .topRequired {
-    display: flex;
-    justify-content: right;
+    @include flex(right, right);
     padding-bottom: 10px;
-    border-bottom: 2px solid #333333;
+    border-bottom: 2px solid $text-color;
     font-size: 12px;
-    color: #666666;
+    color: $disabled-color;
     line-height: 17px;
-    text-align: right;
   }
 
   .mainContainer {
-    width: 640px;
-    margin: 0px auto;
     display: flex;
     flex-direction: column;
+    width: 640px;
+    margin: 0px auto;
 
     .eachContainer {
       display: inline-flex;
@@ -45,23 +38,23 @@
       width: 100%;
       padding: 15px 20px;
       .leftLetter {
-        width: 139px;
         text-align: left;
+        width: 139px;
         padding-top: 12px;
       }
 
       .inputContainer {
         position: relative;
-        .input {
+        .signupInput {
+          padding: 0 11px 1px 15px;
           width: 333px;
           height: 46px;
+          border: 1px solid $line-color;
           border-radius: 4px;
-          padding: 0 11px 1px 15px;
           font-size: 16px;
-          border: 1px solid #dddddd;
           font-weight: 400;
           line-height: 1.5;
-          color: #333333;
+          color: $text-color;
           &:focus {
             outline: transparent;
             border: 1px solid #000000;
@@ -70,41 +63,40 @@
       }
 
       .warning {
-        position: absolute;
-        bottom: -18px;
         display: flex;
-        font-size: 13px;
-        color: #f03f40;
+        position: absolute;
         margin-top: 6px;
+        bottom: -18px;
+        color: #f03f40;
+        font-size: 13px;
       }
 
       .rightButton {
         display: block;
+        text-align: center;
         margin-left: 8px;
         padding: 0px 10px;
-        text-align: center;
         overflow: hidden;
         width: 120px;
         height: 44px;
-        color: #5f0080;
-        background-color: #ffffff;
-        border: 1px solid #5f0080;
+        background-color: $white-color;
+        border: 1px solid $primary-color;
         border-radius: 3px;
         .buttonLetter {
-          color: #5f0080;
+          color: $primary-color;
           font-weight: 500;
           font-size: 14px;
         }
       }
 
       .rightButtonAddress {
-        padding: 0px 10px;
         text-align: center;
+        padding: 0px 10px;
         width: 333px;
         height: 44px;
-        color: #5f0080;
-        background-color: #ffffff;
-        border: 1px solid #5f0080;
+        color: $primary-color;
+        background-color: $white-color;
+        border: 1px solid $primary-color;
         border-radius: 3px;
       }
 
@@ -126,12 +118,12 @@
         }
 
         .genderChoiceButton {
-          accent-color: #5f0080;
+          accent-color: $primary-color;
           width: 24px;
           height: 24px;
           border-radius: 50%;
-          background-color: #ffffff;
-          border: 1px solid #dddddd;
+          background-color: $white-color;
+          border: 1px solid $line-color;
         }
       }
 
@@ -150,12 +142,12 @@
           font-size: 14px;
           font-weight: 400;
           line-height: 38px;
-          color: #333333;
+          color: $text-color;
           outline: none;
           .birthSlash {
+            text-align: center;
             font-size: 14px;
             color: #cccccc;
-            text-align: center;
             line-height: 40px;
           }
         }
@@ -173,7 +165,7 @@
 
   .underline {
     padding: 10px 0px;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid $text-color;
   }
 
   .signupButtonContainer {
@@ -185,10 +177,10 @@
       overflow: hidden;
       width: 240px;
       height: 56px;
-      border-radius: 3px;
-      color: #ffffff;
-      background-color: #5f0080;
+      background-color: $primary-color;
+      color: $white-color;
       border: 0px none;
+      border-radius: 3px;
       .signupButtonLetter {
         font-size: 16px;
         font-weight: 500;
