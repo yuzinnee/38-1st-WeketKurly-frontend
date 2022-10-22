@@ -107,7 +107,6 @@ const Review = () => {
           {isPostButtonClicked}
         </button>
       )}
-
       {isPostButtonClicked === FIN_POSTING && (
         <ReviewPostArea
           changeReviewTextarea={changeReviewTextarea}
