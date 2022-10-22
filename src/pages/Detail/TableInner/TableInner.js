@@ -1,4 +1,5 @@
 import React from 'react';
+import './../TableInner/TableInner.scss';
 
 const TableInner = props => {
   const { name, data, korean } = props;
