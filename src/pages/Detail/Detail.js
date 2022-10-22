@@ -3,7 +3,7 @@ import './Detail.scss';
 import DetailNavigator from './DetailNavigator/DetailNavigator';
 import TableInner from './TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
-// import ShareToolTip from './ShareToolTip/ShareToolTip';
+import ShareToolTip from './ShareToolTip/ShareToolTip';
 
 const Detail = () => {
   const [itemInfo, setItemInfo] = useState({
@@ -16,6 +16,7 @@ const Detail = () => {
     expiration_date: '',
     price: '',
   });
+  const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
 
   const { allerge, contactant, expiration_date, name, origin, ...others } =
     itemInfo;
@@ -30,6 +31,19 @@ const Detail = () => {
     expiration_date: '유통기한(또는 소비기한)정보',
   };
   const keys = Object.keys(DETAIL_KEY_KOREAN);
+
+  const clickShareToolTip = event => {
+    const mousePosition = { x: event.clientX, y: event.clientY };
+    // if (mousePosition.x < 1122 && mousePosition.x > 865) {
+    //   setisShareTooTipClicked(true);
+    // } else {
+    //   setisShareTooTipClicked(false);
+    // }
+    // // setisShareTooTipClicked(true);
+
+    // console.log(mousePosition);
+    setisShareTooTipClicked(isShareTooTipClicked ? false : true);
+  };
 
   useEffect(() => {
     // fetch('http://10.58.52.148:3000/products/${id}', {
@@ -63,7 +77,10 @@ const Detail = () => {
               <div>
                 <div className="titleContainer">
                   <h2 className="itemName">{name}</h2>
-                  <button className="share"></button>
+                  <button className="share" onClick={clickShareToolTip}>
+                    {isShareTooTipClicked && <ShareToolTip url="http://url" />}
+                  </button>
+                  {/* 버튼 이벤트 추가하기 */}
                 </div>
                 <p className="brief">{others.short_description}</p>
               </div>
