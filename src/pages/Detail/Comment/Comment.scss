@@ -25,6 +25,18 @@
       }
     }
   }
+
+  .reviewPostButton {
+    padding: 15px;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background: inherit;
+    background-color: $primary-color;
+    box-shadow: none;
+    text-align: left;
+    cursor: pointer;
+  }
 }
 
 .reviewTableContainer {
@@ -59,7 +71,7 @@
       text-align: center;
     }
 
-    .reviewButton {
+    .reviewTextboxButton {
       padding: 0;
       overflow: visible;
       border: none;
@@ -75,13 +87,17 @@
     .tableTitle {
       text-align: center;
     }
+  }
+}
 
-    .reviewContent {
-      width: 100%;
+.reviewContent {
+  width: 100%;
 
-      .reviewContentWrapper {
-        height: 150px;
-      }
-    }
+  .reviewContentWrapper {
+    height: 180px;
+    padding: 20px 220px 20px 130px;
+    border-bottom: 1px solid $lightGray-color;
+    color: rgb(76, 76, 76);
+    font-size: 12px;
   }
 }

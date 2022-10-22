@@ -13,6 +13,7 @@ const Comment = () => {
       setIsReviewClicked(false);
     }
   };
+
   return (
     <div className="review">
       <div className="reviewBottom">
@@ -56,6 +57,7 @@ const Comment = () => {
           </div>
         </div>
       </div>
+      <button className="reviewPostButton">후기 쓰기</button>
     </div>
   );
 };
@@ -70,25 +72,27 @@ const ReviewRow = ({
 }) => {
   const { id, title, contant, user_id, help_count } = reviewData;
   return (
-    <div
-      className="reviewRow list"
-      onClick={() => reviewContentOpen(id)}
-      isReviewClicked={isReviewClicked}
-    >
-      <div className="reviewPadding">{id}</div>
-      <button className="reviewButton">
-        {' '}
+    <div>
+      <div
+        className="reviewRow list"
+        onClick={() => reviewContentOpen(id)}
+        isReviewClicked={isReviewClicked}
+      >
+        <div className="reviewPadding">{id}</div>
         <div>
-          {title}{' '}
-          {reviewClicked === id && !isReviewClicked ? (
-            <div className="reviewContent">
-              <div className="reviewContentWrapper">{contant}</div>
-            </div>
-          ) : null}
+          <button className="reviewTextboxButton">
+            {' '}
+            <div>{title} </div>
+          </button>
         </div>
-      </button>
-      <div className="reviewPadding">{user_id}</div>
-      <div className="reviewPadding">{help_count}</div>
+        <div className="reviewPadding">{user_id}</div>
+        <div className="reviewPadding">{help_count}</div>
+      </div>
+      {reviewClicked === id && !isReviewClicked ? (
+        <div className="reviewContent">
+          <div className="reviewContentWrapper">{contant}</div>
+        </div>
+      ) : null}
     </div>
   );
 };
