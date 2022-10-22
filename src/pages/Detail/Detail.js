@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { HiOutlineShare } from 'react-icons/hi';
 import './Detail.scss';
 import DetailNavigator from './DetailNavigator/DetailNavigator';
 import TableInner from './TableInner/TableInner';
@@ -68,7 +69,9 @@ const Detail = () => {
               <div>
                 <div className="titleContainer">
                   <h2 className="itemName">{name}</h2>
+
                   <button className="share" onClick={clickShareToolTip}>
+                    <HiOutlineShare className="shareicon" />
                     {isShareTooTipClicked && <ShareToolTip url="http://url" />}
                   </button>
                   {/* 버튼 이벤트 추가하기 */}
