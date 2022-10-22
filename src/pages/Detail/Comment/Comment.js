@@ -5,14 +5,20 @@ const Comment = () => {
   const [reviews, setReviews] = useState([]);
   const [clickedIndex, setClickedIndex] = useState('');
   const [isReviewClicked, setIsReviewClicked] = useState(false);
+  const [isPostButtonClicked, setIsPostButtonClicked] = useState('');
+  const [newReviewValue, setNewReviewValue] = useState('');
 
-  const reviewContentOpen = index => {
+  const openReviewContent = index => {
     setClickedIndex(index);
     if (!isReviewClicked) {
       setIsReviewClicked(true);
     } else {
       setIsReviewClicked(false);
     }
+  };
+
+  const clickPostButton = () => {
+    setIsPostButtonClicked(true);
   };
 
   useEffect(
@@ -22,8 +28,6 @@ const Comment = () => {
         .then(reviewArray => setReviews(reviewArray)),
     []
   );
-
-  console.log(reviews);
 
   return (
     <div className="review">
@@ -59,7 +63,7 @@ const Comment = () => {
                   key={index}
                   id={index}
                   reviewData={review}
-                  reviewContentOpen={reviewContentOpen}
+                  openReviewContent={openReviewContent}
                   clickedIndex={clickedIndex}
                   isReviewClicked={isReviewClicked}
                 />
@@ -68,7 +72,14 @@ const Comment = () => {
           </div>
         </div>
       </div>
-      <button className="reviewPostButton">후기 쓰기</button>
+      <button className="reviewPostButton" onClick={clickPostButton}>
+        후기 쓰기
+      </button>
+      {isPostButtonClicked ? (
+        <div>
+          <textarea className="reviewPostTextarea"></textarea>
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -77,7 +88,7 @@ export default Comment;
 
 const ReviewRow = ({
   reviewData,
-  reviewContentOpen,
+  openReviewContent,
   clickedIndex,
   isReviewClicked,
 }) => {
@@ -86,7 +97,7 @@ const ReviewRow = ({
     <div>
       <div
         className="reviewRow list"
-        onClick={() => reviewContentOpen(id)}
+        onClick={() => openReviewContent(id)}
         isReviewClicked={isReviewClicked}
       >
         <div className="reviewPadding">{id}</div>
@@ -104,3 +115,17 @@ const ReviewRow = ({
     </div>
   );
 };
+
+// const ReviewPostArea = ({ newReviewValue, setNewReviewValue }) => {
+//   const setReviewValue=()=> {
+//     setNewReviewValue()
+//   }
+//   return (
+//     <div>
+//       <textarea
+//         className="reviewPostTextarea"
+//         onChange={setNewReviewValue}
+//       ></textarea>
+//     </div>
+//   );
+// };
