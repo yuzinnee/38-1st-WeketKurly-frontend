@@ -33,16 +33,8 @@ const Detail = () => {
       });
   }, []);
 
-  const priceComma = price => {
-    const reversedPrice = (price + '').split('').reverse();
-    let arr = [];
-    for (let i = 0; i < reversedPrice.length; i++) {
-      arr.push(Number(reversedPrice[i]));
-      if (i === 2 || i === 5 || i === 8) {
-        arr.push(`,`);
-      }
-    }
-    return arr.reverse().join('');
+  const priceToString = price => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
 
   return (
@@ -69,7 +61,7 @@ const Detail = () => {
             </div>
 
             <div className="priceContainer">
-              <span className="price">{priceComma(others.price)}</span>
+              <span className="price">{priceToString(others.price)}</span>
               <span className="won">원</span>
             </div>
             <div className="table">
