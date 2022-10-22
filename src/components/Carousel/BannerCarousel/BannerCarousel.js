@@ -15,12 +15,13 @@ const BannerCarousel = () => {
   const page = bannerList.length;
 
   useEffect(() => {
-    fetch('data/DATA.json', {
+    fetch('http://10.58.52.148:3000/banner/big', {
       method: 'GET',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
       .then(res => res.json())
       .then(data => {
-        setBannerList(data.bannerCarousel);
+        setBannerList(data.message);
       });
   }, []);
 
@@ -42,7 +43,7 @@ const BannerCarousel = () => {
         {bannerList.map((banner, idx) => (
           <img
             className="bannerImg"
-            src={banner.img}
+            src={banner.image_url}
             alt="배너이미지"
             key={banner.id}
           />
