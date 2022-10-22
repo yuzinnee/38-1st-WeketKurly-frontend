@@ -5,7 +5,7 @@ import {
 } from 'react-icons/md';
 import './ItemCarousel.scss';
 
-const ItemCarousel = ({ contents }) => {
+const ItemCarousel = ({ contents, title }) => {
   const [slide, setSlide] = useState(0);
 
   const [itemList, setItemList] = useState([]);
@@ -38,10 +38,10 @@ const ItemCarousel = ({ contents }) => {
 
   return (
     <div className="itemCarousel">
-      <p className="itemTitle">{contents}</p>
+      <p className="itemTitle">{title}</p>
       <div className="itemCarouselBox">
         <div className="itemList" ref={slideRef}>
-          {itemList.map((item, idx) => (
+          {itemList.map(item => (
             <div className="items" key={item.id}>
               <img src={item.img} width="249px" alt="테스트 사진" />
             </div>
