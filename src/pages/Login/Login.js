@@ -75,7 +75,7 @@ function Login() {
             <button className="loginButton" onClick={submitUserInfo}>
               로그인
             </button>
-            <Link to="/signin">
+            <Link to="/signup">
               <button className="signinButton">회원가입 </button>
             </Link>
           </div>
