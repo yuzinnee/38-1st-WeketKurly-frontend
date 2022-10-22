@@ -5,6 +5,7 @@ import DetailNavigator from './DetailNavigator/DetailNavigator';
 import TableInner from './TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
 import ShareToolTip from './ShareToolTip/ShareToolTip';
+import Review from './Review/Review';
 
 const Detail = () => {
   const [itemInfo, setItemInfo] = useState({
@@ -120,7 +121,9 @@ const Detail = () => {
         <div className="productDetailsContainer">
           추후 이미지와 상품설명이 들어가는 자리입니다.
         </div>
-        <div>추후 후기 컴포넌트가 import되는 자리입니다.</div>
+        <div>
+          <Review />
+        </div>
       </div>
     </div>
   );
