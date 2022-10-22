@@ -20,7 +20,7 @@ const ItemCarousel = ({ contents }) => {
     })
       .then(res => res.json())
       .then(data => {
-        setItemList(data);
+        setItemList(data.itemCarousel);
       });
   }, []);
 
