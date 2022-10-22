@@ -57,11 +57,6 @@
   margin-top: 15px;
   border-top: 2px solid $primary-color;
 
-  .list {
-    &:hover {
-      background-color: rgb(232, 232, 232);
-    }
-  }
 
   .reviewRowTitle {
     display: grid;
@@ -71,34 +66,6 @@
     font-size: 12px;
   }
 
-  .reviewRow {
-    display: grid;
-    grid-template-columns: 1fr 5fr 1fr 1fr;
-    padding: 20px 0 17px 0;
-    transition: 0.1s ease-in-out;
-    border-bottom: 1px solid $lightGray-color;
-    color: rgb(76, 76, 76);
-    font-size: 12px;
-
-    .reviewPadding {
-      padding: 0 30px 0 30px;
-      text-align: center;
-    }
-
-    .reviewTextboxButton {
-      padding: 0;
-      overflow: visible;
-      border: none;
-      border-radius: 0;
-      outline: none;
-      background: inherit;
-      background-color: transparent;
-      box-shadow: none;
-      font-size: 12px;
-      text-align: left;
-      cursor: pointer;
-    }
-  }
 
   .tableTitle {
     text-align: center;

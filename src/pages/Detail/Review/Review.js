@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Review.scss';
+import ReviewRow from './ReviewRow/ReviewRow';
+import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
@@ -118,64 +120,6 @@ const Review = () => {
 };
 
 export default Review;
-
-const ReviewRow = ({
-  reviewData,
-  openReviewContent,
-  clickedIndex,
-  isReviewClicked,
-}) => {
-  const { id, title, contant, user_id, help_count } = reviewData;
-  return (
-    <div>
-      <div
-        className="reviewRow list"
-        onClick={() => openReviewContent(id)}
-        isReviewClicked={isReviewClicked}
-      >
-        <div className="reviewPadding">{id}</div>
-        <div>
-          <button className="reviewTextboxButton">{title}</button>
-        </div>
-        <div className="reviewPadding">{user_id}</div>
-        <div className="reviewPadding">{help_count}</div>
-      </div>
-      {clickedIndex === id && !isReviewClicked ? (
-        <div className="reviewContent">
-          <div className="reviewContentWrapper">{contant}</div>
-        </div>
-      ) : null}
-    </div>
-  );
-};
-
-const ReviewPostArea = ({
-  changeReviewTextarea,
-  isPostButtonClicked,
-  submitReview,
-}) => {
-  return (
-    <form className="reviewForm">
-      <input
-        className="reviewPostTitle"
-        onChange={changeReviewTextarea}
-        name="title"
-      />
-      <textarea
-        className="reviewPostTextarea"
-        onChange={changeReviewTextarea}
-        name="content"
-      ></textarea>
-      <button
-        className="reviewSubmitButton"
-        onClick={submitReview}
-        type="submit"
-      >
-        {isPostButtonClicked}
-      </button>
-    </form>
-  );
-};
 
 const REVIEW_KEY = [
   { title: '번호', className: 'reviewPadding' },
