@@ -3,19 +3,18 @@ import './MainFilterItem.scss';
 
 const MainFilterItem = () => {
   const [selected, setSelected] = useState('');
-  const [recommendList, setRecommendList] = useState([]);
+  const [itemList, setItemList] = useState([]);
 
   const filterItemList = endPoint => {
-    fetch(`http://10.58.52.150:3000/products/${endPoint}`, {
+    fetch(`http://10.58.52.148:3000/categories/${endPoint}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
       .then(res => res.json())
       .then(data => {
-        setRecommendList(data.item);
+        setItemList(data.item);
       });
   };
-
   return (
     <div className="mainFilterItem">
       <p className="mdsRecommend">MD의 추천</p>
