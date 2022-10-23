@@ -7,9 +7,21 @@
 
 @mixin font($size: 16px, $align: 1, $spacing: normal, $weight: 500) {
   font-size: $size;
-  line-height: $height;
-  letter-spacing: $spacing;
   font-weight: $weight;
+  letter-spacing: $spacing;
+  line-height: $height;
+}
+
+@mixin position($position: relative,
+  $top: 0px,
+  $right: 0px,
+  $bottom: 0px,
+  $left: 0px) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
 }
 
 $primary-color: rgb(95, 0, 128);

@@ -1,8 +1,5 @@
 [
   { "id": 1, "name": "추천순", "endPoint": "/" },
-  { "id": 2, "name": "신상품순", "endPoint": "/" },
-  { "id": 3, "name": "판매량순", "endPoint": "/" },
-  { "id": 4, "name": "혜택순", "endPoint": "/" },
-  { "id": 5, "name": "낮은 가격순", "endPoint": "/" },
-  { "id": 6, "name": "높은 가격순", "endPoint": "/" }
+  { "id": 2, "name": "낮은 가격순", "endPoint": "/" },
+  { "id": 3, "name": "높은 가격순", "endPoint": "/" }
 ]
