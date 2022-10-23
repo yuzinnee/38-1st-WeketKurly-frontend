@@ -43,7 +43,7 @@
     color: $white-color;
   }
 
-  .disItemDescription {
+  .disItemName {
     font-size: 18px;
     line-height: 1.45;
     letter-spacing: -0.05;
@@ -53,10 +53,34 @@
     overflow-wrap: break-word;
   }
 
-  .disItemPrice {
+  .disItemDescription {
+    font-size: 15px;
+    line-height: 1.45;
+    letter-spacing: -0.05;
+    font-weight: 400;
+    color: $devide-color;
+    margin: 10px 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .disItemDiscountPrice {
     font-size: 20px;
     line-height: 1.45;
     font-weight: 700;
+    margin: 0 8px;
+  }
+
+  .discountRate {
+    font-size: 20px;
+    line-height: 1.45;
+    font-weight: 700;
+    color: $dicount-color;
+  }
+
+  .disItemPrice {
+    text-decoration: line-through;
+    color: $lightGray-color;
   }
 
   .reactIcon {
