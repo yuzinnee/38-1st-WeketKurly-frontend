@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './List.scss';
-import Sort from './Sort';
+import Sort from './Sort/Sort';
 
 const List = () => {
   const [sortTypes, setSortTypes] = useState([]);
@@ -25,6 +25,7 @@ const List = () => {
       <div className="listWrapper">
         <h3 className="listTitle">Subcategory.Name</h3>
         <div className="contentContainer">
+          <Filter />
           <Sort sortTypes={sortTypes} />
           <div className="listGrid">
             {products.map((product, index) => {
