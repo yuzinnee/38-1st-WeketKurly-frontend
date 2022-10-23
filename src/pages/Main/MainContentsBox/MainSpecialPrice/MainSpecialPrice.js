@@ -2,6 +2,19 @@ import React, { useState, useEffect } from 'react';
 import './MainSpecialPrice.scss';
 
 const MainSpecialPrice = () => {
+  const [itemList, setItemList] = useState([]);
+
+  useEffect(() => {
+    fetch('http://10.58.52.148:3000/categories/main/specialprice', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+    })
+      .then(res => res.json())
+      .then(data => {
+        setItemList(data.item);
+      });
+  }, []);
+
   const calculateTimeLeft = () => {
     const difference = +new Date('2022-10-24T24:00:00') - +new Date();
 
