@@ -7,14 +7,14 @@ const DefaultItem = ({ contents }) => {
     <div className="itemContainer">
       <img
         className="itemimg"
-        src={contents?.item?.thumbnailImageUrl}
+        src={contents?.thumbnailImageUrl}
         alt="상품 이미지"
       />
       <div className="itemIconBox">
         <BsCart2 className="reactIcon" />
       </div>
-      <p className="itemDescription">{contents?.item?.productName}</p>
-      <p className="itemPrice">{contents?.item?.price + `원`}</p>
+      <p className="itemDescription">{contents?.productName}</p>
+      <p className="itemPrice">{contents?.productPrice + `원`}</p>
     </div>
   );
 };
