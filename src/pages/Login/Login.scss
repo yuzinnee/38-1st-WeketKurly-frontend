@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+
+.login {
+  @include flex(space-between, center, column);
+  width: 100%;
+  height: 346px;
+  margin: 90px 0 60px 0;
+
+  .titleContainer {
+    width: 100%;
+    @include flex(center, center, column);
+
+    .title {
+      font-size: 20px;
+      font-weight: 800;
+    }
+  }
+
+  .formContainer {
+    width: 340px;
+
+    @include flex(center, center, column);
+
+    form {
+      width: 100%;
+      height: 100%;
+
+      .inputContainer {
+        margin-top: 30px;
+      }
+    }
+
+    .find {
+      display: flex;
+      justify-content: right;
+      margin-top: 10px;
+      font-size: 13px;
+
+      .findButton {
+        cursor: pointer;
+      }
+
+      span {
+        width: 1px;
+        height: 10px;
+        margin: 0px 6px 3px 6px;
+        border-left: 1px solid black;
+      }
+    }
+
+    button {
+      width: 100%;
+      height: 54px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      box-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .loginButton {
+      margin-top: 28px;
+      background-color: $primary-color;
+      color: white;
+    }
+
+    .signinButton {
+      border: 1px solid $primary-color;
+      background-color: white;
+      color: $primary-color;
+    }
+  }
+}
