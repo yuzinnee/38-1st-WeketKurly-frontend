@@ -1,10 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useParams } from 'react';
+import { Link } from 'react-router-dom';
 import './List.scss';
 import Sort from './Sort/Sort';
+import Filters from './Filters/Filters';
+import DefaultItem from './../../components/Item/DefaultItem';
 
 const List = () => {
   const [sortTypes, setSortTypes] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  let { maincategoriesId } = useParams();
+
+  const fetchProductList = api =>
+    fetch(api, { method: 'GET' })
+      .then(res => res.json())
+      .then(result => {
+        setProducts(result);
+      });
+
+  const clickSubcategory = e => {
+    fetchProductList(
+      `http://10.58.52.148:3000/categories/sub/${e.target.subcategoriesId}`
+    );
+  };
+
+  const clickSortType = sortTypesId => {
+    fetchProductList(
+      `http://10.58.52.148:3000/categories/main/1?sorttype=${sortTypesId}`
+    );
+  };
 
   useEffect(() => {
     fetch('/data/SORTED_DATA.json')
@@ -15,21 +39,38 @@ const List = () => {
   }, []);
 
   useEffect(() => {
-    fetch('/data/PRODUCTS.json', {})
-      .then(res => res.json())
-      .then(result => setProducts(result.getMainCategoriesAllProducts));
-  });
+    fetch(`http://10.58.52.148:3000/categories/main/${maincategoriesId}`)
+      .then(response => response.json())
+      .then(result => {
+        setSubCategories(result[1]);
+        setProducts(result[0]);
+      });
+  }, []);
 
   return (
     <div className="listPageContainer">
       <div className="listWrapper">
-        <h3 className="listTitle">Subcategory.Name</h3>
+        <h3 className="listTitle">
+          '/maincategoriesId에 해당하는 listTitle이 들어가는 자리입니다'
+        </h3>
         <div className="contentContainer">
-          <Filter />
-          <Sort sortTypes={sortTypes} />
+          <Filters
+            data={subCategories}
+            fn={clickSubcategory}
+            maincategoriesId={maincategoriesId}
+          />
+          <Sort
+            sortTypes={sortTypes}
+            fn={clickSortType}
+            productslength={products?.length}
+          />
           <div className="listGrid">
             {products.map((product, index) => {
-              return <DefaultItem key={index} contents={product} />;
+              return (
+                <Link to="/detail/product.id" key={index}>
+                  <DefaultItem contents={product} />
+                </Link>
+              );
             })}
           </div>
         </div>
@@ -39,20 +80,3 @@ const List = () => {
 };
 
 export default List;
-
-// 요청 (request) - http://url:3000/categories/main/${maincategoriesId}
-
-const DefaultItem = ({ contents }) => {
-  return (
-    <div className="itemContainer">
-      <img
-        className="itemimg"
-        src="https://images.unsplash.com/photo-1666307533559-070b90d171a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
-        alt="상품 이미지"
-      />
-
-      <p className="itemDescription">{contents?.productName}</p>
-      <p className="itemPrice">{contents?.productPrice + `원`}</p>
-    </div>
-  );
-};
