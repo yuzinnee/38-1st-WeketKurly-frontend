@@ -21,19 +21,28 @@ const CartContentsBox = () => {
 
   let totalAndFee = totalPrice + (deliveryFee === '무료' ? 0 : deliveryFee);
 
-  // // < get api >
-  // useEffect(() => {
-  //   fetch(`http://10.58.4.136:8000/carts/getcarts/${userId}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       setCartData(result.carts);
-  //     });
-  // }, []);
+  // < get api >
+  useEffect(() => {
+    fetch(`http://10.58.52.133:8000/carts/getcarts`, {
+      method: 'GET',
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        setCartData(() => {
+          for (let i = 0; i < CART_INFO_LIST.length; i++) {
+            for (let j = 0; j < result.data.length; j++) {
+              if (CART_INFO_LIST[i].id === result.data[j].packing_type_id) {
+                CART_INFO_LIST[i].data.push(result.data[j]);
+              }
+            }
+          }
+          return CART_INFO_LIST;
+        });
+      });
+  }, []);
 
   return (
     <div className="cartContentsBox">
@@ -49,19 +58,19 @@ const CartContentsBox = () => {
 
 const CART_INFO_LIST = [
   {
-    id: 0,
+    id: 1,
     type: '냉동식품',
     icon: <BsSnow className="frozenIcon" />,
     data: '',
   },
   {
-    id: 1,
+    id: 2,
     type: '냉장식품',
     icon: <MdOutlineWaterDrop className="chilledIcon" />,
     data: '',
   },
   {
-    id: 2,
+    id: 3,
     type: '상온식품',
     icon: <BsSun className="sunIcon" />,
     data: '',

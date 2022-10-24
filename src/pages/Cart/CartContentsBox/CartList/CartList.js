@@ -23,13 +23,13 @@ const CartList = ({ list }) => {
           <IoIosArrowDown className="arrowIcon" onClick={handleClickOpenList} />
         )}
       </div>
-      {openlist && (
+      {/* {openlist && (
         <div className="cartItemList">
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          {list.data?.map((list, idx) => {
+            <CartItem list={list} key={list.id} />;
+          })}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
