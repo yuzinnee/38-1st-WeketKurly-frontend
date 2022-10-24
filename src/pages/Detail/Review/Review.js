@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './Review.scss';
 import ReviewRow from './ReviewRow/ReviewRow';
 import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
+import { useParams } from 'react-router-dom';
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
+  const { product_id } = useParams;
 
   const [clickedIndex, setClickedIndex] = useState('');
   const [isReviewClicked, setIsReviewClicked] = useState(false);
@@ -49,8 +51,7 @@ const Review = () => {
       },
       body: JSON.stringify({
         value: newReviewValue,
-        user_id: '',
-        product_id: '',
+        product_id: product_id,
       }),
     }).then(res => res.json());
     fetchReviews();
