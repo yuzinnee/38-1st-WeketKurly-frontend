@@ -18,7 +18,7 @@ const CartItem = props => {
     setQuantity(quantity => quantity - 1);
   };
 
-  const updateItem = (productId, quantity) => {
+  const updateItem = quantity => {
     clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
