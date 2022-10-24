@@ -51,7 +51,11 @@ const CartContentsBox = () => {
           <CartList list={list} key={list.id} />
         ))}
       </div>
-      <OrderBox />
+      <OrderBox
+        totalPrice={totalPrice}
+        deliveryFee={deliveryFee}
+        totalAndFee={totalAndFee}
+      />
     </div>
   );
 };
