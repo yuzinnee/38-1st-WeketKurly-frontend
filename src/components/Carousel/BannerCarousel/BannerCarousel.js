@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { API } from '../../../config';
 import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,
@@ -15,7 +16,7 @@ const BannerCarousel = () => {
   const page = bannerList.length;
 
   useEffect(() => {
-    fetch('http://10.58.52.148:3000/banner/big', {
+    fetch(API.mainBanner, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
