@@ -2,7 +2,11 @@ import React from 'react';
 import './DefaultModal.scss';
 
 const DefaultModal = props => {
-  const { close, contents } = props;
+  const { close, event, contents } = props;
+
+  const confirmHandler = e => {
+    e.stopPropagation();
+  };
 
   const closeHandler = e => {
     e.stopPropagation();

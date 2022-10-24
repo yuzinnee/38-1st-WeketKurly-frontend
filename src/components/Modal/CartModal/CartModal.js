@@ -4,7 +4,7 @@ import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import './CartModal.scss';
 
 const CartModal = props => {
-  const { close, contents } = props;
+  const { close, event, contents } = props;
 
   const token = localStorage.getItem('token');
 
@@ -15,6 +15,10 @@ const CartModal = props => {
   };
   const decreaseCount = () => {
     setCount(count => count - 1);
+  };
+
+  const confirmHandler = e => {
+    e.stopPropagation();
   };
 
   const closeHandler = e => {
