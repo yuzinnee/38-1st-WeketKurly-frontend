@@ -41,7 +41,7 @@ const BannerCarousel = () => {
   return (
     <div className="bannerCarousel">
       <div className="bannerCarouselBox" ref={slideRef}>
-        {bannerList.map((banner, idx) => (
+        {bannerList.map(banner => (
           <img
             className="bannerImg"
             src={banner.image_url}
