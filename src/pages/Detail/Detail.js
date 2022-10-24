@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { HiOutlineShare } from 'react-icons/hi';
 import './Detail.scss';
-import DetailNavigator from './DetailNavigator/DetailNavigator';
+import DetailNav from './DetailNav/DetailNav';
 import TableInner from './TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
 import ShareToolTip from './ShareToolTip/ShareToolTip';
-import Review from './Review/Review';
+// import Review from './Review/Review';
 
 const Detail = () => {
   const [itemInfo, setItemInfo] = useState({
@@ -118,13 +118,11 @@ const Detail = () => {
             <div className="select"></div>
           </div>
         </article>
-        <DetailNavigator />
+        <DetailNav />
         <div className="productDetailsContainer">
           <img src={itemInfo.detail_image_url} alt={itemInfo.name} />
         </div>
-        <div>
-          <Review />
-        </div>
+        <div>{/* <Review /> */}</div>
       </div>
     </div>
   );

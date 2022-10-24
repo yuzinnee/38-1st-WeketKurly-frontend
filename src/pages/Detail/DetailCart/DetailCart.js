@@ -14,6 +14,11 @@ const DetailCart = ({ contents }) => {
   const decreaseCount = () => {
     setCount(count => count - 1);
   };
+
+  const priceToString = price => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <div className="modalBackground">
       <div className="cartModalBox">
@@ -40,7 +45,9 @@ const DetailCart = ({ contents }) => {
         </div>
         <div className="cartModalMiddleBox">
           <p className="cartSumText">합계</p>
-          <p className="cartSumVar">{count * contents?.price + '원'}</p>
+          <p className="cartSumVar">
+            {priceToString(count * contents?.price) + '원'}
+          </p>
         </div>
         {token ? (
           <p className="cartPointBox">
@@ -53,10 +60,8 @@ const DetailCart = ({ contents }) => {
           </p>
         )}
         <div className="cartModalBottomBox">
-          <button className="cartModalLeftBtn">
-            {/* <button className="cartModalLeftBtn" onClick={closeHandler}> */}
-            취소
-          </button>
+          {/* <button className="cartModalLeftBtn" onClick={closeHandler}> */}
+
           {/* <button
             className="cartModalRightBtn"
             onClick={() => {

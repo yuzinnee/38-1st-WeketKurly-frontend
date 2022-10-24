@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import './DetailNavigator.scss';
+import './DetailNav.scss';
 
-const DetailNavigator = () => {
+const DetailNav = () => {
   const [isButtonClicked, setIsButtonClicked] = useState('상품설명');
   const buttons = ['상품설명', '후기'];
 
@@ -38,4 +38,4 @@ const DetailNavigator = () => {
   );
 };
 
-export default DetailNavigator;
+export default DetailNav;
