@@ -7,7 +7,13 @@ import Modal from '../../components/Modal/Modal';
 function Login() {
   const navigate = useNavigate();
 
-  const [openModal, setopenModal] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    isModalOpen: false,
+    infoIndex: 0,
+  });
+
+  const { isModalOpen, infoIndex } = modalInfo;
+
   const [userInfo, setUserInfo] = useState({ userId: '', password: '' });
 
   const getUserInfo = e => {
@@ -15,32 +21,34 @@ function Login() {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
+  const handleModal = (valid, index) => {
+    setModalInfo({ isModalOpen: valid, infoIndex: index });
+  };
+
   const isValid = userInfo.userId && userInfo.password;
 
   const submitUserInfo = e => {
     e.preventDefault();
-    if (!isValid) {
-      setopenModal(true);
-    } else {
-      fetch('http://10.58.52.89:3000/users/signin', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        body: JSON.stringify(userInfo),
+    if (!isValid) return handleModal(true, 0);
+
+    fetch('http://10.58.52.89:3000/users/signin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify(userInfo),
+    })
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('에러 발생, check status code');
       })
-        .then(response => {
-          if (response.ok === true) {
-            return response.json();
-          }
-          throw new Error('에러 발생, check status code');
-        })
-        .catch(error => alert(error))
-        .then(data => {
-          if (data.message === 'LOGIN_SUCCESS') {
-            localStorage.setItem('token', data.token);
-            navigate('/Main');
-          } else setopenModal(true);
-        });
-    }
+      .catch(error => handleModal(true, 2))
+      .then(data => {
+        if (data.message === 'LOGIN_SUCCESS') {
+          localStorage.setItem('token', data.token);
+          navigate('/Main');
+        } else handleModal(true, 1);
+      });
   };
 
   return (
@@ -77,23 +85,17 @@ function Login() {
             <button className="loginButton" onClick={submitUserInfo}>
               로그인
             </button>
-
-            {(openModal && (
+            {isModalOpen && (
               <Modal
                 type="default"
-                contents={contents[0]}
-                close={() => setopenModal(false)}
+                contents={contents[infoIndex]}
+                close={() =>
+                  setModalInfo(prev => ({ ...prev, isModalOpen: false }))
+                }
               />
-            )) ||
-              (openModal && (
-                <Modal
-                  type="default"
-                  contents={contents[1]}
-                  close={() => setopenModal(false)}
-                />
-              ))}
+            )}
             <Link to="/signup">
-              <button className="signinButton">회원가입 </button>
+              <button className="signupButton">회원가입 </button>
             </Link>
           </div>
         </form>
@@ -110,7 +112,11 @@ const contents = [
     title: '아이디 또는 비밀번호를 입력해 주세요.',
   },
   {
-    id: 2,
+    id: 1,
     title: '아이디, 비밀번호를 확인해주세요.',
+  },
+  {
+    id: 2,
+    title: '서버 연결을 다시 확인해주세요',
   },
 ];
