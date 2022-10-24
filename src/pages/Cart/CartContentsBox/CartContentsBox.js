@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import CartList from './CartList/CartList';
 import OrderBox from './OrderBox/OrderBox';
 import { MdOutlineWaterDrop } from 'react-icons/md';
 import { BsSun, BsSnow } from 'react-icons/bs';
 import './CartContentsBox.scss';
-import CartList from './CartList/CartList';
 
 const CartContentsBox = () => {
   const timerRef = useRef(0);
@@ -32,14 +32,15 @@ const CartContentsBox = () => {
       .then(res => res.json())
       .then(result => {
         setCartData(() => {
-          for (let i = 0; i < CART_INFO_LIST.length; i++) {
-            for (let j = 0; j < result.data.length; j++) {
-              if (CART_INFO_LIST[i].id === result.data[j].packing_type_id) {
-                CART_INFO_LIST[i].data.push(result.data[j]);
+          const COPY_CART_INFO_LIST = [...CART_INFO_LIST];
+          COPY_CART_INFO_LIST.map(cur => {
+            result.data.map(current => {
+              if (cur.id === current.pid) {
+                cur.data.push(current);
               }
-            }
-          }
-          return CART_INFO_LIST;
+            });
+          });
+          return COPY_CART_INFO_LIST;
         });
       });
   }, []);
@@ -47,7 +48,7 @@ const CartContentsBox = () => {
   return (
     <div className="cartContentsBox">
       <div className="cartBox">
-        {CART_INFO_LIST.map(list => (
+        {cartData?.map(list => (
           <CartList list={list} key={list.id} />
         ))}
       </div>

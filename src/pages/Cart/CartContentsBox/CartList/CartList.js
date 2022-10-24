@@ -25,9 +25,9 @@ const CartList = ({ list }) => {
       </div>
       {openlist && (
         <div className="cartItemList">
-          {/* {list.data?.map((list, idx) => {
+          {list.data?.map((list, idx) => {
             <CartItem list={list} key={list.id} />;
-          })} */}
+          })}
           <CartItem list={list} key={list.id} />;
         </div>
       )}

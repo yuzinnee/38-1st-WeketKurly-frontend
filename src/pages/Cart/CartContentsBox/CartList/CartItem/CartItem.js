@@ -31,9 +31,7 @@ const CartItem = props => {
         body: JSON.stringify({
           quantity: quantity,
         }),
-      })
-        .then(data => console.log(data))
-        .catch(error => alert(error));
+      }).catch(error => alert(error));
     }, 500);
   };
 
@@ -41,8 +39,7 @@ const CartItem = props => {
     <div className="cartItem">
       <img
         className="cartItemImg"
-        src="https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1634631825670l0.jpg"
-        // src={props?.thumnail_image_url}
+        src={props?.thumnail_image_url}
         alt="상품이미지"
       />
       <div className="cartItemName">{props?.name}</div>
