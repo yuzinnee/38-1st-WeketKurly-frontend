@@ -39,12 +39,15 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.148:3000/products/${id}', {
+    fetch('/data/DETAIL_DATA.json', {
+      // fetch('http://10.58.52.148:3000/products/${id}', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(result => {
-        setItemInfo(result.productData[0]);
+        setItemInfo(result[0]);
+        console.log(result[0]);
+        // setItemInfo(result.productData[0]);
       });
   }, []);
 
@@ -108,7 +111,7 @@ const Detail = () => {
               <dl className="dList">
                 <dt className="dTitle">상품선택</dt>
                 <dd className="dDescription">
-                  <DetailCart />
+                  <DetailCart contents={itemInfo} />
                 </dd>
               </dl>
             </div>
