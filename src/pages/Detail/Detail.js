@@ -46,7 +46,6 @@ const Detail = () => {
       .then(res => res.json())
       .then(result => {
         setItemInfo(result[0]);
-        console.log(result[0]);
         // setItemInfo(result.productData[0]);
       });
   }, []);
@@ -111,7 +110,10 @@ const Detail = () => {
               <dl className="dList">
                 <dt className="dTitle">상품선택</dt>
                 <dd className="dDescription">
-                  <DetailCart contents={itemInfo} />
+                  <DetailCart
+                    priceToString={priceToString}
+                    contents={itemInfo}
+                  />
                 </dd>
               </dl>
             </div>
