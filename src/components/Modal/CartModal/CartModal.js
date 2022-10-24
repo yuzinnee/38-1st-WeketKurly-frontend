@@ -31,17 +31,17 @@ const CartModal = props => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify({
-        productId: 1,
-        quantity: 1,
+        productId: productId,
+        quantity: quantity,
       }),
     })
       .then(response => {
         if (response.ok === true) {
-          return response.json();
+          return response.json(), close();
         }
         throw new Error('에러 발생, check status code');
       })
-      .catch(error => alert(error));
+      .catch(error => console.log(error));
   };
 
   return (
@@ -55,9 +55,7 @@ const CartModal = props => {
         <div className="cartModalTopBox">
           <p className="cartContentsItem">{contents?.productName}</p>
           <div className="cartCountBox">
-            <p className="cartItemPrice">
-              {(contents?.price).toLocaleString() + '원'}
-            </p>
+            <p className="cartItemPrice">{contents?.price + '원'}</p>
             <div className="cartCount">
               {quantity <= 1 ? (
                 <AiOutlineMinus
@@ -77,9 +75,7 @@ const CartModal = props => {
         </div>
         <div className="cartModalMiddleBox">
           <p className="cartSumText">합계</p>
-          <p className="cartSumVar">
-            {(quantity * contents?.price).toLocaleString() + '원'}
-          </p>
+          <p className="cartSumVar">{quantity * contents?.price + '원'}</p>
         </div>
         {token ? (
           <p className="cartPointBox">

@@ -1,29 +1,8 @@
-import React, { useState } from 'react';
-import Modal from '../../../../components/Modal/Modal';
+import React from 'react';
 import './MainRecommendItem.scss';
 
 const MainRecommendItem = () => {
-  const [open, setOpen] = useState(true);
-
-  return (
-    <div className="mainRecommendItem">
-      {open && (
-        <Modal
-          type="default"
-          contents={contents}
-          close={() => {
-            setOpen(false);
-          }}
-        />
-      )}
-    </div>
-  );
-};
-
-const contents = {
-  id: 0,
-  title: '삭제하시겠습니까?',
-  type: 'delete',
+  return <div className="mainRecommendItem"></div>;
 };
 
 export default MainRecommendItem;
