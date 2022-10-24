@@ -6,6 +6,7 @@ const DefaultModal = props => {
 
   const confirmHandler = e => {
     e.stopPropagation();
+    event();
   };
 
   const closeHandler = e => {

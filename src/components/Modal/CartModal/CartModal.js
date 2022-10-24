@@ -19,6 +19,7 @@ const CartModal = props => {
 
   const confirmHandler = e => {
     e.stopPropagation();
+    event();
   };
 
   const closeHandler = e => {
