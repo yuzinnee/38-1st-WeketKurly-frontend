@@ -3,6 +3,7 @@ import Carousel from '../../../../components/Carousel/Carousel';
 import './MainRecommendItem.scss';
 
 const MainRecommendItem = () => {
+<<<<<<< HEAD
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
@@ -21,6 +22,9 @@ const MainRecommendItem = () => {
       <Carousel type="item" title="이 상품은 어때요?" contents={itemList} />
     </div>
   );
+=======
+  return <div className="mainRecommendItem"></div>;
+>>>>>>> 4ab7bf35c0d373df75e50a3bca7bb6f88df6febd
 };
 
 export default MainRecommendItem;
