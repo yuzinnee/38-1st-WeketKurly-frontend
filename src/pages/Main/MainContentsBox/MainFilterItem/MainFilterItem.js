@@ -34,7 +34,7 @@ const MainFilterItem = () => {
               <button
                 onClick={() => {
                   setSelected(categories.name);
-                  filterItemList(categories.endPoint);
+                  filterItemList(categories.id);
                 }}
                 className="foodCategory"
               >
@@ -49,16 +49,16 @@ const MainFilterItem = () => {
 };
 
 const ITEM_CATEGORIES = [
-  { id: 1, name: '채소', endPoint: 1 },
-  { id: 2, name: '과일 · 견과 · 쌀', endPoint: 2 },
-  { id: 3, name: '수산 · 해산 · 건어물', endPoint: 3 },
-  { id: 4, name: '정육 · 계란', endPoint: 4 },
-  { id: 5, name: '국 · 반찬 · 메인요리', endPoint: 5 },
-  { id: 6, name: '샐러드 · 간편식', endPoint: 6 },
-  { id: 7, name: '면 · 양념 · 오일', endPoint: 7 },
-  { id: 8, name: '생수 · 음료 · 우유 · 커피', endPoint: 8 },
-  { id: 9, name: '간식 · 과자 · 떡', endPoint: 9 },
-  { id: 10, name: '베이커리 · 치즈 · 델리', endPoint: 10 },
+  { id: 1, name: '채소' },
+  { id: 2, name: '과일 · 견과 · 쌀' },
+  { id: 3, name: '수산 · 해산 · 건어물' },
+  { id: 4, name: '정육 · 계란' },
+  { id: 5, name: '국 · 반찬 · 메인요리' },
+  { id: 6, name: '샐러드 · 간편식' },
+  { id: 7, name: '면 · 양념 · 오일' },
+  { id: 8, name: '생수 · 음료 · 우유 · 커피' },
+  { id: 9, name: '간식 · 과자 · 떡' },
+  { id: 10, name: '베이커리 · 치즈 · 델리' },
 ];
 
 export default MainFilterItem;
