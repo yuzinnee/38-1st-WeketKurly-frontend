@@ -3,6 +3,7 @@ import Carousel from '../../../../components/Carousel/Carousel';
 import './MainRecommendItem.scss';
 
 const MainRecommendItem = () => {
+
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
