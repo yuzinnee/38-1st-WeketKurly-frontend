@@ -20,9 +20,18 @@ const DefaultModal = props => {
         <div className="modalContentsBox">
           <p className="modalContentsText">{contents?.title}</p>
         </div>
-        <div className="modalConfirmBox" onClick={closeHandler}>
-          <button className="modalConfirmBtn">확인</button>
-        </div>
+        {contents?.type === 'delete' ? (
+          <div className="modalConfirmBox">
+            <button className="modalDeleteBtn" onClick={closeHandler}>
+              취소
+            </button>
+            <button className="modalConfirmBtn">확인</button>
+          </div>
+        ) : (
+          <div className="modalConfirmBox" onClick={closeHandler}>
+            <button className="modalConfirmBtn">확인</button>
+          </div>
+        )}
       </div>
     </div>
   );
