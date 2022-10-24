@@ -48,8 +48,7 @@ const Review = () => {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        title: newReviewValue.title,
-        contant: newReviewValue.content,
+        value: newReviewValue,
         user_id: '',
         product_id: '',
       }),
