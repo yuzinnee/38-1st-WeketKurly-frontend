@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 import Input from '../../components/Input/Input';
+import Modal from '../../components/Modal/Modal';
 
 function Login() {
   const navigate = useNavigate();
 
+  const [openModal, setopenModal] = useState(false);
   const [userInfo, setUserInfo] = useState({ userId: '', password: '' });
 
   const getUserInfo = e => {
@@ -18,7 +20,7 @@ function Login() {
   const submitUserInfo = e => {
     e.preventDefault();
     if (!isValid) {
-      alert('아이디 또는 비밀번호를 입력해주세요, 모달창이 띄워질 영역입니다');
+      setopenModal(true);
     } else {
       fetch('http://10.58.52.89:3000/users/signin', {
         method: 'POST',
@@ -36,7 +38,7 @@ function Login() {
           if (data.message === 'LOGIN_SUCCESS') {
             localStorage.setItem('token', data.token);
             navigate('/Main');
-          } else alert('로그인 실패, 모달창이 띄워질 예정입니다.');
+          } else setopenModal(true);
         });
     }
   };
@@ -75,6 +77,21 @@ function Login() {
             <button className="loginButton" onClick={submitUserInfo}>
               로그인
             </button>
+
+            {(openModal && (
+              <Modal
+                type="default"
+                contents={contents[0]}
+                close={() => setopenModal(false)}
+              />
+            )) ||
+              (openModal && (
+                <Modal
+                  type="default"
+                  contents={contents[1]}
+                  close={() => setopenModal(false)}
+                />
+              ))}
             <Link to="/signup">
               <button className="signinButton">회원가입 </button>
             </Link>
@@ -86,3 +103,14 @@ function Login() {
 }
 
 export default Login;
+
+const contents = [
+  {
+    id: 0,
+    title: '아이디 또는 비밀번호를 입력해 주세요.',
+  },
+  {
+    id: 2,
+    title: '아이디, 비밀번호를 확인해주세요.',
+  },
+];
