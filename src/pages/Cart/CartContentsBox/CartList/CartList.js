@@ -28,6 +28,7 @@ const CartList = ({ list }) => {
           {/* {list.data?.map((list, idx) => {
             <CartItem list={list} key={list.id} />;
           })} */}
+          <CartItem list={list} key={list.id} />;
         </div>
       )}
     </div>

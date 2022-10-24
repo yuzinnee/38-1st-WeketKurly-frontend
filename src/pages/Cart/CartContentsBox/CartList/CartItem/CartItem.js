@@ -18,29 +18,11 @@ const CartItem = props => {
     setQuantity(quantity => quantity - 1);
   };
 
-  const deleteItem = productId => {
-    fetch(`http://10.58.52.89:3000/carts/:${productId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-    })
-      .then(response => {
-        if (response.ok === true) {
-          return response.json();
-        }
-        throw new Error('에러 발생, check status code');
-      })
-      .then(data => console.log(data))
-      .catch(error => alert(error));
-  };
-
   const updateItem = (productId, quantity) => {
     clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
-      fetch(`http://10.58.52.89:3000/carts/:${productId}`, {
+      fetch(`http://10.58.52.89:3000/carts/:${props?.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -50,12 +32,6 @@ const CartItem = props => {
           quantity: quantity,
         }),
       })
-        .then(response => {
-          if (response.ok === true) {
-            return response.json();
-          }
-          throw new Error('에러 발생, check status code');
-        })
         .then(data => console.log(data))
         .catch(error => alert(error));
     }, 500);
@@ -75,19 +51,26 @@ const CartItem = props => {
           {props?.quantity <= 1 ? (
             <AiOutlineMinus style={{ color: 'lightGray' }} />
           ) : (
-            <AiOutlineMinus className="cartCountIcon" onClick={decreaseCount} />
+            <AiOutlineMinus
+              className="cartCountIcon"
+              onClick={() => {
+                decreaseCount();
+                updateItem(quantity);
+              }}
+            />
           )}
           <p className="cartCounts">{quantity}</p>
-          <AiOutlinePlus className="cartCountIcon" onClick={increaseCount} />
+          <AiOutlinePlus
+            className="cartCountIcon"
+            onClick={() => {
+              increaseCount();
+              updateItem(quantity);
+            }}
+          />
         </div>
       </div>
       <div className="cartItemPrice">{props?.price + `원`}</div>
-      <TiDeleteOutline
-        className="deleteIcon"
-        onClick={() => {
-          deleteItem(props?.product_id);
-        }}
-      />
+      <TiDeleteOutline className="deleteIcon" />
     </div>
   );
 };
