@@ -2,12 +2,7 @@ import React from 'react';
 import './DefaultModal.scss';
 
 const DefaultModal = props => {
-  const { close, event, contents } = props;
-
-  const confirmHandler = e => {
-    e.stopPropagation();
-    event();
-  };
+  const { close, contents } = props;
 
   const closeHandler = e => {
     e.stopPropagation();
@@ -15,8 +10,13 @@ const DefaultModal = props => {
   };
 
   return (
-    <div className="modalBackground">
-      <div className="modalBox">
+    <div className="modalBackground" onClick={closeHandler}>
+      <div
+        className="modalBox"
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
         <div className="modalContentsBox">
           <p className="modalContentsText">{contents?.title}</p>
         </div>
