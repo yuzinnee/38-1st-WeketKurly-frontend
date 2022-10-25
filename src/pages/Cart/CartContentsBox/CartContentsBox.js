@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import CartList from './CartList/CartList';
 import OrderBox from './OrderBox/OrderBox';
+import API from '../../../config';
 import { MdOutlineWaterDrop } from 'react-icons/md';
 import { BsSun, BsSnow } from 'react-icons/bs';
 import './CartContentsBox.scss';
@@ -23,7 +24,7 @@ const CartContentsBox = () => {
 
   // < get api >
   useEffect(() => {
-    fetch(`http://10.58.52.133:8000/carts/getcarts`, {
+    fetch(API.getCarts, {
       method: 'GET',
       headers: {
         Authorization: token,

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import API from '../../../../../config';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import './CartItem.scss';
@@ -22,7 +23,7 @@ const CartItem = props => {
     clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
-      fetch(`http://10.58.52.89:3000/carts/:${props?.id}`, {
+      fetch(`${API.updateCarts}/${props?.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
