@@ -7,6 +7,7 @@ import './MainRecommendItem.scss';
 const MainRecommendItem = () => {
   const [itemList, setItemList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [modalItem, setModalItem] = useState({});
 
   useEffect(() => {
     fetch('/data/DATA.json', {
@@ -21,15 +22,26 @@ const MainRecommendItem = () => {
 
   console.log(itemList);
 
+  const handleOpenModal = item => {
+    setModalItem(item);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <div className="mainRecommendItem">
       <Carousel
         type="item"
         title="이 상품은 어때요?"
         contents={itemList}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
+        onOpenModal={handleOpenModal}
       />
+      {openModal && (
+        <Modal contents={modalItem} type="cart" close={handleCloseModal} />
+      )}
     </div>
   );
 };
