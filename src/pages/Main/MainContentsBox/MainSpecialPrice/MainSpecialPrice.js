@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import Item from '../../../../components/Item/Item';
+import API from '../../../../config';
 import './MainSpecialPrice.scss';
 
 const MainSpecialPrice = () => {
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
-    fetch('http://10.58.52.148:3000/categories/main/specialprice', {
+    fetch(`${API.mainTimeDeal}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
@@ -16,7 +18,7 @@ const MainSpecialPrice = () => {
   }, []);
 
   const calculateTimeLeft = () => {
-    const difference = +new Date('2022-10-24T24:00:00') - +new Date();
+    const difference = +new Date('2022-10-28T24:00:00') - +new Date();
 
     let timeLeft = {};
 
@@ -54,7 +56,9 @@ const MainSpecialPrice = () => {
         </span>
         <p className="specialLgrayText">망설이면 늦어요!</p>
       </div>
-      {/* Item 들어갈 위치 */}
+      {itemList.map(item => (
+        <Item type="discount" contents={item} key={item.productId} />
+      ))}
     </div>
   );
 };
