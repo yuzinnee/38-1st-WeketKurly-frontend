@@ -5,6 +5,7 @@ import API from '../../../../config';
 import './MainRecommendItem.scss';
 
 const MainRecommendItem = () => {
+
   const [itemList, setItemList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [modalItem, setModalItem] = useState({});
@@ -42,6 +43,7 @@ const MainRecommendItem = () => {
       )}
     </div>
   );
+
 };
 
 export default MainRecommendItem;
