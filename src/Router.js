@@ -17,10 +17,14 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/detail" element={<Detail />} />x
+        <Route path="/detail" element={<Detail />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/list" element={<List />} />
+        <Route path="/list" element={<List />}>
+          <Route index element={<List />} />
+          <Route path="/list/sub/:subcategoriesId" element={<List />} />
+        </Route>
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

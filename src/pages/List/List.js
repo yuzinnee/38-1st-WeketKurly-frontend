@@ -17,10 +17,11 @@ const List = () => {
 
   let { maincategoriesId } = useParams();
   const navigate = useNavigate();
-  const navigateToDetail = productId => {
-    // navigate(`/detail/${product?.productId}`);
-    console.log(productId);
-  };
+
+  // const navigateToDetail = product => {
+  //   console.log(product);
+  //   navigate(`/detail/${product?.productId}`);
+  // };
 
   const handleOpenModal = item => {
     setModalItem(item);
@@ -96,15 +97,15 @@ const List = () => {
           <div className="listGrid">
             {products.map(product => {
               return (
-                <Item
-                  key={product.productId}
-                  className="listGridCell"
-                  contents={product}
-                  type="default"
-                  onOpenModal={handleOpenModal}
-                  onClick={console.log('hello')}
-                  // product => navigateToDetail(product.productId)
-                />
+                <div onClick={() => navigate(`/detail/${product?.productId}`)}>
+                  <Item
+                    key={product.productId}
+                    className="listGridCell"
+                    contents={product}
+                    type="default"
+                    onOpenModal={handleOpenModal}
+                  />
+                </div>
               );
             })}
             {openModal && (
