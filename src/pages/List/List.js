@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import DefaultItem from './../../components/Item/DefaultItem';
+import { Link, useParams } from 'react-router-dom';
+import DefaultItem from './../../components/Item/DefaultItem/DefaultItem';
 import Filters from './Filters/Filters';
 import Sort from './Sort/Sort';
 import './List.scss';
@@ -38,12 +38,21 @@ const List = () => {
       });
   }, []);
 
+  // useEffect(() => {
+  //   fetch(`http://10.58.52.148:3000/categories/main/${maincategoriesId}`)
+  //     .then(response => response.json())
+  //     .then(result => {
+  //       setSubCategories(result[1]);
+  //       setProducts(result[0]);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch(`http://10.58.52.148:3000/categories/main/${maincategoriesId}`)
+    fetch(`/data/PRODUCTS.json`)
       .then(response => response.json())
       .then(result => {
-        setSubCategories(result[1]);
-        setProducts(result[0]);
+        // setSubCategories(result);
+        setProducts(result.getMainCategoriesAllProducts);
       });
   }, []);
 

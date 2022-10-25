@@ -6,7 +6,7 @@ const Filters = ({ data, fn, maincategoriesId }) => {
   return (
     <div className="filters-wrapper">
       <ul>
-        <li>'maincategoriesId 에 맞는 한글 이름이 들어갈 예정입니다'</li>
+        <li>전체보기</li>
         {data.map(item => {
           return (
             <NavLink
