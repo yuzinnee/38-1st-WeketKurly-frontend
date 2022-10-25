@@ -10,7 +10,7 @@ const MainRecommendItem = () => {
   const [modalItem, setModalItem] = useState({});
 
   useEffect(() => {
-    fetch('/data/DATA.json', {
+    fetch(`${API.mainItem}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
@@ -19,8 +19,6 @@ const MainRecommendItem = () => {
         setItemList(data);
       });
   }, []);
-
-  console.log(itemList);
 
   const handleOpenModal = item => {
     setModalItem(item);

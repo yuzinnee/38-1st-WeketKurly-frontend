@@ -11,7 +11,7 @@ const ItemCarousel = ({ contents, title, onOpenModal }) => {
 
   const slideRef = useRef(null);
 
-  const page = Math.ceil(contents?.length / 4);
+  const page = Math.ceil(contents?.item?.length / 4);
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.4s ease-in-out';
@@ -30,7 +30,7 @@ const ItemCarousel = ({ contents, title, onOpenModal }) => {
       <p className="itemTitle">{title}</p>
       <div className="itemCarouselBox">
         <div className="itemList" ref={slideRef}>
-          {contents.map((list, idx) => (
+          {contents?.item?.map((list, idx) => (
             <Item
               contents={list}
               key={list.productId}

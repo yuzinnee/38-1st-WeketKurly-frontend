@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Modal from '../../Modal/Modal';
+import React from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import './DefaultItem.scss';
 
