@@ -1,0 +1,89 @@
+@import '../../../styles/variables';
+
+.review {
+  position: relative;
+  width: 1050px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  border-top: 1px solid $line-color;
+  background-color: $white-color;
+
+
+
+  .reviewBottom {
+    border-bottom: 1px solid $primary-color;
+  }
+
+  .titleContainer {
+    @include flex(null, center, column);
+
+    .title {
+      @include font(13px, 18px, null, $weight: 700);
+      color: $text-color;
+    }
+
+    .titleText {
+      width: 100%;
+      height: 60px;
+
+      .reviewDescription {
+        @include font(12px, 18px, -0.3px, $weight: 500);
+        color: $gray-color;
+      }
+    }
+  }
+
+  .reviewPostButton {
+    position: absolute;
+    right: 0;
+    width: 100px;
+    margin: 20px 0 20px 20px;
+    padding: 10px 0 10px 0;
+    transition: 0.1s ease-in-out;
+    border: 1px solid $primary-color;
+    border-radius: 0;
+    outline: none;
+    background-color: $primary-color;
+    box-shadow: none;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid $primary-color;
+      background-color: rgb(255, 255, 255);
+      color: $primary-color;
+    }
+  }
+}
+
+.reviewTableContainer {
+  width: 100%;
+  margin-top: 15px;
+  border-top: 2px solid $primary-color;
+
+  .reviewRowTitle {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr 1fr;
+    padding: 20px 0 17px 0;
+    border-bottom: 1px solid $line-color;
+    font-size: 12px;
+  }
+
+  .tableTitle {
+    text-align: center;
+  }
+}
+
+.reviewContent {
+  width: 100%;
+
+  .reviewContentWrapper {
+    height: 180px;
+    padding: 20px 220px 20px 130px;
+    border-bottom: 1px solid $lightGray-color;
+    color: rgb(76, 76, 76);
+    font-size: 12px;
+  }
+}

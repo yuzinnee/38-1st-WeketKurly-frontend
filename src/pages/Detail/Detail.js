@@ -42,14 +42,14 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    fetch('/data/DETAIL_DATA.json', {
-      // fetch('http://10.58.52.148:3000/products/${id}', {
+    // fetch('/data/DETAIL_DATA.json', {
+    fetch(`http://10.58.52.148:3000/products/16`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(result => {
-        setItemInfo(result[0]);
-        // setItemInfo(result.productData[0]);
+        // setItemInfo(result[0]);
+        setItemInfo(result.productData[0]);
       });
   }, []);
 
