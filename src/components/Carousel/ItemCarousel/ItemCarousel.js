@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import Item from '../../Item/Item';
 import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,
@@ -10,11 +11,11 @@ const ItemCarousel = ({ contents, title }) => {
 
   const slideRef = useRef(null);
 
-  const page = Math.ceil(contents?.item?.length / 4);
+  const page = Math.ceil(contents?.length / 4);
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.4s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${slide * 40.3}%)`;
+    slideRef.current.style.transform = `translateX(-${slide * 33.5}%)`;
   }, [slide]);
 
   const showNextSlide = () => {
@@ -29,7 +30,9 @@ const ItemCarousel = ({ contents, title }) => {
       <p className="itemTitle">{title}</p>
       <div className="itemCarouselBox">
         <div className="itemList" ref={slideRef}>
-          {/* items들어갈 자리 */}
+          {contents.map((list, idx) => (
+            <Item contents={list} key={list.productId} type="default" />
+          ))}
         </div>
       </div>
       {slide !== 0 && (

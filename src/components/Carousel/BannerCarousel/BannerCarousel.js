@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { API } from '../../../config';
+import API from '../../../config';
 import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,

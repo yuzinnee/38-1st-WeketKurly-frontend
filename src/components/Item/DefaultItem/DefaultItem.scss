@@ -4,7 +4,9 @@
   position: relative;
   width: 252px;
   min-height: 412px;
+  border: 1px solid black;
   cursor: pointer;
+  background-color: $white-color;
 
   .itemImg {
     width: 250px;

@@ -6,7 +6,7 @@ const DefaultItem = ({ contents }) => {
   return (
     <div className="itemContainer">
       <img
-        className="itemimg"
+        className="itemImg"
         src={contents?.thumbnailImageUrl}
         alt="상품 이미지"
       />
@@ -14,7 +14,7 @@ const DefaultItem = ({ contents }) => {
         <BsCart2 className="reactIcon" />
       </div>
       <p className="itemDescription">{contents?.productName}</p>
-      <p className="itemPrice">{contents?.productPrice + `원`}</p>
+      <p className="itemPrice">{contents?.price + `원`}</p>
     </div>
   );
 };
