@@ -7,6 +7,7 @@ const API = {
   mainItem: `${BASE_URL}/categories`,
   getCarts: `${BASE_URL}/carts/getcarts`,
   updateCarts: `${BASE_URL}carts`,
+  mainSubBanner: `${BASE_URL}/banner/small`,
 };
 
 export default API;
