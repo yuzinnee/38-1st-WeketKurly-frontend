@@ -1,9 +1,14 @@
-
 @import '../../../styles/variables';
 
 .review {
   position: relative;
   width: 1050px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  border-top: 1px solid $line-color;
+  background-color: $white-color;
+
+
 
   .reviewBottom {
     border-bottom: 1px solid $primary-color;
@@ -32,7 +37,7 @@
     position: absolute;
     right: 0;
     width: 100px;
-    margin: 20px 0 0 0px;
+    margin: 20px 0 20px 20px;
     padding: 10px 0 10px 0;
     transition: 0.1s ease-in-out;
     border: 1px solid $primary-color;
@@ -58,7 +63,6 @@
   margin-top: 15px;
   border-top: 2px solid $primary-color;
 
-
   .reviewRowTitle {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr 1fr;
@@ -66,7 +70,6 @@
     border-bottom: 1px solid $line-color;
     font-size: 12px;
   }
-
 
   .tableTitle {
     text-align: center;
@@ -84,5 +87,3 @@
     font-size: 12px;
   }
 }
-
-

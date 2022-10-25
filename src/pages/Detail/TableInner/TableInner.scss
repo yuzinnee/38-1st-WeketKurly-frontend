@@ -16,6 +16,37 @@
       width: 432px;
       font-size: 14px;
       line-height: 16px;
+
+      .cartButton {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+.cartList {
+  height: 206px;
+  @include flex(space-between, center, column);
+
+  .buttonContainer {
+    display: grid;
+    grid-template-columns: 52px 52px;
+    gap: 8px;
+    height: 52px;
+
+    .cartButtons {
+      width: 100%;
+      border: 1px solid $line-color;
+      border-radius: 3px;
+      outline: none;
+      background-color: $white-color;
+
+      .icon {
+        width: 30px;
+        height: 30px;
+        color: $lightGray-color;
+      }
     }
   }
 }

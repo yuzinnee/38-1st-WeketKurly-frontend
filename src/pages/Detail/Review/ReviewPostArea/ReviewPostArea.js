@@ -5,7 +5,6 @@ const ReviewPostArea = ({
   changeReviewTextarea,
   isPostButtonClicked,
   submitReview,
-  reviewContentlength,
 }) => {
   return (
     <form className="reviewForm">

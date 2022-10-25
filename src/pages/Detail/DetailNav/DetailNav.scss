@@ -1,12 +1,10 @@
 @import '../../../styles/variables';
 
-
-
 .detailNavigator {
   position: sticky;
   z-index: 20;
-  top: 56px;
-  width: 1010px;
+  top: 156px;
+  width: 1050px;
   margin-top: 50px;
 
   .navigatorContainer {
@@ -18,7 +16,7 @@
       width: 50%;
       height: 60px;
       border: 1px solid $hover-color;
-
+      background-color: $lightLine-color;
       color: $disabled-color;
       font-size: 16px;
       font-weight: 500;

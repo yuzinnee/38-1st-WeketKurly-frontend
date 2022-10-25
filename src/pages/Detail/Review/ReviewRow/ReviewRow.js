@@ -51,7 +51,7 @@ const ReviewRow = ({
       {clickedIndex === id && !isReviewClicked ? (
         <div className="reviewContent">
           <div className="reviewContentWrapper">
-            <p>{contant}</p>
+            <p className="reviewContent">{contant}</p>
             <button className="helpfulButton" onClick={clickHelpful}>
               도움이 돼요({help_count + buttonClicked})
             </button>

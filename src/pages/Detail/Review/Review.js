@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Review.scss';
 import ReviewRow from './ReviewRow/ReviewRow';
 import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
-import { useParams } from 'react-router-dom';
 
-const Review = ({ product_data }) => {
-  // 부모로부터 데이터가 어떻게 오고 있지요??>>>>>?????
+const Review = ({ reviewData, product_id }) => {
   const token = localStorage.getItem('token');
-  const { product_id } = useParams;
 
   const [reviews, setReviews] = useState([]);
 
@@ -45,10 +42,7 @@ const Review = ({ product_data }) => {
       setNewReviewValue({ ...newReviewValue, [e.target.name]: e.target.value });
   };
 
-  const fetchReviews = () =>
-    fetch('/data/REVIEW.json')
-      .then(res => res.json())
-      .then(reviewArray => setReviews(reviewArray));
+  const fetchReviews = () => setReviews(reviewData);
 
   const submitReview = event => {
     event.preventDefault();
@@ -68,7 +62,7 @@ const Review = ({ product_data }) => {
     setIsPostButtonClicked(START_POSTING);
   };
 
-  useEffect(() => fetchReviews(), []);
+  useEffect(() => setReviews(reviewData));
 
   return (
     <div className="review">
