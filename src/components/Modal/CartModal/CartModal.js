@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API from '../../../config';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import './CartModal.scss';
 
@@ -26,7 +27,7 @@ const CartModal = props => {
       return alert('회원전용 서비스입니다!');
     }
 
-    fetch('http://10.58.52.148:3000/carts/input', {
+    fetch(`${API.postCarts}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

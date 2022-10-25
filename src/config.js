@@ -7,6 +7,8 @@ const API = {
   mainItem: `${BASE_URL}/products/recommend`,
   getCarts: `${BASE_URL}/carts/getcarts`,
   updateCarts: `${BASE_URL}/carts/update`,
+  deleteCarts: `${BASE_URL}/carts`,
+  postCarts: `${BASE_URL}/carts/input`,
   mainSubBanner: `${BASE_URL}/banner/small`,
 };
 

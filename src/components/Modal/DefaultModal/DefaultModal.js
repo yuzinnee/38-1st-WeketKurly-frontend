@@ -1,9 +1,8 @@
 import React from 'react';
+import API from '../../../config';
 import './DefaultModal.scss';
 
 const DefaultModal = ({ close, contents, data }) => {
-  console.log(data);
-
   const token = localStorage.getItem('token');
 
   const closeHandler = e => {
@@ -12,7 +11,7 @@ const DefaultModal = ({ close, contents, data }) => {
   };
 
   const deleteItem = cartId => {
-    fetch(`http://10.58.52.148:3000/carts/${cartId}`, {
+    fetch(`${API.deleteCarts}/${cartId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
