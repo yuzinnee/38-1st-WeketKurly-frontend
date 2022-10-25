@@ -20,7 +20,12 @@ const DefaultModal = ({ close, contents, data }) => {
     })
       .then(response => {
         if (response.ok === true) {
-          return response.json(), close();
+          fetch(API.getCarts, {
+            method: 'GET',
+            headers: {
+              Authorization: token,
+            },
+          }).then(res => res.json(), console.log('성공'));
         }
         throw new Error('에러 발생, check status code');
       })
