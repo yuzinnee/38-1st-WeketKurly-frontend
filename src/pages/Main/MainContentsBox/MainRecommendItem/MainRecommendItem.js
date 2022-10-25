@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from '../../../../components/Carousel/Carousel';
-import { API } from '../../../../config';
+import API from '../../../../config';
 import './MainRecommendItem.scss';
 
 const MainRecommendItem = () => {
