@@ -5,8 +5,6 @@ import './CartModal.scss';
 const CartModal = props => {
   const { close, contents } = props;
 
-  console.log(contents);
-
   const token = localStorage.getItem('token');
 
   const [count, setCount] = useState(1);
