@@ -36,18 +36,21 @@ const Signup = () => {
   } = values;
 
   const userIdRegEx = /^[a-z]+[a-z0-9]{5,16}$/g;
+  // 6자 이상 16자 이하의 영문 소문자 혹은 숫자 조합
   const userIdValid = userIdRegEx.test(userId);
   const passwordRegEx =
-    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{9,})/;
+  //a-z와 A-Z/숫자/특수 문자(공백 제외) 허용, 2개이상 조합, 최소 10자 이상
 
   const isPasswordValid = passwordRegEx.test(password);
   const isPasswordCheck = password === passwordCheck;
   const isNameValid = name.length > 0;
   const emailRegEx = /[a-zA-Z0-9+_]+@[a-z]+\.+[a-z]/;
   const isEmailValid = emailRegEx.test(email);
-  const birthday = year + month.length === 2 ? month : 0 + month + day;
-  console.log(birthday);
-  const submitUseInfo = () => {
+  const birthday = year + month.padStart(2, 0) + day.padStart(2, 0);
+
+  const submitUseInfo = e => {
+    e.preventDefault();
     fetch('http://10.58.52.89:3000/users/signup', {
       method: 'POST',
       headers: {
@@ -84,18 +87,18 @@ const Signup = () => {
     <>
       <div className="signupContainer">
         <div className="mainContainer">
-          <div className="topSignupLetter">회원가입</div>
-          <div className="topRequired">
-            <span className="star">*</span>필수입력사항
+          <div className="SignupTitleLetter">회원가입</div>
+          <div className="requiredSymbolDescription">
+            <span className="requiredSymbol">*</span>필수입력사항
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">
-              아이디<span className="star">*</span>
+            <span className="containerTitle">
+              아이디<span className="requiredSymbol">*</span>
             </span>
             <div className="inputContainer">
               <Input
-                className="signupInput"
+                className="signupInputBox"
                 name="userId"
                 type="text"
                 placeholder="아이디를 입력해주세요"
@@ -103,23 +106,23 @@ const Signup = () => {
               />
               {userId.length !== 0 &&
                 (userIdValid || (
-                  <span className="warning">
+                  <span className="warningText">
                     6자 이상 16자 이하의 영문 혹은 숫자를 조합
                   </span>
                 ))}
             </div>
-            <button className="rightButton">
-              <span className="buttonLetter">중복확인</span>
+            <button className="duplicationCheckButton">
+              <span className="duplicationCheckButtonText">중복확인</span>
             </button>
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">
-              비밀번호<span className="star">*</span>
+            <span className="containerTitle">
+              비밀번호<span className="requiredSymbol">*</span>
             </span>
             <div className="inputContainer">
               <Input
-                className="signupInput"
+                className="signupInputBox"
                 type="password"
                 name="password"
                 placeholder="비밀번호를 입력해주세요"
@@ -129,10 +132,10 @@ const Signup = () => {
 
               {isPasswordWarning &&
                 (password.length < 10 ? (
-                  <span className="warning">최소 10자 이상 입력</span>
+                  <span className="warningText">최소 10자 이상 입력</span>
                 ) : (
                   isPasswordValid || (
-                    <span className="warning">
+                    <span className="warningText">
                       영문 /숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합
                     </span>
                   )
@@ -141,152 +144,155 @@ const Signup = () => {
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">
-              비밀번호확인<span className="star">*</span>
+            <span className="containerTitle">
+              비밀번호확인<span className="requiredSymbol">*</span>
             </span>
             <div className="inputContainer">
-              <input
+              <Input
                 type="password"
                 name="passwordCheck"
-                className="signupInput"
+                className="signupInputBox"
                 placeholder="비밀번호를 한번 더 입력해주세요"
                 onChange={valueHandler}
               />
               {passwordCheck.length !== 0 &&
                 (isPasswordCheck || (
-                  <span className="warning">동일한 비밀번호를 입력</span>
+                  <span className="warningText">동일한 비밀번호를 입력</span>
                 ))}
             </div>
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">
-              이름<span className="star">*</span>
+            <span className="containerTitle">
+              이름<span className="requiredSymbol">*</span>
             </span>
             <div className="inputContainer">
-              <input
-                className="signupInput"
+              <Input
+                className="signupInputBox"
                 name="name"
                 placeholder="이름을 입력해주세요"
                 onChange={valueHandler}
               />
               {name.length !== 0 &&
                 (isNameValid || (
-                  <span className="Warning">이름을 입력해주세요.</span>
+                  <span className="warningText">이름을 입력해주세요.</span>
                 ))}
             </div>
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">
-              이메일<span className="star">*</span>
+            <span className="containerTitle">
+              이메일<span className="requiredSymbol">*</span>
             </span>
             <div className="inputContainer">
-              <input
-                className="signupInput"
+              <Input
+                className="signupInputBox"
                 name="email"
                 value={email}
-                placeholder="예: weketkurly@kurly.com"
+                placeholder="예: weketkurly@weket.com"
                 onChange={valueHandler}
               />
               {email.length !== 0 &&
                 (isEmailValid || (
-                  <span className="warning">
+                  <span className="warningText">
                     이메일 형식으로 입력해 주세요.
                   </span>
                 ))}
             </div>
-            <button className="rightButton">
-              <span className="buttonLetter">중복확인</span>
+            <button className="duplicationCheckButton">
+              <span className="duplicationCheckButtonText">중복확인</span>
             </button>
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">성별</span>
+            <span className="containerTitle">성별</span>
             <div className="choiceContainer">
               <div className="male">
-                <input
+                <Input
                   name="genderId"
                   type="radio"
                   className="genderChoiceButton"
                   value="1"
                   checked={genderId === '1'}
                   onChange={valueHandler}
-                ></input>
+                />
                 <div className="maleLetter">남자</div>
               </div>
               <div className="female">
-                <input
+                <Input
                   type="radio"
                   name="genderId"
                   className="genderChoiceButton"
                   checked={genderId === '2'}
                   value="2"
                   onChange={valueHandler}
-                ></input>
+                />
                 <div className="femaleLetter">여자</div>
               </div>
             </div>
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">생년월일</span>
-            <div className="birthContainer">
-              <input
+            <span className="containerTitle">생년월일</span>
+            <div className="birthInputContainer">
+              <Input
                 name="year"
                 type="text"
                 className="birthInput"
                 maxLength="4"
                 placeholder="YYYY"
-              ></input>
-              <span className="birthSlash">/</span>
-              <input
+                onChange={valueHandler}
+              />
+              <span className="birthInputSeparatorSlash">/</span>
+              <Input
                 name="month"
                 className="birthInput"
                 maxLength="2"
                 placeholder="MM"
                 type="text"
-              ></input>
-              <span className="birthSlash">/</span>
-              <input
+                onChange={valueHandler}
+              />
+              <span className="birthInputSeparatorSlash">/</span>
+              <Input
                 name="day"
                 className="birthInput"
                 maxLength="2"
                 placeholder="DD"
-              ></input>
+                onChange={valueHandler}
+              />
             </div>
           </div>
 
           <div className="eachContainer">
-            <span className="leftLetter">추가입력 사항</span>
+            <span className="containerTitle">추가입력 사항</span>
             <div className="choiceContainer">
               <div className="recommendContainer">
-                <input
+                <Input
                   name="additionalIfo"
                   type="radio"
                   className="genderChoiceButton"
-                ></input>
+                />
                 <span>추천인 아이디</span>
               </div>
               <div className="recommendContainer">
-                <input
+                <Input
                   type="radio"
                   name="additionalIfo"
                   className="genderChoiceButton"
-                ></input>
+                />
                 <span>참여 이벤트명</span>
               </div>
             </div>
           </div>
-          <div className="underline"></div>
-          <div className="signupButtonContainer">
+          <div className="bottomSeparatorBar"></div>
+          <div className="signupSubmitButtonContainer">
             <button
-              className="signupButton"
-              onClick={() => {
-                submitUseInfo();
+              className="signupSubmitButton"
+              onClick={e => {
+                submitUseInfo(e);
               }}
             >
-              <span className="signupButtonLetter">가입하기</span>
+              <span className="signupSubmitButtonText">가입하기</span>
             </button>
           </div>
         </div>

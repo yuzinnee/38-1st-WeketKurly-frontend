@@ -7,7 +7,7 @@
   padding: 50px 0px;
   background-color: $white-color;
 
-  .topSignupLetter {
+  .SignupTitleLetter {
     text-align: center;
     margin: 50px 0;
     font-size: 28px;
@@ -17,7 +17,7 @@
     color: $text-color;
   }
 
-  .topRequired {
+  .requiredSymbolDescription {
     @include flex(right, right);
     padding-bottom: 10px;
     border-bottom: 2px solid $text-color;
@@ -37,7 +37,7 @@
       align-items: center;
       width: 100%;
       padding: 15px 20px;
-      .leftLetter {
+      .containerTitle {
         text-align: left;
         width: 139px;
         padding-top: 12px;
@@ -45,7 +45,7 @@
 
       .inputContainer {
         position: relative;
-        .signupInput {
+        .signupInputBox {
           padding: 0 11px 1px 15px;
           width: 333px;
           height: 46px;
@@ -62,7 +62,7 @@
         }
       }
 
-      .warning {
+      .warningText {
         display: flex;
         position: absolute;
         margin-top: 6px;
@@ -71,7 +71,7 @@
         font-size: 13px;
       }
 
-      .rightButton {
+      .duplicationCheckButton {
         display: block;
         text-align: center;
         margin-left: 8px;
@@ -82,22 +82,11 @@
         background-color: $white-color;
         border: 1px solid $primary-color;
         border-radius: 3px;
-        .buttonLetter {
+        .duplicationCheckButtonText {
           color: $primary-color;
           font-weight: 500;
           font-size: 14px;
         }
-      }
-
-      .rightButtonAddress {
-        text-align: center;
-        padding: 0px 10px;
-        width: 333px;
-        height: 44px;
-        color: $primary-color;
-        background-color: $white-color;
-        border: 1px solid $primary-color;
-        border-radius: 3px;
       }
 
       .choiceContainer {
@@ -127,7 +116,7 @@
         }
       }
 
-      .birthContainer {
+      .birthInputContainer {
         @include flex(center, center);
         padding: 0 15px;
         height: 44px;
@@ -144,7 +133,7 @@
           line-height: 38px;
           color: $text-color;
           outline: none;
-          .birthSlash {
+          .birthInputSeparatorSlash {
             text-align: center;
             font-size: 14px;
             color: #cccccc;
@@ -159,20 +148,21 @@
       }
     }
   }
-  .star {
+  .requiredSymbol {
     color: #ee6a7b;
+    margin: 0 2px;
   }
 
-  .underline {
+  .bottomSeparatorBar {
     padding: 10px 0px;
     border-bottom: 1px solid $text-color;
   }
 
-  .signupButtonContainer {
+  .signupSubmitButtonContainer {
     display: flex;
     justify-content: center;
     margin: 50px;
-    .signupButton {
+    .signupSubmitButton {
       text-align: center;
       overflow: hidden;
       width: 240px;
@@ -181,7 +171,7 @@
       color: $white-color;
       border: 0px none;
       border-radius: 3px;
-      .signupButtonLetter {
+      .signupSubmitButtonText {
         font-size: 16px;
         font-weight: 500;
       }
