@@ -10,6 +10,8 @@ const CartList = ({ list }) => {
     setOpenlist(openList => !openList);
   };
 
+  console.log(list.data);
+
   return (
     <div className="cartList">
       <div className="cartListDropTab">
@@ -25,9 +27,9 @@ const CartList = ({ list }) => {
       </div>
       {openlist && (
         <div className="cartItemList">
-          {list.data?.map(list => {
-            <CartItem list={list} key={list.id} />;
-          })}
+          {list.data.map(list => (
+            <CartItem list={list} key={list.id} />
+          ))}
         </div>
       )}
     </div>

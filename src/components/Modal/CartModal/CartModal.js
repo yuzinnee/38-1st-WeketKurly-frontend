@@ -26,9 +26,12 @@ const CartModal = props => {
       return alert('회원전용 서비스입니다!');
     }
 
-    fetch('http://10.58.52.133:3000/carts/input', {
+    fetch('http://10.58.52.148:3000/carts/input', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
       body: JSON.stringify({
         productId: productId,
         quantity: quantity,

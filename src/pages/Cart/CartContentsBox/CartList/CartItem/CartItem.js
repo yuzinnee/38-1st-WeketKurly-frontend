@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
+import Modal from '../../../../../components/Modal/Modal';
 import API from '../../../../../config';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import './CartItem.scss';
 
-const CartItem = props => {
-  const [quantity, setQuantity] = useState(props?.quantity);
+const CartItem = ({ list }) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [quantity, setQuantity] = useState(list?.quantity);
 
   const timerRef = useRef(0);
 
@@ -23,7 +25,7 @@ const CartItem = props => {
     clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
-      fetch(`${API.updateCarts}/${props?.id}`, {
+      fetch(`${API.updateCarts}/${list?.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -40,13 +42,13 @@ const CartItem = props => {
     <div className="cartItem">
       <img
         className="cartItemImg"
-        src={props?.thumnail_image_url}
+        src={list?.thumnail_image_url}
         alt="상품이미지"
       />
-      <div className="cartItemName">{props?.name}</div>
+      <div className="cartItemName">{list?.name}</div>
       <div className="cartItemCountBox">
         <div className="cartItemCount">
-          {props?.quantity <= 1 ? (
+          {list?.quantity <= 1 ? (
             <AiOutlineMinus style={{ color: 'lightGray' }} />
           ) : (
             <AiOutlineMinus
@@ -67,10 +69,31 @@ const CartItem = props => {
           />
         </div>
       </div>
-      <div className="cartItemPrice">{props?.price + `원`}</div>
-      <TiDeleteOutline className="deleteIcon" />
+      <div className="cartItemPrice">{list?.price * quantity + `원`}</div>
+      <TiDeleteOutline
+        className="deleteIcon"
+        onClick={() => {
+          setOpenModal(true);
+        }}
+      />
+      {openModal && (
+        <Modal
+          type="default"
+          contents={contents}
+          data={list}
+          close={() => {
+            setOpenModal(false);
+          }}
+        />
+      )}
     </div>
   );
+};
+
+const contents = {
+  id: 0,
+  title: '삭제하시겠습니까?',
+  type: 'delete',
 };
 
 export default CartItem;

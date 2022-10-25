@@ -20,9 +20,12 @@ const CartContentsBox = () => {
 
   let totalAndFee = totalPrice + (deliveryFee === '무료' ? 0 : deliveryFee);
 
+  console.log(cartData);
+
   // < get api >
   useEffect(() => {
     fetch(API.getCarts, {
+      // fetch('data/DATA.json', {
       method: 'GET',
       headers: {
         Authorization: token,
@@ -34,7 +37,7 @@ const CartContentsBox = () => {
           const COPY_CART_INFO_LIST = [...CART_INFO_LIST];
           COPY_CART_INFO_LIST.map(contents => {
             result.data.map(list => {
-              if (contents.id === list.pid) {
+              if (contents.id === list.packing_type_id) {
                 contents.data.push(list);
               }
             });
@@ -65,19 +68,19 @@ const CART_INFO_LIST = [
     id: 1,
     type: '냉동식품',
     icon: <BsSnow className="frozenIcon" />,
-    data: '',
+    data: [],
   },
   {
     id: 2,
     type: '냉장식품',
     icon: <MdOutlineWaterDrop className="chilledIcon" />,
-    data: '',
+    data: [],
   },
   {
     id: 3,
     type: '상온식품',
     icon: <BsSun className="sunIcon" />,
-    data: '',
+    data: [],
   },
 ];
 
