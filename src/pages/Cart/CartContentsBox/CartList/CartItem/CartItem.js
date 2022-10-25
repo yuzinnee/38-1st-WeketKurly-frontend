@@ -11,6 +11,8 @@ const CartItem = ({ list }) => {
 
   const timerRef = useRef(0);
 
+  console.log(list);
+
   const token = localStorage.getItem('token');
 
   const increaseCount = () => {
@@ -25,13 +27,14 @@ const CartItem = ({ list }) => {
     clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
-      fetch(`${API.updateCarts}/${list?.id}`, {
+      fetch(`${API.updateCarts}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
           Authorization: token,
         },
         body: JSON.stringify({
+          productId: list.id,
           quantity: quantity,
         }),
       }).catch(error => alert(error));

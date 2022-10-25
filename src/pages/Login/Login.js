@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.scss';
 import Input from '../../components/Input/Input';
+import API from '../../config';
+import './Login.scss';
 
 function Login() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Login() {
     if (!isValid) {
       alert('아이디 또는 비밀번호를 입력해주세요, 모달창이 띄워질 영역입니다');
     } else {
-      fetch('http://10.58.52.89:3000/users/signin', {
+      fetch(`${API.signIn}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=utf-8' },
         body: JSON.stringify(userInfo),

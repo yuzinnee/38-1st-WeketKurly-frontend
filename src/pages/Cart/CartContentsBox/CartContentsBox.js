@@ -36,7 +36,7 @@ const CartContentsBox = () => {
         setCartData(() => {
           const COPY_CART_INFO_LIST = [...CART_INFO_LIST];
           COPY_CART_INFO_LIST.map(contents => {
-            result.data.map(list => {
+            result.result.data.map(list => {
               if (contents.id === list.packing_type_id) {
                 contents.data.push(list);
               }

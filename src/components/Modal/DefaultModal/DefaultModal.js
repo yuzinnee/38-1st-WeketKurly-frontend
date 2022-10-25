@@ -1,8 +1,8 @@
 import React from 'react';
 import './DefaultModal.scss';
 
-const DefaultModal = props => {
-  const { close, contents, data } = props;
+const DefaultModal = ({ close, contents, data }) => {
+  console.log(data);
 
   const token = localStorage.getItem('token');
 
@@ -12,7 +12,7 @@ const DefaultModal = props => {
   };
 
   const deleteItem = cartId => {
-    fetch(`http://10.58.52.133:3000/carts/${cartId}`, {
+    fetch(`http://10.58.52.148:3000/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -21,7 +21,7 @@ const DefaultModal = props => {
     })
       .then(response => {
         if (response.ok === true) {
-          return response.json();
+          return response.json(), close();
         }
         throw new Error('에러 발생, check status code');
       })
@@ -47,7 +47,7 @@ const DefaultModal = props => {
             <button
               className="modalConfirmBtn"
               onClick={() => {
-                deleteItem(data?.cartId);
+                deleteItem(data.cartId);
               }}
             >
               확인
