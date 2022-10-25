@@ -1,10 +1,11 @@
 import React from 'react';
-import Item from '../../../components/Item/Item';
+import Carousel from '../../../components/Carousel/Carousel';
 import './MainBannerCarousel.scss';
+
 const MainBannerCarousel = () => {
   return (
     <div className="mainBannerCarousel">
-      <Item type="discount" />
+      <Carousel type="banner" />
     </div>
   );
 };
