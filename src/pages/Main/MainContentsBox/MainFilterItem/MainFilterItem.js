@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
+import Carousel from '../../../../components/Carousel/Carousel';
+import Modal from '../../../../components/Modal/Modal';
 import API from '../../../../config';
 import './MainFilterItem.scss';
 
 const MainFilterItem = () => {
   const [selected, setSelected] = useState('');
   const [itemList, setItemList] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalItem, setModalItem] = useState({});
+
+  const handleOpenModal = item => {
+    setModalItem(item);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const filterItemList = endPoint => {
     fetch(`${API.filterItem}/${endPoint}`, {
@@ -13,9 +26,10 @@ const MainFilterItem = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setItemList(data.item);
+        setItemList(data);
       });
   };
+
   return (
     <div className="mainFilterItem">
       <p className="mdsRecommend">MD의 추천</p>
@@ -45,6 +59,10 @@ const MainFilterItem = () => {
           </li>
         ))}
       </ul>
+      <Carousel type="item" contents={itemList} onOpenModal={handleOpenModal} />
+      {openModal && (
+        <Modal contents={modalItem} type="cart" close={handleCloseModal} />
+      )}
     </div>
   );
 };

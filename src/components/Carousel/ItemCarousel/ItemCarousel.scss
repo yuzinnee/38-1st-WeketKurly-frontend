@@ -2,6 +2,7 @@
 
 .itemCarousel {
   position: relative;
+  border: 1px solid black;
 
   .itemTitle {
     color: $text-color;
@@ -20,7 +21,7 @@
 
     .itemList {
       @include flex(space-between, center, null);
-      width: 302.6%;
+      width: 201.2%;
 
       .items {
         width: 249px;

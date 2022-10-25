@@ -4,6 +4,8 @@ import ItemCarousel from './ItemCarousel/ItemCarousel';
 import './Carousel.scss';
 
 const Carousel = ({ type, contents, title, onOpenModal }) => {
+  console.log(contents);
+
   const carousel = {
     banner: <BannerCarousel />,
     item: (
