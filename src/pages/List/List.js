@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import DefaultItem from './../../components/Item/DefaultItem/DefaultItem';
+import { useParams, useNavigate } from 'react-router-dom';
+import Item from '../../components/Item/Item';
+import CartModal from '../../components/Modal/CartModal/CartModal';
+import Modal from '../../components/Modal/Modal';
 import Filters from './Filters/Filters';
 import Sort from './Sort/Sort';
 import './List.scss';
@@ -9,7 +11,25 @@ const List = () => {
   const [sortTypes, setSortTypes] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   const [products, setProducts] = useState([]);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [modalItem, setModalItem] = useState({});
+
   let { maincategoriesId } = useParams();
+  const navigate = useNavigate();
+  const navigateToDetail = productId => {
+    // navigate(`/detail/${product?.productId}`);
+    console.log(productId);
+  };
+
+  const handleOpenModal = item => {
+    setModalItem(item);
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const fetchProductList = api =>
     fetch(api, { method: 'GET' })
@@ -76,11 +96,24 @@ const List = () => {
           <div className="listGrid">
             {products.map(product => {
               return (
-                <Link to="/detail/product.id" key={product.id}>
-                  <DefaultItem contents={product} />
-                </Link>
+                <Item
+                  key={product.productId}
+                  className="listGridCell"
+                  contents={product}
+                  type="default"
+                  onOpenModal={handleOpenModal}
+                  onClick={console.log('hello')}
+                  // product => navigateToDetail(product.productId)
+                />
               );
             })}
+            {openModal && (
+              <Modal
+                contents={modalItem}
+                type="cart"
+                close={handleCloseModal}
+              />
+            )}
           </div>
         </div>
       </div>
