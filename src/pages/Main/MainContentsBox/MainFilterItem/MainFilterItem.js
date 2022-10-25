@@ -59,7 +59,7 @@ const MainFilterItem = () => {
           </li>
         ))}
       </ul>
-      {itemList.length !== 0 ? (
+      {itemList.length !== 0 && (
         <>
           <Carousel
             type="item"
@@ -70,7 +70,7 @@ const MainFilterItem = () => {
             <Modal contents={modalItem} type="cart" close={handleCloseModal} />
           )}
         </>
-      ) : null}
+      )}
     </div>
   );
 };
