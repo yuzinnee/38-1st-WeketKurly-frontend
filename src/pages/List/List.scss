@@ -14,11 +14,9 @@
     .listTitle {
       display: block;
       margin-top: 50px;
-      color: rgb(51, 51, 51);
-      font-size: 28px;
-      font-weight: 500;
-      letter-spacing: -1px;
+      color: $text-color;
       text-align: center;
+      @include font($size: 28px, $height: 1.8, $spacing: -1px, $weight: 500);
     }
 
     .contentContainer {

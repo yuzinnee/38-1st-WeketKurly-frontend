@@ -1,14 +1,18 @@
 import './Sort.scss';
 
-function Sort({ sortTypes, fn, productslength }) {
+function Sort({ sortTypes, clickSubcategory, productslength }) {
   return (
     <div className="sortBox">
       <div className="totalCount">총 {productslength}건</div>
       <ul className="sortTypes">
-        {sortTypes.map((type, index) => {
+        {sortTypes.map(({ id, name }) => {
           return (
-            <li key={index} className="sortType" onClick={() => fn(index + 1)}>
-              {type.name}
+            <li
+              key={id}
+              className="sortType"
+              onClick={() => clickSubcategory(id)}
+            >
+              {name}
             </li>
           );
         })}

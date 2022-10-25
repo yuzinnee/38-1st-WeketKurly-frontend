@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useParams } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './List.scss';
-import Sort from './Sort/Sort';
-import Filters from './Filters/Filters';
 import DefaultItem from './../../components/Item/DefaultItem';
+import Filters from './Filters/Filters';
+import Sort from './Sort/Sort';
+import './List.scss';
 
 const List = () => {
   const [sortTypes, setSortTypes] = useState([]);
@@ -56,7 +56,7 @@ const List = () => {
         <div className="contentContainer">
           <Filters
             data={subCategories}
-            fn={clickSubcategory}
+            clickSubcategory={clickSubcategory}
             maincategoriesId={maincategoriesId}
           />
           <Sort
@@ -65,9 +65,9 @@ const List = () => {
             productslength={products?.length}
           />
           <div className="listGrid">
-            {products.map((product, index) => {
+            {products.map(product => {
               return (
-                <Link to="/detail/product.id" key={index}>
+                <Link to="/detail/product.id" key={product.id}>
                   <DefaultItem contents={product} />
                 </Link>
               );
