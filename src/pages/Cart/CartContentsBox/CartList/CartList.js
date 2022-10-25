@@ -10,8 +10,6 @@ const CartList = ({ list }) => {
     setOpenlist(openList => !openList);
   };
 
-  console.log(list.data);
-
   return (
     <div className="cartList">
       <div className="cartListDropTab">

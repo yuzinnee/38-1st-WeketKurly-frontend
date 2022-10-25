@@ -11,8 +11,6 @@ const CartItem = ({ list }) => {
 
   const timerRef = useRef(0);
 
-  console.log(list);
-
   const token = localStorage.getItem('token');
 
   const increaseCount = () => {

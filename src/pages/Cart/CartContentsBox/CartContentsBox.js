@@ -20,8 +20,6 @@ const CartContentsBox = () => {
 
   let totalAndFee = totalPrice + (deliveryFee === '무료' ? 0 : deliveryFee);
 
-  console.log(cartData);
-
   // < get api >
   useEffect(() => {
     fetch(API.getCarts, {
