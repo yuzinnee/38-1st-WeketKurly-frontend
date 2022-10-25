@@ -18,17 +18,16 @@ const DefaultModal = ({ close, contents, data }) => {
         Authorization: token,
       },
     })
-      .then(response => {
-        if (response.ok === true) {
-          fetch(API.getCarts, {
-            method: 'GET',
-            headers: {
-              Authorization: token,
-            },
-          }).then(res => res.json(), console.log('성공'));
-        }
-        throw new Error('에러 발생, check status code');
-      })
+      .then(response => response.json(), close())
+      .then(
+        fetch(API.getCarts, {
+          // fetch('data/DATA.json', {
+          method: 'GET',
+          headers: {
+            Authorization: token,
+          },
+        }).then(res => res.json())
+      )
       .catch(error => alert(error));
   };
 

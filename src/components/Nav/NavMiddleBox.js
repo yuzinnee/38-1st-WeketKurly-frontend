@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import API from '../../config';
 import { useNavigate } from 'react-router-dom';
 import { IoLocationOutline } from 'react-icons/io5';
 import { VscHeart } from 'react-icons/vsc';
@@ -5,7 +7,23 @@ import { BsCart2 } from 'react-icons/bs';
 import { BiSearch } from 'react-icons/bi';
 
 const NavMiddleBox = () => {
+  const [cartLength, setCartLength] = useState(0);
   const navigate = useNavigate();
+
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    fetch(API.getCarts, {
+      method: 'GET',
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        setCartLength(result.result.data.length);
+      });
+  }, []);
 
   return (
     <div className="navMiddleBox">
@@ -38,6 +56,7 @@ const NavMiddleBox = () => {
             navigate(`/cart`);
           }}
         />
+        {cartLength !== 0 && <div className="navLengthBox">{cartLength}</div>}
       </div>
     </div>
   );
