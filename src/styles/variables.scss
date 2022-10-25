@@ -5,11 +5,11 @@
   justify-content: $justify;
 }
 
-@mixin font($size: 16px, $align: 1, $spacing: normal, $weight: 500) {
+@mixin font($size: 16px, $height: 1, $spacing: normal, $weight: 500) {
   font-size: $size;
-  line-height: $height;
-  letter-spacing: $spacing;
   font-weight: $weight;
+  letter-spacing: $spacing;
+  line-height: $height;
 }
 
 @mixin position(
