@@ -5,6 +5,7 @@ const API = {
   signUp: `${BASE_URL}/list`,
   mainBanner: `${BASE_URL}/banner/big`,
   mainItem: `${BASE_URL}/categories`,
+  filterItem: `${BASE_URL}/categories`,
 };
 
 export default API;

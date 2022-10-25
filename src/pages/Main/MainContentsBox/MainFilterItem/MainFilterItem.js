@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API from '../../../../config';
 import './MainFilterItem.scss';
 
 const MainFilterItem = () => {
@@ -6,7 +7,7 @@ const MainFilterItem = () => {
   const [itemList, setItemList] = useState([]);
 
   const filterItemList = endPoint => {
-    fetch(`http://10.58.52.148:3000/categories/${endPoint}`, {
+    fetch(`${API.filterItem}/${endPoint}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
