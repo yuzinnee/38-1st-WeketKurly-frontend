@@ -6,7 +6,7 @@ import {
 } from 'react-icons/md';
 import './ItemCarousel.scss';
 
-const ItemCarousel = ({ contents, title }) => {
+const ItemCarousel = ({ contents, title, openModal, setOpenModal }) => {
   const [slide, setSlide] = useState(0);
 
   const slideRef = useRef(null);
@@ -31,7 +31,13 @@ const ItemCarousel = ({ contents, title }) => {
       <div className="itemCarouselBox">
         <div className="itemList" ref={slideRef}>
           {contents.map((list, idx) => (
-            <Item contents={list} key={list.productId} type="default" />
+            <Item
+              contents={list}
+              key={list.productId}
+              type="default"
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+            />
           ))}
         </div>
       </div>

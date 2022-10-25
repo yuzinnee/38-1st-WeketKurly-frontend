@@ -2,7 +2,7 @@ import React from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import './DefaultItem.scss';
 
-const DefaultItem = ({ contents }) => {
+const DefaultItem = ({ contents, openModal, setOpenModal }) => {
   return (
     <div className="itemContainer">
       <img
@@ -10,7 +10,12 @@ const DefaultItem = ({ contents }) => {
         src={contents?.thumbnailImageUrl}
         alt="상품 이미지"
       />
-      <div className="itemIconBox">
+      <div
+        className="itemIconBox"
+        onClick={() => {
+          setOpenModal(true);
+        }}
+      >
         <BsCart2 className="reactIcon" />
       </div>
       <p className="itemDescription">{contents?.productName}</p>

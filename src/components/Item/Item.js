@@ -4,11 +4,23 @@ import DiscountItem from './DiscountItem/DiscountItem';
 import './Item.scss';
 
 const Item = props => {
-  const { type, contents } = props;
+  const { type, contents, openModal, setOpenModal } = props;
 
   const item = {
-    discount: <DiscountItem contents={contents} />,
-    default: <DefaultItem contents={contents} />,
+    discount: (
+      <DiscountItem
+        contents={contents}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
+    ),
+    default: (
+      <DefaultItem
+        contents={contents}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
+    ),
   };
 
   return <>{item[type]}</>;
