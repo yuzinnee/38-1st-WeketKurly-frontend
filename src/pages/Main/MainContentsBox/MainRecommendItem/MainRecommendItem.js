@@ -9,15 +9,17 @@ const MainRecommendItem = () => {
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    fetch(API.mainItem, {
+    fetch('/data/DATA.json', {
       method: 'GET',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
     })
       .then(res => res.json())
       .then(data => {
-        setItemList(data.item);
+        setItemList(data);
       });
   }, []);
+
+  console.log(itemList);
 
   return (
     <div className="mainRecommendItem">
@@ -28,14 +30,6 @@ const MainRecommendItem = () => {
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
-      {openModal && (
-        <Modal
-          type="cart"
-          close={() => {
-            setOpenModal(false);
-          }}
-        />
-      )}
     </div>
   );
 };

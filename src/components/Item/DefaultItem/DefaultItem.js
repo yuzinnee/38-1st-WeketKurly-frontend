@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../../Modal/Modal';
 import { BsCart2 } from 'react-icons/bs';
 import './DefaultItem.scss';
 
-const DefaultItem = ({ contents, openModal, setOpenModal }) => {
+const DefaultItem = ({ contents }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <div className="itemContainer">
       <img
@@ -20,6 +23,15 @@ const DefaultItem = ({ contents, openModal, setOpenModal }) => {
       </div>
       <p className="itemDescription">{contents?.productName}</p>
       <p className="itemPrice">{contents?.price + `원`}</p>
+      {openModal && (
+        <Modal
+          contents={contents}
+          type="cart"
+          close={() => {
+            setOpenModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };

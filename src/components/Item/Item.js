@@ -7,20 +7,8 @@ const Item = props => {
   const { type, contents, openModal, setOpenModal } = props;
 
   const item = {
-    discount: (
-      <DiscountItem
-        contents={contents}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
-    ),
-    default: (
-      <DefaultItem
-        contents={contents}
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
-    ),
+    discount: <DiscountItem contents={contents} />,
+    default: <DefaultItem contents={contents} />,
   };
 
   return <>{item[type]}</>;

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
-
 import './CartModal.scss';
 
 const CartModal = props => {
   const { close, contents } = props;
+
+  console.log(contents);
 
   const token = localStorage.getItem('token');
 
