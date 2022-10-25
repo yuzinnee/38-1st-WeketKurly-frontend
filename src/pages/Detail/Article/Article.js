@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlineShare, HiOutlineBell, HiOutlineHeart } from 'react-icons/hi';
-import ShareToolTip from './ShareToolTip/ShareToolTip';
-import TableInner from './TableInner/TableInner';
+import ShareToolTip from '../ShareToolTip/ShareToolTip';
+import TableInner from '../TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
 import './Article.scss';
 
