@@ -59,10 +59,18 @@ const MainFilterItem = () => {
           </li>
         ))}
       </ul>
-      <Carousel type="item" contents={itemList} onOpenModal={handleOpenModal} />
-      {openModal && (
-        <Modal contents={modalItem} type="cart" close={handleCloseModal} />
-      )}
+      {itemList.length !== 0 ? (
+        <>
+          <Carousel
+            type="item"
+            contents={itemList}
+            onOpenModal={handleOpenModal}
+          />
+          {openModal && (
+            <Modal contents={modalItem} type="cart" close={handleCloseModal} />
+          )}
+        </>
+      ) : null}
     </div>
   );
 };
