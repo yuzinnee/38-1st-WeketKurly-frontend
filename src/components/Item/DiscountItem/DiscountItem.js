@@ -7,8 +7,7 @@ const DiscountItem = ({ contents }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const discountPrice =
-    contents?.productPrice -
-    (contents?.discount / 100) * contents?.productPrice;
+    contents?.price - (contents?.discount / 100) * contents?.price;
 
   return (
     <div className="disItemContainer">
@@ -33,7 +32,7 @@ const DiscountItem = ({ contents }) => {
       <p className="disItemName">{contents?.productName}</p>
       <span className="discountRate">{contents?.discount + `%`}</span>
       <span className="disItemDiscountPrice">{discountPrice + `원`}</span>
-      <span className="disItemPrice">{contents?.productPrice}</span>
+      <span className="disItemPrice">{contents?.price}</span>
       {openModal && (
         <Modal
           contents={contents}
