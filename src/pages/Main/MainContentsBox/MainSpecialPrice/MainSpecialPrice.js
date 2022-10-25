@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Item from '../../../../components/Item/Item';
+import Modal from '../../../../components/Modal/Modal';
 import API from '../../../../config';
 import './MainSpecialPrice.scss';
 
 const MainSpecialPrice = () => {
   const [itemList, setItemList] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     fetch(`${API.mainTimeDeal}`, {
@@ -59,6 +61,7 @@ const MainSpecialPrice = () => {
       {itemList.map(item => (
         <Item type="discount" contents={item} key={item.productId} />
       ))}
+      {openModal && <Modal type="cart" />}
     </div>
   );
 };
