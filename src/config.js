@@ -6,6 +6,7 @@ const API = {
   mainBanner: `${BASE_URL}/banner/big`,
   mainItem: `${BASE_URL}/categories`,
   mainTimeDeal: `${BASE_URL}/categories/main/specialprice`,
+  mainSubBanner: `${BASE_URL}/banner/small`,
 };
 
 export default API;
