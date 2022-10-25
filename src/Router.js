@@ -24,7 +24,7 @@ const Router = () => {
           <Route index element={<List />} />
           <Route path="/list/sub/:subcategoriesId" element={<List />} />
         </Route>
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/products/detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

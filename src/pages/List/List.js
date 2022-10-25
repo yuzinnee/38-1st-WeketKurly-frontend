@@ -5,6 +5,7 @@ import CartModal from '../../components/Modal/CartModal/CartModal';
 import Modal from '../../components/Modal/Modal';
 import Filters from './Filters/Filters';
 import Sort from './Sort/Sort';
+import API from '../../config';
 import './List.scss';
 
 const List = () => {
@@ -17,11 +18,6 @@ const List = () => {
 
   let { maincategoriesId } = useParams();
   const navigate = useNavigate();
-
-  // const navigateToDetail = product => {
-  //   console.log(product);
-  //   navigate(`/detail/${product?.productId}`);
-  // };
 
   const handleOpenModal = item => {
     setModalItem(item);
@@ -40,15 +36,11 @@ const List = () => {
       });
 
   const clickSubcategory = e => {
-    fetchProductList(
-      `http://10.58.52.148:3000/categories/sub/${e.target.subcategoriesId}`
-    );
+    fetchProductList(`${API.listSubCategory}/${e.target.subcategoriesId}`);
   };
 
   const clickSortType = sortTypesId => {
-    fetchProductList(
-      `http://10.58.52.148:3000/categories/main/1?sorttype=${sortTypesId}`
-    );
+    fetchProductList(`${API.listMainCategory}/1?sorttype=${sortTypesId}`);
   };
 
   useEffect(() => {
@@ -59,21 +51,12 @@ const List = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.148:3000/categories/main/${maincategoriesId}`)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       setSubCategories(result[1]);
-  //       setProducts(result[0]);
-  //     });
-  // }, []);
-
   useEffect(() => {
-    fetch(`/data/PRODUCTS.json`)
+    fetch(`${API.listMainCategory}/${maincategoriesId}`)
       .then(response => response.json())
       .then(result => {
-        // setSubCategories(result);
-        setProducts(result.getMainCategoriesAllProducts);
+        setSubCategories(result[1]);
+        setProducts(result[0]);
       });
   }, []);
 
