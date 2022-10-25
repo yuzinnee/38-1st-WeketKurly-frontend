@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './MainSubBanner.scss';
 
 const MainSubBanner = () => {
-  return <div className="mainSubBanner">서브 배너 자리</div>;
+  const [banner, setBanner] = useState([]);
+
+  return (
+    <div className="mainSubBanner">
+      <img />
+    </div>
+  );
 };
 
 export default MainSubBanner;
