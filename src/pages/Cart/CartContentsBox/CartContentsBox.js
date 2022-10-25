@@ -23,7 +23,6 @@ const CartContentsBox = () => {
   // < get api >
   useEffect(() => {
     fetch(API.getCarts, {
-      // fetch('data/DATA.json', {
       method: 'GET',
       headers: {
         Authorization: token,
