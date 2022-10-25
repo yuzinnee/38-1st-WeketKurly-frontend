@@ -7,8 +7,6 @@ import { BsSun, BsSnow } from 'react-icons/bs';
 import './CartContentsBox.scss';
 
 const CartContentsBox = () => {
-  const timerRef = useRef(0);
-
   const [cartData, setCartData] = useState([]);
 
   const token = localStorage.getItem('token');
@@ -34,10 +32,10 @@ const CartContentsBox = () => {
       .then(result => {
         setCartData(() => {
           const COPY_CART_INFO_LIST = [...CART_INFO_LIST];
-          COPY_CART_INFO_LIST.map(cur => {
-            result.data.map(current => {
-              if (cur.id === current.pid) {
-                cur.data.push(current);
+          COPY_CART_INFO_LIST.map(contents => {
+            result.data.map(list => {
+              if (contents.id === list.pid) {
+                contents.data.push(list);
               }
             });
           });
