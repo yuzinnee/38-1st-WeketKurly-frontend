@@ -74,13 +74,17 @@ const List = () => {
           />
           <Sort
             sortTypes={sortTypes}
-            fn={clickSortType}
+            clickSortType={clickSortType}
             productslength={products?.length}
           />
           <div className="listGrid">
             {products.map(product => {
               return (
-                <div onClick={() => navigate(`/detail/${product?.productId}`)}>
+                <div
+                  onClick={() =>
+                    navigate(`/products/detail/${product?.productId}`)
+                  }
+                >
                   <Item
                     key={product.productId}
                     className="listGridCell"

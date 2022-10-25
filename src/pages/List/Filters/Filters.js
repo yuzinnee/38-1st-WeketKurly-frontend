@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Filters.scss';
 
-const Filters = ({ data, fn, maincategoriesId }) => {
+const Filters = ({ data, clickSubcategory, maincategoriesId }) => {
   return (
     <div className="filters-wrapper">
       <ul>
@@ -12,7 +12,7 @@ const Filters = ({ data, fn, maincategoriesId }) => {
             <NavLink
               to={`/List/sub/${item.subcategoriesId}`}
               key={item.subcategoriesId}
-              onClick={fn}
+              onClick={clickSubcategory}
             >
               {item.name}
             </NavLink>
