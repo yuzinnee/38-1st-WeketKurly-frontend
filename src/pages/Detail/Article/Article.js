@@ -17,17 +17,10 @@ const Article = ({ itemInfo }) => {
     ...others
   } = itemInfo;
   const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
-  const [isWishItemToggled, setIsWishItemToggled] = useState(false);
-  const [wishList, setWishList] = useState([]);
+  const [isWishItemToggled, setIsWishItemToggled] = useState('false');
 
   const priceToString = price => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
-
-  const wishListCompare = wishList => {
-    for (let i = 0; i < wishList.length; i++) {
-      return wishList[i].product_id === product_id;
-    }
   };
 
   const toggleWishButton = () => {
@@ -47,18 +40,17 @@ const Article = ({ itemInfo }) => {
     });
   };
 
-  const fetchWishList = () => {
-    fetch(`${API.fetchWishList}`, {
+  const fetchWishCheck = () => {
+    fetch(`${API.fetchWishCheck}`, {
       Authorization: token,
       method: 'GET',
     })
       .then(res => res.json())
-      .then(result => setWishList(result.data));
-    setIsWishItemToggled(wishListCompare(wishList));
+      .then(result => setIsWishItemToggled(result));
   };
 
   useEffect(token => {
-    token ? fetchWishList() : setIsWishItemToggled(false);
+    token ? fetchWishCheck() : setIsWishItemToggled(false);
   }, []);
 
   return (

@@ -44,7 +44,7 @@ const Detail = () => {
           <Article itemInfo={itemInfo} />
           <DetailNav />
           <ProductDetail itemInfo={itemInfo} />
-          {/* <Review reviewData={itemInfo.review} product_id={others.product_id} /> */}
+          <Review reviewData={itemInfo.review} product_id={others.product_id} />
         </div>
       </div>
       <Footer />
