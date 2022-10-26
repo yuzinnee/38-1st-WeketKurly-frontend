@@ -4,7 +4,7 @@ import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import './CartModal.scss';
 
 const CartModal = props => {
-  const { close, contents } = props;
+  const { close, contents, setOpenToast } = props;
 
   const token = localStorage.getItem('token');
 
@@ -98,6 +98,7 @@ const CartModal = props => {
             className="cartModalRightBtn"
             onClick={() => {
               postItemInfo(contents?.productId, quantity);
+              setOpenToast(true);
             }}
           >
             장바구니 담기

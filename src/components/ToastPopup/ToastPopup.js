@@ -8,20 +8,22 @@ const ToastPopup = ({ imgUrl, name, openToast, setOpenToast }) => {
     if (openToast) {
       setTimeout(() => {
         setAnimation(true);
-      }, 1500);
+      }, 15000);
       setTimeout(() => {
         setOpenToast(false);
         setAnimation(true);
-      }, 2200);
+      }, 22000);
     }
   }, []);
 
   return (
-    <div className={`toastPopup ${animation ? 'toastUnmount' : ''}`}>
-      <img className="toastImg" src={imgUrl} />
-      <div className="toastTextBox">
-        <p className="toastName">{name}</p>
-        <p className="toastMsg">장바구니에 상품이 담겼습니다</p>
+    <div className="toastWrapper">
+      <div className={`toastPopup ${animation ? 'toastUnmount' : ''}`}>
+        <img className="toastImg" src={imgUrl} />
+        <div className="toastTextBox">
+          <p className="toastName">{name}</p>
+          <p className="toastMsg">장바구니에 상품이 담겼습니다</p>
+        </div>
       </div>
     </div>
   );
