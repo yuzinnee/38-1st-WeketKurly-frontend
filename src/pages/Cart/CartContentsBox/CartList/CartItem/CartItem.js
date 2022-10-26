@@ -5,7 +5,7 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { TiDeleteOutline } from 'react-icons/ti';
 import './CartItem.scss';
 
-const CartItem = ({ list }) => {
+const CartItem = ({ list, cartData, setCartData }) => {
   const [openModal, setOpenModal] = useState(false);
   const [quantity, setQuantity] = useState(list?.quantity);
 
@@ -49,14 +49,14 @@ const CartItem = ({ list }) => {
       <div className="cartItemName">{list?.name}</div>
       <div className="cartItemCountBox">
         <div className="cartItemCount">
-          {list?.quantity <= 1 ? (
+          {quantity <= 1 ? (
             <AiOutlineMinus style={{ color: 'lightGray' }} />
           ) : (
             <AiOutlineMinus
               className="cartCountIcon"
               onClick={() => {
                 decreaseCount();
-                updateItem(quantity);
+                updateItem(quantity - 1);
               }}
             />
           )}
@@ -65,7 +65,7 @@ const CartItem = ({ list }) => {
             className="cartCountIcon"
             onClick={() => {
               increaseCount();
-              updateItem(quantity);
+              updateItem(quantity + 1);
             }}
           />
         </div>
@@ -81,6 +81,9 @@ const CartItem = ({ list }) => {
         <Modal
           type="default"
           contents={contents}
+          cartData={cartData}
+          setCartData={setCartData}
+          cartId={list.cartId}
           data={list}
           close={() => {
             setOpenModal(false);

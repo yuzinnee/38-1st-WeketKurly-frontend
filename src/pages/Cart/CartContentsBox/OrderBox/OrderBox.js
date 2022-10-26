@@ -1,6 +1,24 @@
 import React from 'react';
+import API from '../../../../config';
 import './OrderBox.scss';
-const OrderBox = ({ totalPrice, deliveryFee, totalAndFee }) => {
+
+const OrderBox = ({ totalPrice, deliveryFee, totalAndFee, setCartData }) => {
+  const token = localStorage.getItem('token');
+
+  const deleteCartAll = () => {
+    fetch(`${API.deleteCartsAll}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
+      .then(res => {
+        res.status === 200 ? setCartData([]) : alert('실패');
+      })
+      .catch(error => alert(error));
+  };
+
   return (
     <div className="orderBox">
       <div className="orderPriceBox">
@@ -29,7 +47,9 @@ const OrderBox = ({ totalPrice, deliveryFee, totalAndFee }) => {
           </p>
         </div>
       </div>
-      <button className="orderBtn">주문하기</button>
+      <button className="orderBtn" onClick={deleteCartAll}>
+        주문하기
+      </button>
     </div>
   );
 };

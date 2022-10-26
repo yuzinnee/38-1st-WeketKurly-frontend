@@ -2,7 +2,17 @@ import React from 'react';
 import CartModal from './CartModal/CartModal';
 import DefaultModal from './DefaultModal/DefaultModal';
 import './Modal.scss';
-const Modal = ({ type, contents, close, data, openToast, setOpenToast }) => {
+const Modal = ({
+  type,
+  contents,
+  close,
+  data,
+  openToast,
+  setOpenToast,
+  cartData,
+  setCartData,
+  cartId,
+}) => {
   const modal = {
     cart: (
       <CartModal
@@ -12,7 +22,16 @@ const Modal = ({ type, contents, close, data, openToast, setOpenToast }) => {
         setOpenToast={setOpenToast}
       />
     ),
-    default: <DefaultModal close={close} contents={contents} data={data} />,
+    default: (
+      <DefaultModal
+        close={close}
+        contents={contents}
+        data={data}
+        cartData={cartData}
+        setCartData={setCartData}
+        cartId={cartId}
+      />
+    ),
   };
 
   return <>{modal[type]}</>;

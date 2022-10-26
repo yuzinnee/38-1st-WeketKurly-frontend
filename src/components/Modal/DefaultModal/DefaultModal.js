@@ -2,7 +2,7 @@ import React from 'react';
 import API from '../../../config';
 import './DefaultModal.scss';
 
-const DefaultModal = ({ close, contents, data }) => {
+const DefaultModal = ({ close, contents, cartData, setCartData, cartId }) => {
   const token = localStorage.getItem('token');
 
   const closeHandler = e => {
@@ -10,7 +10,7 @@ const DefaultModal = ({ close, contents, data }) => {
     close();
   };
 
-  const deleteItem = cartId => {
+  const deleteItem = () => {
     fetch(`${API.deleteCarts}/${cartId}`, {
       method: 'DELETE',
       headers: {
@@ -18,15 +18,11 @@ const DefaultModal = ({ close, contents, data }) => {
         Authorization: token,
       },
     })
-      .then(response => response.json(), close())
-      .then(
-        fetch(API.getCarts, {
-          method: 'GET',
-          headers: {
-            Authorization: token,
-          },
-        }).then(res => res.json())
-      )
+      .then(res => {
+        res.status === 200
+          ? setCartData(cartData.filter(data => data.cartId !== cartId))
+          : alert('실패');
+      })
       .catch(error => alert(error));
   };
 
@@ -49,7 +45,7 @@ const DefaultModal = ({ close, contents, data }) => {
             <button
               className="modalConfirmBtn"
               onClick={() => {
-                deleteItem(data.cartId);
+                deleteItem();
               }}
             >
               확인

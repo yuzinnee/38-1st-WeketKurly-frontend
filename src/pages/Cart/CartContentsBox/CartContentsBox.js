@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartList from './CartList/CartList';
 import OrderBox from './OrderBox/OrderBox';
 import API from '../../../config';
@@ -8,6 +8,13 @@ import './CartContentsBox.scss';
 
 const CartContentsBox = () => {
   const [cartData, setCartData] = useState([]);
+
+  let newCartData = [...cartData];
+
+  newCartData = CART_INFO_LIST.map(item => ({
+    ...item,
+    data: cartData.filter(cart => cart.packing_type_id === item.id),
+  }));
 
   const token = localStorage.getItem('token');
 
@@ -20,10 +27,7 @@ const CartContentsBox = () => {
 
   let totalAndFee = totalPrice + (deliveryFee === '무료' ? 0 : deliveryFee);
 
-  // < get api >
   useEffect(() => {
-    setCartData([]);
-
     fetch(API.getCarts, {
       method: 'GET',
       headers: {
@@ -32,31 +36,27 @@ const CartContentsBox = () => {
     })
       .then(res => res.json())
       .then(result => {
-        setCartData(() => {
-          const COPY_CART_INFO_LIST = [...CART_INFO_LIST];
-          COPY_CART_INFO_LIST.map(contents => {
-            result.result.data.map(list => {
-              if (contents.id === list.packing_type_id) {
-                contents.data.push(list);
-              }
-            });
-          });
-          return COPY_CART_INFO_LIST;
-        });
+        setCartData(result.result.data);
       });
   }, []);
 
   return (
     <div className="cartContentsBox">
       <div className="cartBox">
-        {cartData?.map(list => (
-          <CartList list={list} key={list.id} />
+        {newCartData?.map(list => (
+          <CartList
+            list={list}
+            key={list.id}
+            cartData={cartData}
+            setCartData={setCartData}
+          />
         ))}
       </div>
       <OrderBox
         totalPrice={totalPrice}
         deliveryFee={deliveryFee}
         totalAndFee={totalAndFee}
+        setCartData={setCartData}
       />
     </div>
   );

@@ -3,13 +3,12 @@ import CartItem from './CartItem/CartItem';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import './CartList.scss';
 
-const CartList = ({ list, setCartData }) => {
+const CartList = ({ list, setCartData, cartData }) => {
   const [openlist, setOpenlist] = useState(true);
 
   const handleClickOpenList = () => {
     setOpenlist(openList => !openList);
   };
-
   return (
     <div className="cartList">
       <div className="cartListDropTab">
@@ -26,7 +25,12 @@ const CartList = ({ list, setCartData }) => {
       {openlist && (
         <div className="cartItemList">
           {list.data.map(list => (
-            <CartItem list={list} key={list.id} setCartData={setCartData} />
+            <CartItem
+              list={list}
+              key={list.id}
+              setCartData={setCartData}
+              cartData={cartData}
+            />
           ))}
         </div>
       )}
