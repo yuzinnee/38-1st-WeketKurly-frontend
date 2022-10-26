@@ -10,6 +10,7 @@ const API = {
   deleteCarts: `${BASE_URL}/carts`,
   deleteCartsAll: `${BASE_URL}/carts/delete-carts`,
   postCarts: `${BASE_URL}/carts/input`,
+  filterItem: `${BASE_URL}/products/md`,
   mainSubBanner: `${BASE_URL}/banner/small`,
 };
 
