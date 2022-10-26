@@ -3,7 +3,7 @@ import CartItem from './CartItem/CartItem';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import './CartList.scss';
 
-const CartList = ({ list }) => {
+const CartList = ({ list, setCartData }) => {
   const [openlist, setOpenlist] = useState(true);
 
   const handleClickOpenList = () => {
@@ -26,7 +26,7 @@ const CartList = ({ list }) => {
       {openlist && (
         <div className="cartItemList">
           {list.data.map(list => (
-            <CartItem list={list} key={list.id} />
+            <CartItem list={list} key={list.id} setCartData={setCartData} />
           ))}
         </div>
       )}

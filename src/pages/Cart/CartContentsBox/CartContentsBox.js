@@ -22,6 +22,8 @@ const CartContentsBox = () => {
 
   // < get api >
   useEffect(() => {
+    setCartData([]);
+
     fetch(API.getCarts, {
       method: 'GET',
       headers: {
