@@ -8,15 +8,17 @@ import './Article.scss';
 
 const Article = ({ itemInfo }) => {
   const token = localStorage.getItem('token');
-  const { thumnail_image_url, name, short_description, price, product_id } =
-    itemInfo;
+  const {
+    thumnail_image_url,
+    name,
+    short_description,
+    price,
+    product_id,
+    ...others
+  } = itemInfo;
   const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
   const [isWishItemToggled, setIsWishItemToggled] = useState(false);
   const [wishList, setWishList] = useState([]);
-
-  const clickShareToolTip = () => {
-    setisShareTooTipClicked(isShareTooTipClicked ? false : true);
-  };
 
   const priceToString = price => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -57,7 +59,7 @@ const Article = ({ itemInfo }) => {
 
   useEffect(token => {
     token ? fetchWishList() : setIsWishItemToggled(false);
-  }, []); //
+  }, []);
 
   return (
     <article className="detailArticle">
@@ -70,16 +72,17 @@ const Article = ({ itemInfo }) => {
           <div>
             <div className="titleContainer">
               <h2 className="itemName">{name}</h2>
-
-              <button className="share" onClick={clickShareToolTip}>
+              <button
+                className="share"
+                onClick={prev => setisShareTooTipClicked(!prev)}
+              >
                 <HiOutlineShare className="shareicon" />
                 {isShareTooTipClicked && <ShareToolTip url="http://url" />}
               </button>
             </div>
-            <p className="brief">{short_description}</p>
+            <p className="shortDescription">{short_description}</p>
           </div>
         </div>
-
         <div className="priceContainer">
           <span className="price">{priceToString(price)}</span>
           <span className="won">원</span>
