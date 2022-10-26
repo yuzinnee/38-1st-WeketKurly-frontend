@@ -1,39 +1,77 @@
 [
   {
-    "id": 1,
-    "title": "채소",
+    "mainCategoriesId": 1,
+    "mainCategoriesName": "채소",
     "subCategory": [
       {
-        "id": 1,
-        "title": "친환경"
+        "subCategoriesId": 1,
+        "subCategoriesName": "친환경"
       },
       {
-        "id": 2,
-        "title": "고구마・감자・당근"
+        "subCategoriesId": 2,
+        "subCategoriesName": "고구마・감자・당근"
       },
       {
-        "id": 3,
-        "title": "시금치・쌈채소・나물"
+        "subCategoriesId": 3,
+        "subCategoriesName": "시금치・쌈채소・나물"
       },
       {
-        "id": 4,
-        "title": "브로콜리・파프리카・양배추"
+        "subCategoriesId": 4,
+        "subCategoriesName": "브로콜리・파프리카・양배추"
       },
       {
-        "id": 5,
-        "title": "양파・대파・마늘・배추"
+        "subCategoriesId": 5,
+        "subCategoriesName": "양파・대파・마늘・배추"
       },
       {
-        "id": 6,
-        "title": "오이・호박・고추"
+        "subCategoriesId": 6,
+        "subCategoriesName": "오이・호박・고추"
       },
       {
-        "id": 7,
-        "title": "냉동・이색・간편채소"
+        "subCategoriesId": 7,
+        "subCategoriesName": "냉동・이색・간편채소"
       },
       {
-        "id": 8,
-        "title": "콩나물・버섯"
+        "subCategoriesId": 8,
+        "subCategoriesName": "콩나물・버섯"
+      }
+    ]
+  },
+  {
+    "mainCategoriesId": 2,
+    "mainCategoriesName": "해산물",
+    "subCategory": [
+      {
+        "subCategoriesId": 1,
+        "subCategoriesName": "친환경"
+      },
+      {
+        "subCategoriesId": 2,
+        "subCategoriesName": "고등어"
+      },
+      {
+        "subCategoriesId": 3,
+        "subCategoriesName": "참치"
+      },
+      {
+        "subCategoriesId": 4,
+        "subCategoriesName": "연어"
+      },
+      {
+        "subCategoriesId": 5,
+        "subCategoriesName": "삼치"
+      },
+      {
+        "subCategoriesId": 6,
+        "subCategoriesName": "가리비"
+      },
+      {
+        "subCategoriesId": 7,
+        "subCategoriesName": "냉동・이색・간편채소"
+      },
+      {
+        "subCategoriesId": 8,
+        "subCategoriesName": "콩나물・버섯"
       }
     ]
   }
