@@ -1,6 +1,7 @@
 @import '../../../../styles/variables.scss';
 
 .mainSubBanner {
+  display: block;
   width: 1050px;
   height: 140px;
   border: 2px solid $text-color;
