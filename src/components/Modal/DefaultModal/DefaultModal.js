@@ -1,29 +1,10 @@
 import React from 'react';
-import API from '../../../config';
 import './DefaultModal.scss';
 
-const DefaultModal = ({ close, contents, cartData, setCartData, cartId }) => {
-  const token = localStorage.getItem('token');
-
+const DefaultModal = ({ close, contents, deleteItem, deleteCartAll }) => {
   const closeHandler = e => {
     e.stopPropagation();
     close();
-  };
-
-  const deleteItem = () => {
-    fetch(`${API.deleteCarts}/${cartId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-    })
-      .then(res => {
-        res.status === 200
-          ? setCartData(cartData.filter(data => data.cartId !== cartId))
-          : alert('실패');
-      })
-      .catch(error => alert(error));
   };
 
   return (
@@ -45,7 +26,8 @@ const DefaultModal = ({ close, contents, cartData, setCartData, cartId }) => {
             <button
               className="modalConfirmBtn"
               onClick={() => {
-                deleteItem();
+                contents?.isAll === 'all' ? deleteCartAll() : deleteItem();
+                close();
               }}
             >
               확인

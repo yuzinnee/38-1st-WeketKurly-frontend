@@ -28,7 +28,14 @@ const NavMiddleBox = () => {
   return (
     <div className="navMiddleBox">
       <div className="navLogoBox">
-        <p className="navLogoImg">Kurly</p>
+        <p
+          className="navLogoImg"
+          onClick={() => {
+            navigate(`/`);
+          }}
+        >
+          Kurly
+        </p>
         <p
           className="navMarketText"
           onClick={() => {

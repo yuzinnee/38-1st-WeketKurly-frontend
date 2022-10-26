@@ -39,6 +39,22 @@ const CartItem = ({ list, cartData, setCartData }) => {
     }, 500);
   };
 
+  const deleteItem = () => {
+    fetch(`${API.deleteCarts}/${list.cartId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
+      .then(res => {
+        res.status === 200
+          ? setCartData(cartData.filter(data => data.cartId !== list.cartId))
+          : alert('실패');
+      })
+      .catch(error => alert(error));
+  };
+
   return (
     <div className="cartItem">
       <img
@@ -70,7 +86,9 @@ const CartItem = ({ list, cartData, setCartData }) => {
           />
         </div>
       </div>
-      <div className="cartItemPrice">{list?.price * quantity + `원`}</div>
+      <div className="cartItemPrice">
+        {(list?.price * quantity).toLocaleString() + `원`}
+      </div>
       <TiDeleteOutline
         className="deleteIcon"
         onClick={() => {
@@ -83,6 +101,9 @@ const CartItem = ({ list, cartData, setCartData }) => {
           contents={contents}
           cartData={cartData}
           setCartData={setCartData}
+          deleteItem={() => {
+            deleteItem();
+          }}
           cartId={list.cartId}
           data={list}
           close={() => {

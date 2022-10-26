@@ -23,9 +23,7 @@ const CartContentsBox = () => {
     0
   );
 
-  let deliveryFee = totalPrice === 0 ? 0 : totalPrice >= 30000 ? '무료' : 5000;
-
-  let totalAndFee = totalPrice + (deliveryFee === '무료' ? 0 : deliveryFee);
+  let totalAndFee = totalPrice - 3000;
 
   useEffect(() => {
     fetch(API.getCarts, {
@@ -54,7 +52,6 @@ const CartContentsBox = () => {
       </div>
       <OrderBox
         totalPrice={totalPrice}
-        deliveryFee={deliveryFee}
         totalAndFee={totalAndFee}
         setCartData={setCartData}
       />

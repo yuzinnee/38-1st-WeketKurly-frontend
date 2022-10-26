@@ -6,6 +6,8 @@ import './CartList.scss';
 const CartList = ({ list, setCartData, cartData }) => {
   const [openlist, setOpenlist] = useState(true);
 
+  console.log(list);
+
   const handleClickOpenList = () => {
     setOpenlist(openList => !openList);
   };

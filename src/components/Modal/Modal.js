@@ -6,19 +6,15 @@ const Modal = ({
   type,
   contents,
   close,
-  data,
-  openToast,
   setOpenToast,
-  cartData,
-  setCartData,
-  cartId,
+  deleteItem,
+  deleteCartAll,
 }) => {
   const modal = {
     cart: (
       <CartModal
         close={close}
         contents={contents}
-        openToast={openToast}
         setOpenToast={setOpenToast}
       />
     ),
@@ -26,10 +22,8 @@ const Modal = ({
       <DefaultModal
         close={close}
         contents={contents}
-        data={data}
-        cartData={cartData}
-        setCartData={setCartData}
-        cartId={cartId}
+        deleteItem={deleteItem}
+        deleteCartAll={deleteCartAll}
       />
     ),
   };

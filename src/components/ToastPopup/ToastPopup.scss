@@ -3,8 +3,8 @@
 .toastPopup {
   @include flex(space-between, left, null);
   position: fixed;
-  top: 20%;
-  right: -5%;
+  top: 7%;
+  right: -7%;
   padding: 20px;
   min-width: 350px;
   transform: translate(-50%, -50%);

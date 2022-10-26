@@ -40,7 +40,7 @@ const CartModal = props => {
     })
       .then(response => {
         if (response.ok === true) {
-          return response.json(), close();
+          return response.json(), close(), setOpenToast(true);
         }
         throw new Error('에러 발생, check status code');
       })
@@ -58,7 +58,9 @@ const CartModal = props => {
         <div className="cartModalTopBox">
           <p className="cartContentsItem">{contents?.productName}</p>
           <div className="cartCountBox">
-            <p className="cartItemPrice">{contents?.price + '원'}</p>
+            <p className="cartItemPrice">
+              {(contents?.price).toLocaleString() + '원'}
+            </p>
             <div className="cartCount">
               {quantity <= 1 ? (
                 <AiOutlineMinus
@@ -78,7 +80,9 @@ const CartModal = props => {
         </div>
         <div className="cartModalMiddleBox">
           <p className="cartSumText">합계</p>
-          <p className="cartSumVar">{quantity * contents?.price + '원'}</p>
+          <p className="cartSumVar">
+            {(quantity * contents?.price).toLocaleString() + '원'}
+          </p>
         </div>
         {token ? (
           <p className="cartPointBox">
@@ -98,7 +102,6 @@ const CartModal = props => {
             className="cartModalRightBtn"
             onClick={() => {
               postItemInfo(contents?.productId, quantity);
-              setOpenToast(true);
             }}
           >
             장바구니 담기
