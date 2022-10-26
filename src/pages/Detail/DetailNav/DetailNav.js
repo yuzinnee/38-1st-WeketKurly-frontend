@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 
 import './DetailNav.scss';
 
-const DetailNav = () => {
+const DetailNav = ({ scrollToReview }) => {
   const [isButtonClicked, setIsButtonClicked] = useState('상품설명');
   const buttons = ['상품설명', '후기'];
+
+  const moveToBottom = button => {
+    if (button === '후기') {
+      scrollToReview();
+      setIsButtonClicked(button);
+    }
+  };
 
   return (
     <nav className="detailNavigator">
@@ -12,8 +19,8 @@ const DetailNav = () => {
         {buttons.map((button, index) =>
           isButtonClicked === button ? (
             <div
-              onClick={() => {
-                setIsButtonClicked(button);
+              onClick={button => {
+                moveToBottom(button);
               }}
               className="navigatorButton clicked"
               key={index}
@@ -22,8 +29,8 @@ const DetailNav = () => {
             </div>
           ) : (
             <div
-              onClick={() => {
-                setIsButtonClicked(button);
+              onClick={button => {
+                moveToBottom(button);
               }}
               className="navigatorButton"
               key={index}

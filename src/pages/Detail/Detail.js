@@ -27,6 +27,13 @@ const Detail = () => {
   const { allerge, contactant, expiration_date, name, origin, ...others } =
     itemInfo;
 
+  const scrollToReview = () => {
+    window.scroll({
+      bottom: 0,
+      behavior: 'smooth',
+    });
+  };
+
   useEffect(() => {
     fetch(`${API.detailItem}/${product_id}`, {
       method: 'GET',
@@ -42,7 +49,7 @@ const Detail = () => {
       <div className="detailPage">
         <div className="detailPageContainer">
           <Article itemInfo={itemInfo} />
-          <DetailNav />
+          <DetailNav onClick={scrollToReview} />
           <ProductDetail itemInfo={itemInfo} />
           <Review reviewData={itemInfo.review} product_id={others.product_id} />
         </div>

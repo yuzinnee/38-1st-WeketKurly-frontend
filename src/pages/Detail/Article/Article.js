@@ -7,7 +7,6 @@ import DetailCart from './DetailCart/DetailCart';
 import './Article.scss';
 
 const Article = ({ itemInfo }) => {
-  const token = localStorage.getItem('token');
   const {
     thumnail_image_url,
     name,
@@ -18,6 +17,7 @@ const Article = ({ itemInfo }) => {
   } = itemInfo;
   const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
   const [isWishItemToggled, setIsWishItemToggled] = useState('false');
+  const token = localStorage.getItem('token');
 
   const priceToString = price => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
