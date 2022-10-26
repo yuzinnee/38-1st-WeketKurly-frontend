@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HiOutlineShare, HiOutlineBell, HiOutlineHeart } from 'react-icons/hi';
+import API from '../../../src/config';
 import ShareToolTip from '../ShareToolTip/ShareToolTip';
 import TableInner from '../TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
@@ -10,8 +11,8 @@ const Article = ({ itemInfo }) => {
   const { thumnail_image_url, name, short_description, price, product_id } =
     itemInfo;
   const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
-  const [wishList, setWishList] = useState(????) //배열로 보내주시나요? 객체로 보내주시나요?? 초기값
   const [isWishItemToggled, setIsWishItemToggled] = useState(false);
+  const [wishList, setWishList] = useState([]);
 
   const clickShareToolTip = () => {
     setisShareTooTipClicked(isShareTooTipClicked ? false : true);
@@ -20,38 +21,43 @@ const Article = ({ itemInfo }) => {
   const priceToString = price => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
-  
-  const wishListCompare = (wishList) => {
-    for(let i = 0; i<wishList.length; i++) {
-      return wishList[i].product_id === product_id 
+
+  const wishListCompare = wishList => {
+    for (let i = 0; i < wishList.length; i++) {
+      return wishList[i].product_id === product_id;
     }
-  }
+  };
+
+  const toggleWishButton = () => {
+    if (!token) {
+      alert('회원 전용 서비스입니다');
+      return;
+    }
+    fetchWishItem();
+    setIsWishItemToggled(prev => !prev);
+  };
 
   const fetchWishItem = () => {
-    fetch('', {
+    fetch(`${API.fetchWishItem}`, {
+      method: 'POST',
       Authorization: token,
       product_id: product_id,
-    })
-      .then()
-      .then();
+    });
   };
 
   const fetchWishList = () => {
-    fetch('', {
+    fetch(`${API.fetchWishList}`, {
       Authorization: token,
+      method: 'GET',
     })
       .then(res => res.json())
       .then(result => setWishList(result.data));
-      setIsWishItemToggled(wishListCompare(wishList));
-
+    setIsWishItemToggled(wishListCompare(wishList));
   };
 
   useEffect(token => {
     token ? fetchWishList() : setIsWishItemToggled(false);
   }, []); //
-
-  //토큰값을 가지고 있으면, 위시리스트를 패칭하고 비교해서 맞으면 하트를 눌러놓기
-  //그렇지 않으면 그냥 하트 버튼 자체에서 모달만 띄우도록 하기
 
   return (
     <article className="detailArticle">
@@ -104,19 +110,14 @@ const Article = ({ itemInfo }) => {
             <div className="cartList">
               <dt className="dTitle">상품선택</dt>
               <div className="buttonContainer">
-                {/* {
-                  token && (
-                    <button className="cartButtons heart" onClick={clickWish}>
-                      <HiOutlineHeart className="icon" />
-                    </button>
-                  )
-                  // : (
-                  // <button className="cartButtons heart" onClick={모달 띄우기}>
-                  //   <HiOutlineHeart className="icon" />
-                  // </button>
-                  // )
-                } */}
-
+                <button
+                  className="cartButtons heart"
+                  onClick={toggleWishButton}
+                >
+                  <HiOutlineHeart
+                    className={isWishItemToggled ? 'icon true' : 'icon'}
+                  />
+                </button>
                 <button className="cartButtons bell">
                   <HiOutlineBell className="icon" />
                 </button>

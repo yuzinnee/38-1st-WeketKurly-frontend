@@ -24,7 +24,6 @@
   }
 }
 
-
 .cartList {
   height: 206px;
   @include flex(space-between, center, column);
@@ -45,7 +44,12 @@
       .icon {
         width: 30px;
         height: 30px;
-        color: $lightGray-color;
+        color: $primary-color;
+      }
+
+      .true {
+        fill: $dicount-color;
+        color: $dicount-color;
       }
     }
   }

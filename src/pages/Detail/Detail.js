@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 import DetailNav from './DetailNav/DetailNav';
 import ProductDetail from './ProductDetail/ProductDetail';
@@ -40,7 +39,6 @@ const Detail = () => {
 
   return (
     <>
-      <Nav />
       <div className="detailPage">
         <div className="detailPageContainer">
           <Article itemInfo={itemInfo} />
