@@ -24,19 +24,24 @@
   }
 }
 .subCategory {
+  width: 200px;
+  height: 400px;
+  @include flex(null, center, column);
   border-top: 1px solid #e4e4e4;
   border-right: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;
-}
-.subCategories {
-  padding: 10px;
-  background-color: #f7f7f7;
-  width: 200px;
-  height: 30px;
-  font-size: 16px;
-  &:hover {
-    color: $primary-color;
-    font-weight: bold;
-    text-decoration: underline;
+  div {
+    .subCategories {
+      padding: 10px;
+      background-color: #f7f7f7;
+      width: 200px;
+      height: 30px;
+      font-size: 16px;
+      &:hover {
+        color: $primary-color;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
   }
 }
