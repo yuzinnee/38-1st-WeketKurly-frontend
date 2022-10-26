@@ -21,7 +21,6 @@ const DefaultModal = ({ close, contents, data }) => {
       .then(response => response.json(), close())
       .then(
         fetch(API.getCarts, {
-          // fetch('data/DATA.json', {
           method: 'GET',
           headers: {
             Authorization: token,
