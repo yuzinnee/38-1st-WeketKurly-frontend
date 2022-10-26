@@ -15,7 +15,7 @@ const ItemCarousel = ({ contents, title, onOpenModal }) => {
 
   useEffect(() => {
     slideRef.current.style.transition = 'all 0.4s ease-in-out';
-    slideRef.current.style.transform = `translateX(-${slide * 33.5}%)`;
+    slideRef.current.style.transform = `translateX(-${slide * 50.3}%)`;
   }, [slide]);
 
   const showNextSlide = () => {
