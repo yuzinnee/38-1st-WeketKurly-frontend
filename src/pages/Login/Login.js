@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.scss';
+import API from './../../config';
 import Input from '../../components/Input/Input';
 import Modal from '../../components/Modal/Modal';
+import './Login.scss';
 
 function Login() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Login() {
     e.preventDefault();
     if (!isValid) return handleModal(true, 0);
 
-    fetch('http://10.58.52.89:3000/users/signin', {
+    fetch(`${API.signIn}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       body: JSON.stringify(userInfo),
@@ -46,7 +47,7 @@ function Login() {
       .then(data => {
         if (data.message === 'LOGIN_SUCCESS') {
           localStorage.setItem('token', data.token);
-          navigate('/Main');
+          navigate('/');
         } else handleModal(true, 1);
       });
   };
