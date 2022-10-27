@@ -4,8 +4,7 @@ import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
 import ReviewRow from './ReviewRow/ReviewRow';
 import './Review.scss';
 
-const Review = ({ product_id }) => {
-  const [reviews, setReviews] = useState([]);
+const Review = ({ product_id, reviewData }) => {
   const token = localStorage.getItem('token');
 
   const [clickedIndex, setClickedIndex] = useState('');
@@ -32,34 +31,6 @@ const Review = ({ product_id }) => {
     setNewReviewValue({ ...newReviewValue, [name]: value });
   };
 
-  const fetchReviews = () =>
-    fetch(`${API.submitReview}`)
-      .then(res => res.json())
-      .then(reviewArray => {
-        setReviews(reviewArray.data[0].review.reverse());
-        console.log(reviewArray);
-      });
-
-  const submitReview = event => {
-    event.preventDefault();
-    fetch(`${API.submitReview}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        title: newReviewValue.title,
-        contents: newReviewValue.content,
-        productId: product_id,
-      }),
-    }).then(res => res.json());
-    fetchReviews();
-    setIsPostButtonClicked(false);
-  };
-
-  useEffect(() => fetchReviews(), []);
-
   return (
     <div className="review">
       <div className="reviewBottom">
@@ -85,8 +56,8 @@ const Review = ({ product_id }) => {
                 </div>
               ))}
             </div>
-            {reviews &&
-              reviews.map(review => (
+            {reviewData &&
+              reviewData.map(review => (
                 <ReviewRow
                   key={review.reviewId}
                   id={review.reviewId}
@@ -99,11 +70,10 @@ const Review = ({ product_id }) => {
           </div>
         </div>
       </div>
-      {isPostButtonClicked ? (
+      {isPostButtonClicked && token ? (
         <ReviewPostArea
           changeReviewTextarea={changeReviewTextarea}
           isPostButtonClicked={isPostButtonClicked}
-          submitReview={submitReview}
         />
       ) : (
         <button
