@@ -35,6 +35,15 @@ const DiscountItem = ({ contents }) => {
         {discountPrice.toLocaleString() + `원`}
       </span>
       <span className="disItemPrice">{contents?.price}</span>
+      {openModal && (
+        <Modal
+          type="cart"
+          contents={contents}
+          close={() => {
+            setOpenModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };

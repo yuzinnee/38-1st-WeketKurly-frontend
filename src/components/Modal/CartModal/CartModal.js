@@ -58,9 +58,7 @@ const CartModal = props => {
         <div className="cartModalTopBox">
           <p className="cartContentsItem">{contents?.productName}</p>
           <div className="cartCountBox">
-            <p className="cartItemPrice">
-              {(contents?.price).toLocaleString() + '원'}
-            </p>
+            <p className="cartItemPrice">{contents?.price + '원'}</p>
             <div className="cartCount">
               {quantity <= 1 ? (
                 <AiOutlineMinus
