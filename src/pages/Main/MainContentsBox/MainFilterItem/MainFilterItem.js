@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Carousel from '../../../../components/Carousel/Carousel';
 import Modal from '../../../../components/Modal/Modal';
+import ToastPopup from '../../../../components/ToastPopup/ToastPopup';
 import API from '../../../../config';
 import './MainFilterItem.scss';
 
@@ -8,6 +9,7 @@ const MainFilterItem = () => {
   const [selected, setSelected] = useState('');
   const [itemList, setItemList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [openToast, setOpenToast] = useState(false);
   const [modalItem, setModalItem] = useState({});
 
   const handleOpenModal = item => {
@@ -67,7 +69,21 @@ const MainFilterItem = () => {
             onOpenModal={handleOpenModal}
           />
           {openModal && (
-            <Modal contents={modalItem} type="cart" close={handleCloseModal} />
+            <Modal
+              contents={modalItem}
+              type="cart"
+              close={handleCloseModal}
+              openToast={openToast}
+              setOpenToast={setOpenToast}
+            />
+          )}
+          {openToast && (
+            <ToastPopup
+              openToast={openToast}
+              setOpenToast={setOpenToast}
+              imgUrl={modalItem.thumbnailImageUrl}
+              name={modalItem.productName}
+            />
           )}
         </>
       )}

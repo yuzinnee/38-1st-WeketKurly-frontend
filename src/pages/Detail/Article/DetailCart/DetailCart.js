@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import './DetailCart.scss';
 
@@ -7,6 +7,7 @@ const DetailCart = ({ contents, priceToString }) => {
   const token = localStorage.getItem('token');
 
   const [count, setCount] = useState(1);
+  const product_id = useParams();
 
   const increaseCount = () => {
     setCount(count => count + 1);
@@ -19,6 +20,21 @@ const DetailCart = ({ contents, priceToString }) => {
     if (!token) {
       alert('회원전용 서비스입니다!');
     }
+    fetch('http://10.58.52.133:3000/carts/input', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      body: JSON.stringify({
+        productId: product_id.product_id,
+        quantity: count,
+      }),
+    })
+      .then(response => {
+        if (response.ok === true) {
+          return response.json();
+        }
+        throw new Error('에러 발생, check status code');
+      })
+      .catch(error => alert(error));
   };
 
   return (
@@ -65,12 +81,10 @@ const DetailCart = ({ contents, priceToString }) => {
         </p>
       )}
       <div className="cartModalBottomBox">
-        {/* <button className="cartModalLeftBtn" onClick={closeHandler}> */}
-
         <button
           className="cartButton"
           onClick={() => {
-            postItemInfo();
+            postItemInfo(contents);
           }}
         >
           장바구니 담기

@@ -8,16 +8,21 @@ import './Article.scss';
 
 const Article = ({ itemInfo }) => {
   const {
-    thumnail_image_url,
-    name,
+    thumbnail_image_url,
+    product_name,
     short_description,
+    detail_image_url,
     price,
     product_id,
     ...others
   } = itemInfo;
-  const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
-  const [isWishItemToggled, setIsWishItemToggled] = useState('false');
   const token = localStorage.getItem('token');
+  const [isWishItemToggled, setIsWishItemToggled] = useState(false);
+  const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
+
+  const clickShareToolTip = () => {
+    setisShareTooTipClicked(isShareTooTipClicked ? false : true);
+  };
 
   const priceToString = price => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -56,18 +61,19 @@ const Article = ({ itemInfo }) => {
   return (
     <article className="detailArticle">
       <div className="itemImage">
-        <img src={thumnail_image_url} alt={name} className="itemImageTag" />
+        <img
+          src={thumbnail_image_url}
+          alt={product_name}
+          className="itemImageTag"
+        />
       </div>
       <div className="itemDescription">
         <div className="nameOfItem">
           <div className="ship">샛별배송</div>
           <div>
             <div className="titleContainer">
-              <h2 className="itemName">{name}</h2>
-              <button
-                className="share"
-                onClick={prev => setisShareTooTipClicked(!prev)}
-              >
+              <h2 className="itemName">{product_name}</h2>
+              <button className="share" onClick={clickShareToolTip}>
                 <HiOutlineShare className="shareicon" />
                 {isShareTooTipClicked && <ShareToolTip url="http://url" />}
               </button>
@@ -134,7 +140,6 @@ export default Article;
 const DETAIL_KEY_KOREAN = {
   contactant: '판매자',
   packing_types: '포장타입',
-  packing_type_id: '판매단위',
   weight: '중량/용량',
   origin: '원산지',
   allerge: '알레르기정보',
