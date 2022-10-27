@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Signup.scss';
 import Input from '../../components/Input/Input';
+import Modal from '../../components/Modal/Modal';
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -47,8 +48,30 @@ const Signup = () => {
   const isNameValid = name.length > 0;
   const emailRegEx = /[a-zA-Z0-9+_]+@[a-z]+\.+[a-z]/;
   const isEmailValid = emailRegEx.test(email);
+  const [modalInfo, setModalInfo] = useState({
+    isModalOpen: false,
+    infoIndex: 0,
+  });
+  const { isModalOpen, infoIndex } = modalInfo;
+  const handleModal = (valid, index) => {
+    setModalInfo({ isModalOpen: valid, infoIndex: index });
+  };
   const birthday = year + month.padStart(2, 0) + day.padStart(2, 0);
-
+  const UserIdDuplicationCheck = () => {
+    let index;
+    userIdValid ? (index = 1) : (index = 0);
+    handleModal(true, index);
+  };
+  const emailDuplicationCheck = () => {
+    let index;
+    isEmailValid ? (index = 3) : (index = 2);
+    handleModal(true, index);
+  };
+  const signup = () => {
+    let index;
+    isEmailValid ? (index = 5) : (index = 2);
+    handleModal(true, index);
+  };
   const submitUseInfo = e => {
     e.preventDefault();
     fetch('http://10.58.52.89:3000/users/signup', {
@@ -111,9 +134,21 @@ const Signup = () => {
                   </span>
                 ))}
             </div>
-            <button className="duplicationCheckButton">
+            <button
+              className="duplicationCheckButton"
+              onClick={UserIdDuplicationCheck}
+            >
               <span className="duplicationCheckButtonText">중복확인</span>
             </button>
+            {isModalOpen && (
+              <Modal
+                type="default"
+                contents={contents[infoIndex]}
+                close={() =>
+                  setModalInfo(prev => ({ ...prev, isModalOpen: false }))
+                }
+              />
+            )}
           </div>
 
           <div className="eachContainer">
@@ -199,7 +234,10 @@ const Signup = () => {
                   </span>
                 ))}
             </div>
-            <button className="duplicationCheckButton">
+            <button
+              className="duplicationCheckButton"
+              onClick={emailDuplicationCheck}
+            >
               <span className="duplicationCheckButtonText">중복확인</span>
             </button>
           </div>
@@ -294,6 +332,15 @@ const Signup = () => {
             >
               <span className="signupSubmitButtonText">가입하기</span>
             </button>
+            {isModalOpen && (
+              <Modal
+                type="default"
+                contents={contents[infoIndex]}
+                close={() =>
+                  setModalInfo(prev => ({ ...prev, isModalOpen: false }))
+                }
+              />
+            )}
           </div>
         </div>
       </div>
@@ -302,3 +349,30 @@ const Signup = () => {
 };
 
 export default Signup;
+
+const contents = [
+  {
+    id: 0,
+    title: '6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합',
+  },
+  {
+    id: 1,
+    title: '사용할 수 있는 아이디입니다.',
+  },
+  {
+    id: 2,
+    title: '이메일을 입력해 주세요.',
+  },
+  {
+    id: 3,
+    title: '사용 가능한 이메일 입니다.',
+  },
+  {
+    id: 4,
+    title: '6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합',
+  },
+  {
+    id: 5,
+    title: '회원가입을 축하드립니다! 당신의 일상에 위켓을 더해보세요.',
+  },
+];
