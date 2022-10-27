@@ -52,7 +52,9 @@ const MainSpecialPrice = () => {
       <div className="specialTimeBox">
         <p className="specialDailyText">일일특가</p>
         <p className="specialGrayText">24시간 한정 특가</p>
-        <span className="specialTimer">{timeLeft.hours}:</span>
+        <span className="specialTimer">
+          {timeLeft.hours < 10 ? `0${timeLeft.hours}:` : `${timeLeft.hours}:`}
+        </span>
         <span className="specialTimer">
           {timeLeft.minutes < 10
             ? `0${timeLeft.minutes}:`
