@@ -8,8 +8,11 @@ import Main from './pages/Main/Main';
 import Detail from './pages/Detail/Detail';
 import Mypage from './pages/Mypage/Mypage';
 import Cart from './pages/Cart/Cart';
+<<<<<<< HEAD
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+=======
+>>>>>>> main
 import List from './pages/List/List';
 
 const Router = () => {
@@ -23,6 +26,12 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/list/:maincategoriesId" element={<List />}></Route>
+        <Route path="/list" element={<List />}>
+          <Route index element={<List />} />
+          <Route path="/list/sub/:subcategoriesId" element={<List />} />
+        </Route>
+        <Route path="/products/detail/:product_id" element={<Detail />} />
         <Route path="/list/:maincategoriesId" element={<List />}></Route>
         <Route path="/list" element={<List />}>
           <Route index element={<List />} />

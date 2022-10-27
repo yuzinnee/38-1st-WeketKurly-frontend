@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Item from '../../../../components/Item/Item';
-import Modal from '../../../../components/Modal/Modal';
 import API from '../../../../config';
 import './MainSpecialPrice.scss';
 
 const MainSpecialPrice = () => {
   const [itemList, setItemList] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
 
   const midnight = new Date();
 
@@ -52,7 +50,9 @@ const MainSpecialPrice = () => {
       <div className="specialTimeBox">
         <p className="specialDailyText">일일특가</p>
         <p className="specialGrayText">24시간 한정 특가</p>
-        <span className="specialTimer">{timeLeft.hours}:</span>
+        <span className="specialTimer">
+          {timeLeft.hours < 10 ? `0${timeLeft.hours}:` : `${timeLeft.hours}:`}
+        </span>
         <span className="specialTimer">
           {timeLeft.minutes < 10
             ? `0${timeLeft.minutes}:`
@@ -66,14 +66,6 @@ const MainSpecialPrice = () => {
       {itemList.map(item => (
         <Item type="discount" contents={item} key={item.productId} />
       ))}
-      {openModal && (
-        <Modal
-          type="cart"
-          close={() => {
-            setOpenModal(false);
-          }}
-        />
-      )}
     </div>
   );
 };

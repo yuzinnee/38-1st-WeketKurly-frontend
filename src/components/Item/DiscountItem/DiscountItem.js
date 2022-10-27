@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Modal from '../../Modal/Modal';
+import ToastPopup from '../../ToastPopup/ToastPopup';
 import { BsCart2 } from 'react-icons/bs';
 import './DiscountItem.scss';
 
 const DiscountItem = ({ contents }) => {
   const [openModal, setOpenModal] = useState(false);
+  const [openToast, setOpenToast] = useState(false);
 
   const discountPrice =
     contents?.price - (contents?.discount / 100) * contents?.price;
@@ -42,6 +44,16 @@ const DiscountItem = ({ contents }) => {
           close={() => {
             setOpenModal(false);
           }}
+          openToast={openToast}
+          setOpenToast={setOpenToast}
+        />
+      )}
+      {openToast && (
+        <ToastPopup
+          openToast={openToast}
+          setOpenToast={setOpenToast}
+          imgUrl={contents?.thumbnailImageUrl}
+          name={contents?.productName}
         />
       )}
     </div>
