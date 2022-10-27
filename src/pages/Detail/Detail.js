@@ -70,7 +70,6 @@ const Detail = () => {
           <Review reviewData={others.review} product_id={others.product_id} />
         </div>
       </div>
-      <Footer />
     </>
   );
 };
