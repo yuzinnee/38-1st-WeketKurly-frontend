@@ -17,6 +17,7 @@ const List = () => {
   const [modalItem, setModalItem] = useState({});
 
   let { maincategoriesId } = useParams();
+
   const navigate = useNavigate();
 
   const handleOpenModal = item => {
@@ -32,11 +33,11 @@ const List = () => {
     fetch(api, { method: 'GET' })
       .then(res => res.json())
       .then(result => {
-        setProducts(result);
+        setProducts(result.item);
       });
 
   const clickSubcategory = e => {
-    fetchProductList(`${API.listSubCategory}/${e.target.subcategoriesId}`);
+    fetchProductList(`${API.listMainCategory}?subcategoriesId=${e.target.id}`);
   };
 
   const clickSortType = sortTypesId => {
@@ -52,23 +53,21 @@ const List = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${API.listMainCategory}/${maincategoriesId}`)
+    fetch(`${API.listMainCategory}?maincategoriesId=${maincategoriesId}`)
       .then(response => response.json())
       .then(result => {
-        setSubCategories(result[1]);
-        setProducts(result[0]);
+        setProducts(result.item);
+        setSubCategories(SUBCATEGORIES[0].subCategory);
       });
   }, []);
 
   return (
     <div className="listPageContainer">
       <div className="listWrapper">
-        <h3 className="listTitle">
-          '/maincategoriesId에 해당하는 listTitle이 들어가는 자리입니다'
-        </h3>
+        <h3 className="listTitle">{SUBCATEGORIES[0].mainCategoriesName}</h3>
         <div className="contentContainer">
           <Filters
-            data={subCategories}
+            subCategories={subCategories}
             clickSubcategory={clickSubcategory}
             maincategoriesId={maincategoriesId}
           />
@@ -110,3 +109,44 @@ const List = () => {
 };
 
 export default List;
+
+const SUBCATEGORIES = [
+  {
+    mainCategoriesId: 1,
+    mainCategoriesName: '채소',
+    subCategory: [
+      {
+        subCategoriesId: 1,
+        subCategoriesName: '친환경',
+      },
+      {
+        subCategoriesId: 2,
+        subCategoriesName: '고구마・감자・당근',
+      },
+      {
+        subCategoriesId: 3,
+        subCategoriesName: '시금치・쌈채소・나물',
+      },
+      {
+        subCategoriesId: 4,
+        subCategoriesName: '브로콜리・파프리카・양배추',
+      },
+      {
+        subCategoriesId: 5,
+        subCategoriesName: '양파・대파・마늘・배추',
+      },
+      {
+        subCategoriesId: 6,
+        subCategoriesName: '오이・호박・고추',
+      },
+      {
+        subCategoriesId: 7,
+        subCategoriesName: '냉동・이색・간편채소',
+      },
+      {
+        subCategoriesId: 8,
+        subCategoriesName: '콩나물・버섯',
+      },
+    ],
+  },
+];

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import API from '../../../../config';
 import './DetailCart.scss';
 
 const DetailCart = ({ contents, priceToString }) => {
@@ -20,21 +21,17 @@ const DetailCart = ({ contents, priceToString }) => {
     if (!token) {
       alert('회원전용 서비스입니다!');
     }
-    fetch('http://10.58.52.133:3000/carts/input', {
+    fetch(`${API.postCarts}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json;charset=utf-8',
+      },
       body: JSON.stringify({
         productId: product_id.product_id,
         quantity: count,
       }),
-    })
-      .then(response => {
-        if (response.ok === true) {
-          return response.json();
-        }
-        throw new Error('에러 발생, check status code');
-      })
-      .catch(error => alert(error));
+    });
   };
 
   return (
@@ -42,7 +39,7 @@ const DetailCart = ({ contents, priceToString }) => {
       <div className="cartModalTopBox">
         <div className="cartCountBox">
           <div className="cartContentsBox">
-            <p className="cartContentsItem">{contents?.name}</p>
+            <p className="cartContentsItem">{contents?.product_name}</p>
             <p className="cartItemPrice">
               {priceToString(contents?.price) + '원'}
             </p>

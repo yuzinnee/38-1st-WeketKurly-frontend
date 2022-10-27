@@ -3,6 +3,10 @@ import { BsCart2 } from 'react-icons/bs';
 import './DefaultItem.scss';
 
 const DefaultItem = ({ contents, onOpenModal }) => {
+  const priceToString = price => {
+    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <div className="itemContainer">
       <img
@@ -19,7 +23,7 @@ const DefaultItem = ({ contents, onOpenModal }) => {
         <BsCart2 className="reactIcon" />
       </div>
       <p className="itemDescription">{contents?.productName}</p>
-      <p className="itemPrice">{(contents?.price).toLocaleString() + `원`}</p>
+      <p className="itemPrice">{priceToString(contents?.price) + `원`}</p>
     </div>
   );
 };
