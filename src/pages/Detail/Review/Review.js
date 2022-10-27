@@ -82,16 +82,17 @@ const Review = () => {
                 </div>
               ))}
             </div>
-            {reviews.map((review, index) => (
-              <ReviewRow
-                key={index}
-                id={index}
-                reviewData={review}
-                openReviewContent={openReviewContent}
-                clickedIndex={clickedIndex}
-                isReviewClicked={isReviewClicked}
-              />
-            ))}
+            {reviews &&
+              reviews.map((review, index) => (
+                <ReviewRow
+                  key={index}
+                  id={index}
+                  reviewData={review}
+                  openReviewContent={openReviewContent}
+                  clickedIndex={clickedIndex}
+                  isReviewClicked={isReviewClicked}
+                />
+              ))}
           </div>
         </div>
       </div>
