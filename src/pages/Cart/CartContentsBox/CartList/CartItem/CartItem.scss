@@ -28,6 +28,7 @@
     border: 1px solid $line-color;
     border-radius: 3px;
     padding: 0 10px;
+    background-color: white;
 
     .cartCounts {
       font-size: 16px;
@@ -37,6 +38,14 @@
 
     .cartCountIcon {
       cursor: pointer;
+      border: none;
+      background-color: white;
+      margin-top: 3px;
+    }
+    .cartCountIcon:disabled {
+      border: none;
+      background-color: white;
+      margin-top: 3px;
     }
   }
 

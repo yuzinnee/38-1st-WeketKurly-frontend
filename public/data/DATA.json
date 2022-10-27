@@ -1,8 +1,7 @@
-
 {
   "data": [
     {
-      "cart_id": 0,
+      "cartId": 0,
       "quantity": 1,
       "packing_type_id": 1,
       "name": "냉동 국산 유기농 블루베리 500g",
@@ -10,7 +9,7 @@
       "price": 20000
     },
     {
-      "cart_id": 1,
+      "cartId": 1,
       "quantity": 1,
       "packing_type_id": 2,
       "name": "냉동 국산 유기농 블루베리 500g",
@@ -18,7 +17,7 @@
       "price": 20000
     },
     {
-      "cart_id": 2,
+      "cartId": 2,
       "quantity": 1,
       "packing_type_id": 2,
       "name": "냉동 국산 유기농 블루베리 500g",
@@ -26,7 +25,7 @@
       "price": 20000
     },
     {
-      "cart_id": 3,
+      "cartId": 3,
       "quantity": 1,
       "packing_type_id": 3,
       "name": "냉동 국산 유기농 블루베리 500g",
@@ -34,7 +33,7 @@
       "price": 20000
     },
     {
-      "cart_id": 4,
+      "cartId": 4,
       "quantity": 1,
       "packing_type_id": 1,
       "name": "냉동 국산 유기농 블루베리 500g",
@@ -43,4 +42,3 @@
     }
   ]
 }
-

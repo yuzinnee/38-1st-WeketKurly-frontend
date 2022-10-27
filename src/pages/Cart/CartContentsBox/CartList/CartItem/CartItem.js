@@ -7,7 +7,7 @@ import './CartItem.scss';
 
 const CartItem = ({ list, cartData, setCartData }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [quantity, setQuantity] = useState(list?.quantity);
+  const [quantity, setQuantity] = useState(parseInt(list?.quantity));
 
   const timerRef = useRef(0);
 
@@ -19,6 +19,32 @@ const CartItem = ({ list, cartData, setCartData }) => {
 
   const decreaseCount = () => {
     setQuantity(quantity => quantity - 1);
+  };
+
+  const setTotalPrice = e => {
+    const { id } = e.target.dataset;
+
+    const foundIdx = cartData.findIndex(data => data.cartId === list.cartId);
+
+    if (foundIdx === -1) {
+      return;
+    }
+
+    const newItem = { ...cartData[foundIdx] };
+
+    if (id === 'minus') {
+      newItem.quantity -= 1;
+      decreaseCount();
+    } else {
+      newItem.quantity += 1;
+      increaseCount();
+    }
+
+    setCartData(cartData => {
+      const updataData = [...cartData];
+      updataData[foundIdx] = newItem;
+      return updataData;
+    });
   };
 
   const updateItem = quantity => {
@@ -66,24 +92,32 @@ const CartItem = ({ list, cartData, setCartData }) => {
       <div className="cartItemCountBox">
         <div className="cartItemCount">
           {quantity <= 1 ? (
-            <AiOutlineMinus style={{ color: 'lightGray' }} />
+            <button className="cartCountIcon" disabled>
+              <AiOutlineMinus style={{ color: 'lightGray' }} />
+            </button>
           ) : (
-            <AiOutlineMinus
+            <button
               className="cartCountIcon"
-              onClick={() => {
-                decreaseCount();
+              data-id="minus"
+              onClick={e => {
+                setTotalPrice(e);
                 updateItem(quantity - 1);
               }}
-            />
+            >
+              <AiOutlineMinus data-id="minus" />
+            </button>
           )}
           <p className="cartCounts">{quantity}</p>
-          <AiOutlinePlus
+          <button
             className="cartCountIcon"
-            onClick={() => {
-              increaseCount();
+            data-id="plus"
+            onClick={e => {
+              setTotalPrice(e);
               updateItem(quantity + 1);
             }}
-          />
+          >
+            <AiOutlinePlus />
+          </button>
         </div>
       </div>
       <div className="cartItemPrice">
@@ -99,13 +133,10 @@ const CartItem = ({ list, cartData, setCartData }) => {
         <Modal
           type="default"
           contents={contents}
-          cartData={cartData}
-          setCartData={setCartData}
           deleteItem={() => {
             deleteItem();
           }}
           cartId={list.cartId}
-          data={list}
           close={() => {
             setOpenModal(false);
           }}

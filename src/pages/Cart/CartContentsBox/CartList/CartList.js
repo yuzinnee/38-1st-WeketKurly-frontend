@@ -10,7 +10,7 @@ const CartList = ({ list, setCartData, cartData }) => {
     setOpenlist(openList => !openList);
   };
   return (
-    <div className="cartList">
+    <div className="cartLists">
       <div className="cartListDropTab">
         <div className="cartListIconBox">
           {list.icon}
@@ -27,7 +27,7 @@ const CartList = ({ list, setCartData, cartData }) => {
           {list.data.map(list => (
             <CartItem
               list={list}
-              key={list.id}
+              key={list.cartId}
               setCartData={setCartData}
               cartData={cartData}
             />
