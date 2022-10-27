@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-import API from './../../config';
-import Input from '../../components/Input/Input';
-import Modal from '../../components/Modal/Modal';
-=======
 import Input from '../../components/Input/Input';
 import Modal from '../../components/Modal/Modal';
 import API from '../../config';
->>>>>>> main
 import './Login.scss';
 
 function Login() {
