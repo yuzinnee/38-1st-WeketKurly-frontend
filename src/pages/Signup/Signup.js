@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
-import './Signup.scss';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input/Input';
 import Modal from '../../components/Modal/Modal';
-
-const RULES = {
-  id: {
-    pattern: value => /^[a-z]+[a-z0-9]{5,16}$/g.test(value),
-    message: '아이디를 확인해주세요',
-  },
-  password: {
-    pattern: value => /^[a-z]+[a-z0-9]{5,16}$/g.test(value),
-    message: '패스워드를 확인해주세요',
-  },
-};
+import './Signup.scss';
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -27,6 +17,7 @@ const Signup = () => {
     day: '',
   });
   const [isPasswordWarning, setIspasswordWarning] = useState(false);
+  const navigate = useNavigate();
   const showPasswordWarning = () => {
     setIspasswordWarning(true);
   };
@@ -86,6 +77,7 @@ const Signup = () => {
     isSubmitValid ? (index = 5) : (index = 4);
     handleModal(true, index);
     submitUseInfo(e);
+    navigate('/');
   };
 
   const submitUseInfo = e => {
@@ -380,19 +372,7 @@ const contents = [
   },
   {
     id: 4,
-    title: '정보를 확인해주세요.',
-  },
-  {
-    id: 5,
-    title: '정보를 확인해주세요.',
-  },
-  {
-    id: 6,
-    title: '정보를 확인해주세요.',
-  },
-  {
-    id: 7,
-    title: '정보를 확인해주세요.',
+    title: '필수 입력 정보를 확인해주세요.',
   },
   {
     id: 8,
