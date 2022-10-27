@@ -5,6 +5,7 @@ const API = {
   signUp: `${BASE_URL}/users/signup`,
   mainBanner: `${BASE_URL}/banner/big`,
   mainTimeDeal: `${BASE_URL}/products/main/specialprice`,
+  category: `${BASE_URL}/categories`,
   mainItem: `${BASE_URL}/products/recommend`,
   getCarts: `${BASE_URL}/carts/getcarts`,
   updateCarts: `${BASE_URL}/carts/update`,

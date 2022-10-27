@@ -1,6 +1,8 @@
 @import '../../styles/variables.scss';
 
 .categoryContainer {
+  position: absolute;
+  top: 50px;
   display: flex;
 }
 .mainCategoryFrame {
@@ -10,13 +12,14 @@
     border-right: none;
   }
   .mainCategoriesName {
-    padding: 10px;
+    padding: 20px;
     background-color: $white-color;
     border-left: 1px solid #f7f7f7;
     border-right: 1px solid #f7f7f7;
     width: 200px;
     height: 30px;
     font-size: 16px;
+
     &:hover {
       background-color: #f7f7f7;
       font-weight: bold;
@@ -28,7 +31,7 @@
   .subCategoriesName {
     width: 200px;
     @include flex(null, null, column);
-    padding: 10px;
+    padding: 20px;
     background-color: #f7f7f7;
     width: 200px;
     height: 30px;

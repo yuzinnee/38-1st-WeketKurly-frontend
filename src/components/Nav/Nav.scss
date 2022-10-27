@@ -176,6 +176,7 @@
 
     .navCategoryBox {
       @include flex(space-between, center, null);
+      position: relative;
       width: 88px;
       height: 56px;
       cursor: pointer;
@@ -220,7 +221,7 @@
       line-height: 16px;
       cursor: pointer;
 
-      >span {
+      > span {
         color: $primary-color;
       }
     }
