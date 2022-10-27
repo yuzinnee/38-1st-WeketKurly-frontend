@@ -20,11 +20,12 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/list/:maincategoriesId" element={<List />}></Route>
         <Route path="/list" element={<List />}>
           <Route index element={<List />} />
           <Route path="/list/sub/:subcategoriesId" element={<List />} />
         </Route>
-        <Route path="/products/detail/:id" element={<Detail />} />
+        <Route path="/products/detail/:product_id" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

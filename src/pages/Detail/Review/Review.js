@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import './Review.scss';
 import ReviewRow from './ReviewRow/ReviewRow';
+import API from './../../../config';
 import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
 import { useParams } from 'react-router-dom';
+import './Review.scss';
 
 const Review = () => {
   const [reviews, setReviews] = useState([]);
   const { product_id } = useParams;
+  const token = localStorage.getItem('token');
 
   const [clickedIndex, setClickedIndex] = useState('');
   const [isReviewClicked, setIsReviewClicked] = useState(false);
 
-  const FIN_POSTING = '작성 완료';
-  const START_POSTING = '후기 쓰기';
-  const [isPostButtonClicked, setIsPostButtonClicked] = useState(START_POSTING);
+  const [isPostButtonClicked, setIsPostButtonClicked] = useState(false);
 
   const [newReviewValue, setNewReviewValue] = useState({
     title: '제목을 입력하세요',
@@ -29,25 +29,22 @@ const Review = () => {
     }
   };
 
-  const clickPostButton = () => {
-    setIsPostButtonClicked(FIN_POSTING);
-  };
-
   const changeReviewTextarea = e => {
     setNewReviewValue({ ...newReviewValue, [e.target.name]: e.target.value });
   };
 
   const fetchReviews = () =>
-    fetch('/data/REVIEW.json')
+    fetch(`${API.submitReview}`)
       .then(res => res.json())
       .then(reviewArray => setReviews(reviewArray));
 
   const submitReview = event => {
     event.preventDefault();
-    fetch('', {
+    fetch(`${API.submitReview}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
       },
       body: JSON.stringify({
         value: newReviewValue,
@@ -55,7 +52,7 @@ const Review = () => {
       }),
     }).then(res => res.json());
     fetchReviews();
-    setIsPostButtonClicked(START_POSTING);
+    setIsPostButtonClicked(false);
   };
 
   useEffect(() => fetchReviews(), []);
@@ -98,21 +95,20 @@ const Review = () => {
           </div>
         </div>
       </div>
-      {isPostButtonClicked === START_POSTING && (
-        <button
-          className="reviewPostButton"
-          onClick={clickPostButton}
-          type="button"
-        >
-          {isPostButtonClicked}
-        </button>
-      )}
-      {isPostButtonClicked === FIN_POSTING && (
+      {isPostButtonClicked ? (
         <ReviewPostArea
           changeReviewTextarea={changeReviewTextarea}
           isPostButtonClicked={isPostButtonClicked}
           submitReview={submitReview}
         />
+      ) : (
+        <button
+          className="reviewPostButton"
+          onClick={() => setIsPostButtonClicked(true)}
+          type="button"
+        >
+          후기 쓰기
+        </button>
       )}
     </div>
   );
