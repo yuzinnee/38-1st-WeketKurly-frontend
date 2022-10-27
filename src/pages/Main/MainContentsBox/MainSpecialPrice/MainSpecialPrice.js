@@ -50,11 +50,11 @@ const MainSpecialPrice = () => {
         <span className="specialTimer">{timeLeft.hours}:</span>
         <span className="specialTimer">
           {timeLeft.minutes < 10
-            ? '0' + timeLeft.minutes + ':'
-            : timeLeft.minutes + ':'}
+            ? `0${timeLeft.minutes}:`
+            : `${timeLeft.minutes}:`}
         </span>
         <span className="specialTimer">
-          {timeLeft.seconds < 10 ? '0' + timeLeft.seconds : timeLeft.seconds}
+          {timeLeft.seconds < 10 ? `0${timeLeft.seconds}` : timeLeft.seconds}
         </span>
         <p className="specialLgrayText">망설이면 늦어요!</p>
       </div>
