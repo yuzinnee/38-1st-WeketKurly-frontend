@@ -5,7 +5,7 @@ const TableInner = ({ name, data, korean }) => {
   return (
     <dl className="dList">
       <dt className="dTitle">{korean[name]}</dt>
-      <dd className="dDescription">{data?.itemInfo[name]}</dd>
+      <dd className="dDescription">{data[name]}</dd>
     </dl>
   );
 };

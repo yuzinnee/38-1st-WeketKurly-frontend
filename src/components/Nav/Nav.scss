@@ -133,6 +133,7 @@
       @include flex(space-between, center, null);
       width: 148px;
       height: 36px;
+      position: relative;
 
       .navIcon {
         width: 30px;
@@ -142,6 +143,22 @@
         &:hover {
           color: $primary-color;
         }
+      }
+
+      .navLengthBox {
+        @include flex(center, center, null);
+        position: absolute;
+        right: -10px;
+        top: -5px;
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 3px;
+        padding-left: 1px;
+        width: 23px;
+        height: 23px;
+        border-radius: 22px;
+        background-color: $primary-color;
+        color: $white-color;
       }
     }
   }
@@ -159,6 +176,7 @@
 
     .navCategoryBox {
       @include flex(space-between, center, null);
+      position: relative;
       width: 88px;
       height: 56px;
       cursor: pointer;
@@ -203,7 +221,7 @@
       line-height: 16px;
       cursor: pointer;
 
-      >span {
+      > span {
         color: $primary-color;
       }
     }
