@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import DetailNav from './DetailNav/DetailNav';
 import ProductDetail from './ProductDetail/ProductDetail';
-import Review from './Review/Review';
+// import Review from './Review/Review';
 import Article from './Article/Article';
 import API from '../../../src/config';
 import './Detail.scss';
@@ -51,7 +51,7 @@ const Detail = () => {
           <Article itemInfo={itemInfo} />
           <DetailNav onClick={scrollToReview} />
           <ProductDetail itemInfo={itemInfo} />
-          <Review reviewData={itemInfo.review} product_id={others.product_id} />
+          {/* <Review reviewData={itemInfo.review} product_id={others.product_id} /> */}
         </div>
       </div>
       <Footer />
