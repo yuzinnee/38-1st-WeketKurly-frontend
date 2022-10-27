@@ -33,10 +33,13 @@ const Review = () => {
     setNewReviewValue({ ...newReviewValue, [e.target.name]: e.target.value });
   };
 
-  const fetchReviews = () =>
+  const fetchReviews = () => {
     fetch(`${API.submitReview}`)
       .then(res => res.json())
-      .then(reviewArray => setReviews(reviewArray));
+      .then(reviewArray => {
+        setReviews(reviewArray.data[0].review.reverse());
+      });
+  };
 
   const submitReview = event => {
     event.preventDefault();

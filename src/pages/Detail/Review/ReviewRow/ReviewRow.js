@@ -6,29 +6,30 @@ const ReviewRow = ({
   clickedIndex,
   isReviewClicked,
 }) => {
-  const { id, title, contant, user_id, help_count } = reviewData;
+  const { reviewId, reviewTitle, reviewContent, userName, reviewHelpCount } =
+    reviewData;
 
-  const anonymizeUserId = user_id => {
-    return user_id.replace(user_id[1], '*');
+  const anonymizeUserId = userName => {
+    return userName.replace(userName[1], '*');
   };
 
   return (
     <div>
       <div
         className="reviewRow list"
-        onClick={() => openReviewContent(id)}
+        onClick={() => openReviewContent(reviewId)}
         isReviewClicked={isReviewClicked}
       >
-        <div className="reviewPadding">{id}</div>
+        <div className="reviewPadding">{reviewId}</div>
         <div>
-          <button className="reviewTextboxButton">{title}</button>
+          <button className="reviewTextboxButton">{reviewTitle}</button>
         </div>
-        <div className="reviewPadding">{anonymizeUserId(user_id)}</div>
-        <div className="reviewPadding">{help_count}</div>
+        <div className="reviewPadding">{anonymizeUserId(userName)}</div>
+        <div className="reviewPadding">{reviewHelpCount}</div>
       </div>
-      {clickedIndex === id && !isReviewClicked ? (
+      {clickedIndex === reviewId && !isReviewClicked ? (
         <div className="reviewContent">
-          <div className="reviewContentWrapper">{contant}</div>
+          <div className="reviewContentWrapper">{reviewContent}</div>
         </div>
       ) : null}
     </div>
