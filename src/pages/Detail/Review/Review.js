@@ -83,10 +83,10 @@ const Review = ({ product_id }) => {
               ))}
             </div>
             {reviews &&
-              reviews.map((review, index) => (
+              reviews.map(review => (
                 <ReviewRow
-                  key={index}
-                  id={index}
+                  key={review.reviewId}
+                  id={review.reviewId}
                   reviewData={review}
                   openReviewContent={openReviewContent}
                   clickedIndex={clickedIndex}
