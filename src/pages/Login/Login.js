@@ -47,6 +47,7 @@ function Login() {
       .then(data => {
         if (data.message === 'LOGIN_SUCCESS') {
           localStorage.setItem('token', data.token);
+          localStorage.setItem('userName', data.userName);
           navigate('/');
         } else handleModal(true, 1);
       });

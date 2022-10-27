@@ -8,10 +8,8 @@ import Footer from '../../components/Footer/Footer';
 const Main = () => {
   return (
     <div className="main">
-      <Nav />
       <MainBannerCarousel />
       <MainContentsBox />
-      <Footer />
     </div>
   );
 };
