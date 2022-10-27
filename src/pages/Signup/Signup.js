@@ -3,6 +3,17 @@ import './Signup.scss';
 import Input from '../../components/Input/Input';
 import Modal from '../../components/Modal/Modal';
 
+const RULES = {
+  id: {
+    pattern: value => /^[a-z]+[a-z0-9]{5,16}$/g.test(value),
+    message: '아이디를 확인해주세요',
+  },
+  password: {
+    pattern: value => /^[a-z]+[a-z0-9]{5,16}$/g.test(value),
+    message: '패스워드를 확인해주세요',
+  },
+};
+
 const Signup = () => {
   const [values, setValues] = useState({
     userId: '',
@@ -48,6 +59,8 @@ const Signup = () => {
   const isNameValid = name.length > 0;
   const emailRegEx = /[a-zA-Z0-9+_]+@[a-z]+\.+[a-z]/;
   const isEmailValid = emailRegEx.test(email);
+  const isSubmitValid =
+    userIdValid && password && passwordCheck && name && email;
   const [modalInfo, setModalInfo] = useState({
     isModalOpen: false,
     infoIndex: 0,
@@ -67,10 +80,11 @@ const Signup = () => {
     isEmailValid ? (index = 3) : (index = 2);
     handleModal(true, index);
   };
-  const signup = () => {
+  const signupSubmit = e => {
     let index;
-    isEmailValid ? (index = 5) : (index = 2);
+    isSubmitValid ? (index = 5) : (index = 4);
     handleModal(true, index);
+    submitUseInfo(e);
   };
   const submitUseInfo = e => {
     e.preventDefault();
@@ -171,7 +185,7 @@ const Signup = () => {
                 ) : (
                   isPasswordValid || (
                     <span className="warningText">
-                      영문 /숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합
+                      영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합
                     </span>
                   )
                 ))}
@@ -324,12 +338,7 @@ const Signup = () => {
           </div>
           <div className="bottomSeparatorBar"></div>
           <div className="signupSubmitButtonContainer">
-            <button
-              className="signupSubmitButton"
-              onClick={e => {
-                submitUseInfo(e);
-              }}
-            >
+            <button className="signupSubmitButton" onClick={signupSubmit}>
               <span className="signupSubmitButtonText">가입하기</span>
             </button>
             {isModalOpen && (
@@ -369,10 +378,22 @@ const contents = [
   },
   {
     id: 4,
-    title: '6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합',
+    title: '정보를 확인해주세요.',
   },
   {
     id: 5,
+    title: '정보를 확인해주세요.',
+  },
+  {
+    id: 6,
+    title: '정보를 확인해주세요.',
+  },
+  {
+    id: 7,
+    title: '정보를 확인해주세요.',
+  },
+  {
+    id: 8,
     title: '회원가입을 축하드립니다! 당신의 일상에 위켓을 더해보세요.',
   },
 ];
