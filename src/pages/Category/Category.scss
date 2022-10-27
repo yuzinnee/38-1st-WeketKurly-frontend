@@ -2,17 +2,18 @@
 
 .categoryContainer {
   display: flex;
-  margin-top: 50px;
 }
-.mainCategory {
-  border: 1px solid #e4e4e4;
-  height: 302px;
+.mainCategoryFrame {
+  background-color: $white-color;
+  height: 100%;
   &:hover {
     border-right: none;
   }
-  .mainCategories {
+  .mainCategoriesName {
     padding: 10px;
     background-color: $white-color;
+    border-left: 1px solid #f7f7f7;
+    border-right: 1px solid #f7f7f7;
     width: 200px;
     height: 30px;
     font-size: 16px;
@@ -23,25 +24,19 @@
     }
   }
 }
-.subCategory {
-  width: 200px;
-  height: 400px;
-  @include flex(null, center, column);
-  border-top: 1px solid #e4e4e4;
-  border-right: 1px solid #e4e4e4;
-  border-bottom: 1px solid #e4e4e4;
-  div {
-    .subCategories {
-      padding: 10px;
-      background-color: #f7f7f7;
-      width: 200px;
-      height: 30px;
-      font-size: 16px;
-      &:hover {
-        color: $primary-color;
-        font-weight: bold;
-        text-decoration: underline;
-      }
+.subcategoryFrame {
+  .subCategoriesName {
+    width: 200px;
+    @include flex(null, null, column);
+    padding: 10px;
+    background-color: #f7f7f7;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    &:hover {
+      color: $primary-color;
+      font-weight: bold;
+      text-decoration: underline;
     }
   }
 }
