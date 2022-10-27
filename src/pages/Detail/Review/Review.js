@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import ReviewRow from './ReviewRow/ReviewRow';
+import { useParams } from 'react-router-dom';
 import API from './../../../config';
 import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
-import { useParams } from 'react-router-dom';
+import ReviewRow from './ReviewRow/ReviewRow';
 import './Review.scss';
 
 const Review = () => {
@@ -30,13 +30,14 @@ const Review = () => {
   };
 
   const changeReviewTextarea = e => {
-    setNewReviewValue({ ...newReviewValue, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewReviewValue({ ...newReviewValue, [name]: value });
   };
 
   const fetchReviews = () =>
     fetch(`${API.submitReview}`)
       .then(res => res.json())
-      .then(reviewArray => setReviews(reviewArray));
+      .then(reviewArray => setReviews(reviewArray.data[0].review.reverse()));
 
   const submitReview = event => {
     event.preventDefault();
