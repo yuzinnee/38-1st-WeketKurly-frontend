@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Category from '../../pages/Category/Category';
 import { AiOutlineMenu } from 'react-icons/ai';
 
 const NavBottomBox = () => {
+  const [openCategory, setOpenCategory] = useState(false);
   return (
     <div className="navBottomBox">
-      <div className="navCategoryBox">
+      <div
+        className="navCategoryBox"
+        onClick={() => {
+          setOpenCategory(!openCategory);
+        }}
+      >
         <AiOutlineMenu className="navIcon" />
         <p className="navCategoryText">카테고리</p>
+        {openCategory && <Category setOpenCategory={setOpenCategory} />}
       </div>
       <div className="navSelectBox">
         {NAV_MOCK.map((cur, idx) => (
