@@ -11,10 +11,13 @@ import './Detail.scss';
 
 const Detail = () => {
   const [itemInfo, setItemInfo] = useState({
+    product_name: '',
     product_id: '',
     contactant: '',
     packing_types: '',
-    packing_type_id: '',
+    thumbnail_image_url: '',
+    detail_image_url: '',
+    short_description: '',
     weight: '',
     origin: '',
     allerge: '',
@@ -23,7 +26,8 @@ const Detail = () => {
     review: [],
   });
 
-  const { product_id } = useParams();
+  // const { product_id } = useParams();
+  const product_id = 1;
 
   const { allerge, contactant, expiration_date, name, origin, ...others } =
     itemInfo;
@@ -52,8 +56,18 @@ const Detail = () => {
         <div className="detailPageContainer">
           <Article itemInfo={itemInfo} />
           <DetailNav onClick={scrollToReview} />
-          <ProductDetail itemInfo={itemInfo} />
-          <Review reviewData={itemInfo.review} product_id={others.product_id} />
+          <div className="productDetailsContainer">
+            <img
+              src={itemInfo.detail_image_url}
+              alt={itemInfo.product_name}
+              className="itemImageDetail"
+            />
+            <div>
+              <h3 className="shortDescription">{itemInfo.short_description}</h3>
+              <h1 className="nameOnDescription">{itemInfo.product_name}</h1>
+            </div>
+          </div>
+          <Review reviewData={others.review} product_id={others.product_id} />
         </div>
       </div>
       <Footer />
