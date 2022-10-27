@@ -52,12 +52,12 @@ const Signup = () => {
   const userIdValid = userIdRegEx.test(userId);
   const passwordRegEx =
     /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{9,})/;
-  //a-z와 A-Z/숫자/특수 문자(공백 제외) 허용, 2개이상 조합, 최소 10자 이상
-
+  // a-z와 A-Z/숫자/특수 문자(공백 제외) 허용, 2개이상 조합, 최소 10자 이상
   const isPasswordValid = passwordRegEx.test(password);
   const isPasswordCheck = password === passwordCheck;
   const isNameValid = name.length > 0;
   const emailRegEx = /[a-zA-Z0-9+_]+@[a-z]+\.+[a-z]/;
+  // a-z와 A-Z/숫자/+와 - 허용, @와 a-z 그리고 \. a-z 사용가능
   const isEmailValid = emailRegEx.test(email);
   const isSubmitValid =
     userIdValid && password && passwordCheck && name && email;
@@ -70,6 +70,7 @@ const Signup = () => {
     setModalInfo({ isModalOpen: valid, infoIndex: index });
   };
   const birthday = year + month.padStart(2, 0) + day.padStart(2, 0);
+
   const UserIdDuplicationCheck = () => {
     let index;
     userIdValid ? (index = 1) : (index = 0);
@@ -86,6 +87,7 @@ const Signup = () => {
     handleModal(true, index);
     submitUseInfo(e);
   };
+
   const submitUseInfo = e => {
     e.preventDefault();
     fetch('http://10.58.52.89:3000/users/signup', {
