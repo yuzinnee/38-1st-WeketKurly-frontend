@@ -26,8 +26,7 @@ const Detail = () => {
     review: [],
   });
 
-  // const { product_id } = useParams();
-  const product_id = 1;
+  const { product_id } = useParams();
 
   const { allerge, contactant, expiration_date, name, origin, ...others } =
     itemInfo;
