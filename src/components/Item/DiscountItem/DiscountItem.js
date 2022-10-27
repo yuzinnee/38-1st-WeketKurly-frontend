@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Modal from '../../Modal/Modal';
 import { BsCart2 } from 'react-icons/bs';
 import './DiscountItem.scss';
 
 const DiscountItem = ({ contents }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   const discountPrice =
-    contents?.productPrice -
-    (contents?.discount / 100) * contents?.productPrice;
+    contents?.price - (contents?.discount / 100) * contents?.price;
 
   return (
     <div className="disItemContainer">
@@ -14,7 +16,12 @@ const DiscountItem = ({ contents }) => {
         src={contents?.thumbnailImageUrl}
         alt="상품 이미지"
       />
-      <div className="disItemIconBox">
+      <div
+        className="disItemIconBox"
+        onClick={() => {
+          setOpenModal(true);
+        }}
+      >
         <BsCart2 className="reactIcon" />
       </div>
 
@@ -27,9 +34,16 @@ const DiscountItem = ({ contents }) => {
       <span className="disItemDiscountPrice">
         {discountPrice.toLocaleString() + `원`}
       </span>
-      <span className="disItemPrice">
-        {contents?.productPrice.toLocaleString()}
-      </span>
+      <span className="disItemPrice">{contents?.price}</span>
+      {openModal && (
+        <Modal
+          type="cart"
+          contents={contents}
+          close={() => {
+            setOpenModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };

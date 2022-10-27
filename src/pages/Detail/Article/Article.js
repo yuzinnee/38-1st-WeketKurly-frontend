@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HiOutlineShare, HiOutlineBell, HiOutlineHeart } from 'react-icons/hi';
-import API from '../../../src/config';
+import API from '../../../config';
 import ShareToolTip from '../ShareToolTip/ShareToolTip';
 import TableInner from '../TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
