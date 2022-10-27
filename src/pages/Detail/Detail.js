@@ -47,6 +47,7 @@ const Detail = () => {
         setItemInfo(result.productData[0]);
       });
   }, []);
+  // console.log(others.review);
 
   return (
     <>

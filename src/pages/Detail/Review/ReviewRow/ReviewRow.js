@@ -18,7 +18,6 @@ const ReviewRow = ({
       <div
         className="reviewRow list"
         onClick={() => openReviewContent(reviewId)}
-        isReviewClicked={isReviewClicked}
       >
         <div className="reviewPadding">{reviewId}</div>
         <div>

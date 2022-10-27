@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import ReviewRow from './ReviewRow/ReviewRow';
 import API from './../../../config';
 import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
-import { useParams } from 'react-router-dom';
+import ReviewRow from './ReviewRow/ReviewRow';
 import './Review.scss';
 
-const Review = () => {
-  const [reviews, setReviews] = useState([]);
-  const { product_id } = useParams;
+const Review = ({ product_id, reviewData }) => {
   const token = localStorage.getItem('token');
 
   const [clickedIndex, setClickedIndex] = useState('');
@@ -30,35 +27,9 @@ const Review = () => {
   };
 
   const changeReviewTextarea = e => {
-    setNewReviewValue({ ...newReviewValue, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewReviewValue({ ...newReviewValue, [name]: value });
   };
-
-  const fetchReviews = () => {
-    fetch(`${API.submitReview}`)
-      .then(res => res.json())
-      .then(reviewArray => {
-        setReviews(reviewArray.data[0].review.reverse());
-      });
-  };
-
-  const submitReview = event => {
-    event.preventDefault();
-    fetch(`${API.submitReview}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-      body: JSON.stringify({
-        value: newReviewValue,
-        product_id: product_id,
-      }),
-    }).then(res => res.json());
-    fetchReviews();
-    setIsPostButtonClicked(false);
-  };
-
-  useEffect(() => fetchReviews(), []);
 
   return (
     <div className="review">
@@ -79,30 +50,30 @@ const Review = () => {
           </div>
           <div className="reviewTableContainer">
             <div className="reviewRow">
-              {REVIEW_KEY.map((titles, index) => (
-                <div key={index} className={titles.className}>
+              {REVIEW_KEY.map(titles => (
+                <div key={titles.id} className={titles.className}>
                   {titles.title}
                 </div>
               ))}
             </div>
-            {reviews.map((review, index) => (
-              <ReviewRow
-                key={index}
-                id={index}
-                reviewData={review}
-                openReviewContent={openReviewContent}
-                clickedIndex={clickedIndex}
-                isReviewClicked={isReviewClicked}
-              />
-            ))}
+            {reviewData &&
+              reviewData.map(review => (
+                <ReviewRow
+                  key={review.reviewId}
+                  id={review.reviewId}
+                  reviewData={review}
+                  openReviewContent={openReviewContent}
+                  clickedIndex={clickedIndex}
+                  isReviewClicked={isReviewClicked}
+                />
+              ))}
           </div>
         </div>
       </div>
-      {isPostButtonClicked ? (
+      {isPostButtonClicked && token ? (
         <ReviewPostArea
           changeReviewTextarea={changeReviewTextarea}
           isPostButtonClicked={isPostButtonClicked}
-          submitReview={submitReview}
         />
       ) : (
         <button
@@ -120,8 +91,8 @@ const Review = () => {
 export default Review;
 
 const REVIEW_KEY = [
-  { title: '번호', className: 'reviewPadding' },
-  { title: '제목', className: 'tableTitle' },
-  { title: '작성자', className: 'reviewPadding' },
-  { title: '도움', className: 'reviewPadding' },
+  { id: 1, title: '번호', className: 'reviewPadding' },
+  { id: 2, title: '제목', className: 'tableTitle' },
+  { id: 3, title: '작성자', className: 'reviewPadding' },
+  { id: 4, title: '도움', className: 'reviewPadding' },
 ];

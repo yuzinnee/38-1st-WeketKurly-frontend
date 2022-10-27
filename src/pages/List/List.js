@@ -84,9 +84,9 @@ const List = () => {
                   onClick={() =>
                     navigate(`/products/detail/${product?.productId}`)
                   }
+                  key={product.productId}
                 >
                   <Item
-                    key={product.productId}
                     className="listGridCell"
                     contents={product}
                     type="default"
