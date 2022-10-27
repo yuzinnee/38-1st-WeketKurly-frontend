@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HiOutlineShare, HiOutlineBell, HiOutlineHeart } from 'react-icons/hi';
-import API from '../../../src/config';
+import API from '../../../config';
 import ShareToolTip from '../ShareToolTip/ShareToolTip';
 import TableInner from '../TableInner/TableInner';
 import DetailCart from './DetailCart/DetailCart';
@@ -15,9 +15,13 @@ const Article = ({ itemInfo }) => {
     product_id,
     ...others
   } = itemInfo;
-  const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
-  const [isWishItemToggled, setIsWishItemToggled] = useState('false');
   const token = localStorage.getItem('token');
+  const [isWishItemToggled, setIsWishItemToggled] = useState(false);
+  const [isShareTooTipClicked, setisShareTooTipClicked] = useState(false);
+
+  const clickShareToolTip = () => {
+    setisShareTooTipClicked(isShareTooTipClicked ? false : true);
+  };
 
   const priceToString = price => {
     return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -64,10 +68,7 @@ const Article = ({ itemInfo }) => {
           <div>
             <div className="titleContainer">
               <h2 className="itemName">{name}</h2>
-              <button
-                className="share"
-                onClick={prev => setisShareTooTipClicked(!prev)}
-              >
+              <button className="share" onClick={clickShareToolTip}>
                 <HiOutlineShare className="shareicon" />
                 {isShareTooTipClicked && <ShareToolTip url="http://url" />}
               </button>
