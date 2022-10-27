@@ -35,7 +35,10 @@ const Review = ({ product_id }) => {
   const fetchReviews = () =>
     fetch(`${API.submitReview}`)
       .then(res => res.json())
-      .then(reviewArray => setReviews(reviewArray.data[0].review.reverse()));
+      .then(reviewArray => {
+        setReviews(reviewArray.data[0].review.reverse());
+        console.log(reviewArray);
+      });
 
   const submitReview = event => {
     event.preventDefault();
