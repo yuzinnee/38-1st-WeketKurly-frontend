@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import API from './../../../config';
 import ReviewPostArea from './ReviewPostArea/ReviewPostArea';
 import ReviewRow from './ReviewRow/ReviewRow';
 import './Review.scss';
 
-const Review = () => {
+const Review = ({ product_id }) => {
   const [reviews, setReviews] = useState([]);
-  const { product_id } = useParams;
   const token = localStorage.getItem('token');
 
   const [clickedIndex, setClickedIndex] = useState('');
@@ -48,8 +46,9 @@ const Review = () => {
         Authorization: token,
       },
       body: JSON.stringify({
-        value: newReviewValue,
-        product_id: product_id,
+        title: newReviewValue.title,
+        contents: newReviewValue.content,
+        productId: product_id,
       }),
     }).then(res => res.json());
     fetchReviews();
@@ -77,8 +76,8 @@ const Review = () => {
           </div>
           <div className="reviewTableContainer">
             <div className="reviewRow">
-              {REVIEW_KEY.map((titles, index) => (
-                <div key={index} className={titles.className}>
+              {REVIEW_KEY.map(titles => (
+                <div key={titles.id} className={titles.className}>
                   {titles.title}
                 </div>
               ))}
@@ -119,8 +118,8 @@ const Review = () => {
 export default Review;
 
 const REVIEW_KEY = [
-  { title: '번호', className: 'reviewPadding' },
-  { title: '제목', className: 'tableTitle' },
-  { title: '작성자', className: 'reviewPadding' },
-  { title: '도움', className: 'reviewPadding' },
+  { id: 1, title: '번호', className: 'reviewPadding' },
+  { id: 2, title: '제목', className: 'tableTitle' },
+  { id: 3, title: '작성자', className: 'reviewPadding' },
+  { id: 4, title: '도움', className: 'reviewPadding' },
 ];
