@@ -54,7 +54,6 @@ const Detail = () => {
           {/* <Review reviewData={itemInfo.review} product_id={others.product_id} /> */}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
