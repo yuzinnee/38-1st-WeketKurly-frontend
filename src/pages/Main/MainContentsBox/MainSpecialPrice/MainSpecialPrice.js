@@ -8,6 +8,10 @@ const MainSpecialPrice = () => {
   const [itemList, setItemList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
+  const midnight = new Date();
+
+  midnight.setHours(24, 0, 0, 0);
+
   useEffect(() => {
     fetch(`${API.mainTimeDeal}`, {
       method: 'GET',
@@ -20,7 +24,7 @@ const MainSpecialPrice = () => {
   }, []);
 
   const calculateTimeLeft = () => {
-    const difference = +new Date('2022-10-28T24:00:00') - +new Date();
+    const difference = midnight - +new Date();
 
     let timeLeft = {};
 
@@ -42,6 +46,7 @@ const MainSpecialPrice = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
   });
+
   return (
     <div className="mainSpecialPrice">
       <div className="specialTimeBox">
