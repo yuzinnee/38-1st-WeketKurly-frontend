@@ -6,8 +6,6 @@ import './DiscountItem.scss';
 const DiscountItem = ({ contents }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  console.log(contents);
-
   const discountPrice =
     contents?.price - (contents?.discount / 100) * contents?.price;
 
@@ -36,9 +34,7 @@ const DiscountItem = ({ contents }) => {
       <span className="disItemDiscountPrice">
         {discountPrice.toLocaleString() + `원`}
       </span>
-      <span className="disItemPrice">
-        {/* {contents?.productPrice.toLocaleString()} */}
-      </span>
+      <span className="disItemPrice">{contents?.price}</span>
     </div>
   );
 };
