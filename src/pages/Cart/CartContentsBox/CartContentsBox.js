@@ -25,21 +25,8 @@ const CartContentsBox = () => {
 
   let totalAndFee = totalPrice - 3000;
 
-  // useEffect(() => {
-  //   fetch(API.getCarts, {
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       setCartData(result.result.data);
-  //     });
-  // }, []);
-
   useEffect(() => {
-    fetch('data/DATA.json', {
+    fetch(API.getCarts, {
       method: 'GET',
       headers: {
         Authorization: token,
@@ -47,7 +34,7 @@ const CartContentsBox = () => {
     })
       .then(res => res.json())
       .then(result => {
-        setCartData(result.data);
+        setCartData(result.result.data);
       });
   }, []);
 
