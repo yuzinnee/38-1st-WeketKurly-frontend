@@ -66,7 +66,14 @@ const MainSpecialPrice = () => {
       {itemList.map(item => (
         <Item type="discount" contents={item} key={item.productId} />
       ))}
-      {openModal && <Modal type="cart" />}
+      {openModal && (
+        <Modal
+          type="cart"
+          close={() => {
+            setOpenModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };
